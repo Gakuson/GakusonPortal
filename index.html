@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- GoogleTag -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-3SWSM9QNQJ");
+    </script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="icon" href="/favicon.ico" />
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <meta property="og:site_name" content="がくそん" />
+    <title>TOP - がくそん</title>
+    <meta property="og:title" content="TOP - がくそん" />
+    <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
+    <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
+  </head>
+  <body>
+    <header></header>
+    <script>
+      $(function () {
+        $("header").load("/header.html");
+      });
+    </script>
+
+    <!-- ここより下に書いてください -->
+    <div class="classProgressBase">
+      <div class="classProgressSet">
+        <p id="currentTime">
+          現在時刻 <span class="larger">00:00</span><span style="margin-left: 0.2em; font-size: 130%">00</span>
+        </p>
+        <p id="classProgressParCurr"><span class="larger">0</span>限講義中 / あと<span class="larger">0</span>分</p>
+        <progress id="classProgressBar" max="100" value="0"></progress>
+        <span id="classProgressVal"></span>
+        <p id="classProgressParNext"><span class="larger">0</span>限開始まで<span class="larger">0</span>分</p>
+      </div>
+    </div>
+
+    <div class="centerContentsBase">
+      <h1>がくそん</h1>
+      <div class="linkButtons">
+        <a target="_blank" href="https://porta.nanzan-u.ac.jp/md-portal/#/pt010111">PORTA</a>
+        <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/">Webclass</a>
+        <a target="_blank" href="https://handout.nanzan-u.ac.jp/classes/">講義資料</a>
+        <a target="_blank" href="https://fx.nanzan-u.ac.jp/">Proself</a>
+        <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl" class="multiline"
+          >プリント<br />サービス</a
+        >
+        <a target="_blank" href="https://porta.nanzan-u.ac.jp/syllabus/">シラバス</a>
+        <a target="_blank" href="https://www.nanzan-u.ac.jp/" class="multiline">南山大学<br />HP</a>
+        <a target="_blank" href="https://office.nanzan-u.ac.jp/student-services/" class="multiline">学生課<br />HP</a>
+        <a target="_blank" href="https://office.nanzan-u.ac.jp/KYOUMU/course-class/class03.html" class="multiline"
+          >休講等<br />情報</a
+        >
+        <a target="_blank" href="https://opac.nanzan-u.ac.jp/" class="multiline">図書館<br />蔵書検索</a>
+        <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="multiline"
+          >大学<br />問い合わせ</a
+        >
+        <a
+          target="_blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform"
+          class="multiline"
+          >がくそん<br />問い合わせ</a
+        >
+      </div>
+
+      <div class="newsContainer">
+        <div class="newsTitle">ニュース</div>
+        <hr />
+        <a href="/">
+          <span class="newsTitle">ポータルサイトがリニューアル</span><br />
+          HTMLで書き直されて見た目がきれいになりました！
+        </a>
+        <hr />
+        <a href="/">
+          <span class="newsTitle">がくそんメンバー募集中</span><br />
+          サイトの運営に関わりたい人、Nanトピの記事を書きたい人、SNSで宣伝したい人など誰でも募集～
+        </a>
+        <hr />
+        <a href="/">
+          <span class="newsTitle">テストテスト3枠目</span><br />
+          ほげほげふーばーほげほげふーばー
+        </a>
+        <hr />
+        <a href="./news.html" class="showMore">もっと見る</a>
+      </div>
+      <style>
+        hr {
+          height: 0;
+          margin: 0;
+        }
+        div.newsContainer {
+          margin: 2em 0;
+          padding-left: 0;
+          display: block;
+          border: 3px double black;
+          width: 100%;
+          & > * {
+            width: 100%;
+          }
+          a {
+            text-decoration: none;
+            display: block;
+            background: var(--bgColor);
+            color: var(--pColor);
+          }
+          a:hover {
+            filter: invert(1);
+          }
+          a:not(.showMore) {
+            padding: 0.5em 0;
+            padding-left: 2em;
+            .newsTitle {
+              font-size: 120%;
+            }
+          }
+          div.newsTitle {
+            padding: 0.3em 0;
+            font-size: 160%;
+            text-align: center;
+          }
+          a.showMore {
+            padding: 0.3em 0;
+            text-align: center;
+          }
+        }
+      </style>
+
+      <div style="display: flex; flex-wrap: wrap">
+        <table class="classSchedule">
+          <tr>
+            <th colspan="2">授業時間割</th>
+          </tr>
+          <tr>
+            <td style="width: 30%">1限</td>
+            <td>09:10 - 10:50</td>
+          </tr>
+          <tr>
+            <td>2限</td>
+            <td>11:05 - 12:45</td>
+          </tr>
+          <tr>
+            <td>3限</td>
+            <td>13:35 - 15:15</td>
+          </tr>
+          <tr>
+            <td>4限</td>
+            <td>15:30 - 17:10</td>
+          </tr>
+          <tr>
+            <td>5限</td>
+            <td>17:25 - 19:05</td>
+          </tr>
+          <tr>
+            <td>夜1限</td>
+            <td>18:30 - 20:10</td>
+          </tr>
+          <tr>
+            <td>夜2限</td>
+            <td>20:15 - 21:55</td>
+          </tr>
+        </table>
+
+        <table class="examSchedule">
+          <tr>
+            <th colspan="3">定期試験時間割</th>
+          </tr>
+          <tr>
+            <td style="width: 22%">1限</td>
+            <td>09:20 - 10:10</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2限</td>
+            <td>10:35 - 11:25</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>3限</td>
+            <td>11:50 - 12:40</td>
+            <td>11:50 - 13:10</td>
+          </tr>
+          <tr>
+            <td>4限</td>
+            <td>13:40 - 14:30</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>5限</td>
+            <td>14:55 - 15:45</td>
+            <td>14:55 - 16:15</td>
+          </tr>
+          <tr>
+            <td>6限</td>
+            <td>16:40 - 17:30</td>
+            <td>16:40 - 18:00</td>
+          </tr>
+          <tr>
+            <td>7限</td>
+            <td></td>
+            <td>18:40 - 20:00</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>
+        これはプレースホルダーテキストの始まりです。<br />
+        普通の人がエレベーターの速度について意識することはあんまりないと思うけど適当に語ってみます。
+        2010年代に入ってから新設された三菱のエレベーターには、可変速システムが搭載されていることが多いです。
+        これはアクシーズの第4世代以降に標準仕様となった機能で、積載負荷が一定以下のときに高速運転を行います。
+        南山大学ではQ棟やS棟のものが該当します。<br />
+        エレベーターのカウンターウェイトは、カゴの最大積載量の約4割と釣り合うようにできています。
+        同じ速度で運転した場合、釣り合いに近い状態のほうが、モーターの負荷は小さくなります。
+        このとき、設計負荷の範囲内でスピードを上げ、サービスを向上させようと考えた結果生まれた機能が高速運転モードです。<br />
+        この機能がアクティブで定格以上のスピードを出しているとき、「高速モード」(Q棟) とか「RAPID MODE」(S棟)
+        とか表示されます。
+        最大積載量の30%～55%ぐらいなら最高速度になると思います。このとき105m/分になるので、定格の60m/分の1.5倍以上のスピードが出ています！
+        ちなみに1人で乗ると体重にもよるけど80m/分ぐらいになりますが、積載量ギリギリで乗るとアクティブになりません。<br />
+        G棟も第4アクシーズが採用されていますが、3階建てでは昇降距離が短すぎてスピードが出せないので対応していません。<br />
+        これはプレースホルダーテキストの終わりです。
+      </p>
+    </div>
+    <a target="_blank" href="http://kitchen-car.com/kumiai/s-column/nanzan/" id="kitchenCarBanner"
+      ><img src="./img/kitchencar.png" style="width: 100%"
+    /></a>
+    <div class="xEmbedBase">Posts by Nanzan_Gakuson</div>
+
+    <script src="./classProgress.js"></script>
+    <!-- ここより上に書いてください -->
+    <footer></footer>
+    <script>
+      $(function () {
+        $("footer").load("/footer.html");
+      });
+    </script>
+  </body>
+</html>

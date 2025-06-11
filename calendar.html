@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- GoogleTag -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-3SWSM9QNQJ");
+    </script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="icon" href="/favicon.ico" />
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <meta property="og:site_name" content="がくそん" />
+    <title>TOP - がくそん</title>
+    <meta property="og:title" content="TOP - がくそん" />
+    <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
+    <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
+    <style>
+      body {
+        text-align: center;
+        line-height: 1.3em;
+      }
+      table {
+        border-collapse: collapse;
+        width: 96%;
+        max-width: 800px;
+        margin: 20px auto;
+        table-layout: fixed; /* セルの幅を固定 */
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 3px 6px;
+        height: 65px;
+        vertical-align: top;
+        position: relative;
+        width: 14.28%; /* 100% ÷ 7 */
+      }
+      th {
+        background-color: #cccccc77;
+        height: 1.3em;
+      }
+      .today {
+        background-color: #ffdd0077;
+      }
+      .saturday {
+        background-color: #0084ff77;
+      }
+      .sunday {
+        background-color: #ff000077;
+      }
+      .event-day {
+        ackground-color: #00ff0077;
+      }
+      .cellDate {
+        font-size: 1.3em;
+      }
+      .event {
+        font-size: 0.75em;
+        line-height: 1.3em;
+        margin-top: 4px;
+        color: var(--pColor);
+      }
+      .show-all {
+        display: block;
+        font-size: 0.7em;
+        color: var(--linkColor);
+        cursor: pointer;
+        margin-top: 3px;
+        text-decoration: underline;
+      }
+      .nav-buttons {
+        margin-bottom: 10px;
+      }
+      button:not(#theme-toggle) {
+        padding: 6px 12px;
+        margin: 0 10px;
+      }
+      dialog::backdrop {
+        background: #00000066;
+      }
+
+      dialog {
+        padding: 20px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #aaaaaa77;
+        width: 80vw;
+        max-width: 400px;
+        background: var(--bgColor);
+      }
+
+      dialog::backdrop {
+        background: #777777aa;
+      }
+
+      #eventDialog ul {
+        text-align: left;
+        padding-left: 20px;
+        color: var(--pColor);
+      }
+
+      #calendar-container {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      #calendar-container table {
+        transition: transform 0.3s ease-in;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <script>
+      $(function () {
+        $("header").load("/header.html");
+      });
+    </script>
+
+    <!-- ここより下に書いてください -->
+    <div class="nav-buttons">
+      <button onclick="changeMonth(-1)">前の月</button>
+      <span id="month-year"></span>
+      <button onclick="changeMonth(1)">次の月</button>
+    </div>
+    <div id="calendar-container">
+      <table>
+        <thead>
+          <tr id="calendar-header"></tr>
+        </thead>
+        <tbody id="calendar-body"></tbody>
+      </table>
+    </div>
+
+    <dialog id="eventDialog">
+      <h3 id="dialog-date"></h3>
+      <ul id="dialog-events"></ul>
+      <button onclick="document.getElementById('eventDialog').close()">閉じる</button>
+    </dialog>
+    <!-- ここより上に書いてください -->
+    <footer></footer>
+    <script>
+      $(function () {
+        $("footer").load("/footer.html");
+      });
+    </script>
+  </body>
+
+  <script>
+    const events = {
+      "2025-05-23": ["テスト週間開始日"],
+      "2025-05-30": ["定期試験1日目"],
+      "2025-05-31": ["アセスメントテスト締切", "aa"],
+    };
+
+    const weekStart = 0;
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let currentDate = new Date();
+
+    function formatDate(year, month, day) {
+      return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    }
+
+    let isAnimating = false;
+
+    function changeMonth(offset) {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const table = document.querySelector("#calendar-container table");
+
+      const direction = offset > 0 ? -1 : 1;
+      table.style.transform = `translateX(${direction * 100}vw)`;
+      setTimeout(() => {
+        currentDate.setMonth(currentDate.getMonth() + offset);
+        generateCalendar(currentDate);
+        table.style.transition = "none";
+        table.style.transform = `translateX(${direction * -100}vw)`;
+        void table.offsetWidth;
+        table.style.transition = "transform 0.3s ease-out";
+        table.style.transform = "translateX(0)";
+        isAnimating = false;
+      }, 300);
+    }
+
+    function openDialog(dateStr, eventList) {
+      const dialog = document.getElementById("eventDialog");
+      const dialogDate = document.getElementById("dialog-date");
+      const dialogEvents = document.getElementById("dialog-events");
+
+      dialogDate.textContent = `${dateStr} のイベント`;
+      dialogEvents.innerHTML = "";
+      eventList.forEach((e) => {
+        const li = document.createElement("li");
+        li.textContent = e;
+        dialogEvents.appendChild(li);
+      });
+      dialog.showModal();
+    }
+
+    function generateCalendar(date) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const today = new Date();
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+
+      const headerRow = document.getElementById("calendar-header");
+      headerRow.innerHTML = "";
+      for (let i = 0; i < 7; i++) {
+        const dayIndex = (i + weekStart) % 7;
+        const th = document.createElement("th");
+        th.textContent = weekDays[dayIndex];
+        headerRow.appendChild(th);
+      }
+
+      document.getElementById("month-year").textContent = `${year}年${String(month + 1).padStart(2, 0)}月`;
+
+      const calendarBody = document.getElementById("calendar-body");
+      calendarBody.innerHTML = "";
+
+      let startDayOfWeek = (firstDay.getDay() - weekStart + 7) % 7;
+      let dateCounter = 1;
+
+      for (let i = 0; i < 6; i++) {
+        let row = document.createElement("tr");
+
+        for (let j = 0; j < 7; j++) {
+          let cell = document.createElement("td");
+          if (i === 0 && j < startDayOfWeek) {
+            cell.innerHTML = "";
+          } else if (dateCounter > daysInMonth) {
+            cell.innerHTML = "";
+          } else {
+            const fullDate = formatDate(year, month, dateCounter);
+            const weekDay = (j + weekStart) % 7;
+            const isToday =
+              dateCounter === today.getDate() && year === today.getFullYear() && month === today.getMonth();
+
+            if (weekDay === 0) cell.classList.add("sunday");
+            else if (weekDay === 6) cell.classList.add("saturday");
+            if (events[fullDate]) cell.classList.add("event-day");
+            if (isToday) cell.classList.add("today");
+
+            cell.innerHTML = `<div class="cellDate">${dateCounter}</div>`;
+            if (events[fullDate]) {
+              const eventList = events[fullDate];
+              const eventDiv = document.createElement("div");
+              eventDiv.className = "event";
+              if (eventList[0].length > 8 && eventList.length > 1)
+                eventDiv.textContent = eventList[0].substring(0, 7) + "…";
+              else eventDiv.textContent = eventList[0];
+              cell.appendChild(eventDiv);
+
+              if (eventList.length > 1) {
+                const showAll = document.createElement("span");
+                showAll.className = "show-all";
+                showAll.textContent = "すべて表示";
+                showAll.onclick = () => openDialog(fullDate, eventList);
+                cell.appendChild(showAll);
+              }
+            }
+            dateCounter++;
+          }
+          row.appendChild(cell);
+        }
+        calendarBody.appendChild(row);
+        if (dateCounter > daysInMonth) break;
+      }
+    }
+
+    window.onload = () => generateCalendar(currentDate);
+  </script>
+</html>

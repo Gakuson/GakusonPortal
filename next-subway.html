@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- GoogleTag -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-3SWSM9QNQJ");
+    </script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="icon" href="/favicon.ico" />
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/next-subway.css" />
+    <meta property="og:site_name" content="がくそん" />
+    <title>地下鉄時刻 - がくそん</title>
+    <meta property="og:title" content="地下鉄時刻 - がくそん" />
+    <meta
+      name="description"
+      content="名古屋大学駅と八事日赤駅における次の電車までの時間と、名古屋市交通局の運行状況を表示しています。"
+    />
+    <meta
+      property="og:description"
+      content="名古屋大学駅と八事日赤駅における次の電車までの時間と、名古屋市交通局の運行状況を表示しています。"
+    />
+  </head>
+  <body>
+    <header></header>
+    <script>
+      $(function () {
+        $("header").load("/header.html");
+      });
+    </script>
+
+    <!-- ここより下に書いてください -->
+
+    <h1>地下鉄時刻</h1>
+    <p style="text-align: center">名古屋大学駅</p>
+    <div class="hasshahyoContainer">
+      <div class="machine-lefter">
+        <div>
+          <div class="track">1</div>
+          <div class="toward">左回り</div>
+        </div>
+        <div class="disp">
+          <span class="time" id="meidai-left-0-time"></span>
+          <span class="bound" id="meidai-left-0-dest"></span>
+          <span class="com" id="meidai-left-0-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="meidai-left-1-time"></span>
+          <span class="bound" id="meidai-left-1-dest"></span>
+          <span class="com" id="meidai-left-1-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="meidai-left-2-time"></span>
+          <span class="bound" id="meidai-left-2-dest"></span>
+          <span class="com" id="meidai-left-2-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="telop">読み込み中</span>
+          <span class="currTime"></span>
+        </div>
+      </div>
+      <div class="machine-righter">
+        <div>
+          <div class="track">2</div>
+          <div class="toward">右回り</div>
+        </div>
+        <div class="disp">
+          <span class="time" id="meidai-right-0-time"></span>
+          <span class="bound" id="meidai-right-0-dest"></span>
+          <span class="com" id="meidai-right-0-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="meidai-right-1-time"></span>
+          <span class="bound" id="meidai-right-1-dest"></span>
+          <span class="com" id="meidai-right-1-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="meidai-right-2-time"></span>
+          <span class="bound" id="meidai-right-2-dest"></span>
+          <span class="com" id="meidai-right-2-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="telop">読み込み中</span>
+          <span class="currTime"></span>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center">八事日赤駅</p>
+    <div class="hasshahyoContainer">
+      <div class="machine-lefter">
+        <div>
+          <div class="track">1</div>
+          <div class="toward">左回り</div>
+        </div>
+        <div class="disp">
+          <span class="time" id="nisseki-left-0-time"></span>
+          <span class="bound" id="nisseki-left-0-dest"></span>
+          <span class="com" id="nisseki-left-0-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="nisseki-left-1-time"></span>
+          <span class="bound" id="nisseki-left-1-dest"></span>
+          <span class="com" id="nisseki-left-1-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="nisseki-left-2-time"></span>
+          <span class="bound" id="nisseki-left-2-dest"></span>
+          <span class="com" id="nisseki-left-2-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="telop">読み込み中</span>
+          <span class="currTime"></span>
+        </div>
+      </div>
+      <div class="machine-righter">
+        <div>
+          <div class="track">2</div>
+          <div class="toward">右回り</div>
+        </div>
+        <div class="disp">
+          <span class="time" id="nisseki-right-0-time"></span>
+          <span class="bound" id="nisseki-right-0-dest"></span>
+          <span class="com" id="nisseki-right-0-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="nisseki-right-1-time"></span>
+          <span class="bound" id="nisseki-right-1-dest"></span>
+          <span class="com" id="nisseki-right-1-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="time" id="nisseki-right-2-time"></span>
+          <span class="bound" id="nisseki-right-2-dest"></span>
+          <span class="com" id="nisseki-right-2-comm"></span>
+        </div>
+        <div class="disp">
+          <span class="telop">読み込み中</span>
+          <span class="currTime"></span>
+        </div>
+      </div>
+    </div>
+    <br />
+    <p style="text-align: center">
+      間に合う判定は山手通門から駅ホームまでの標準所要時間で行っています。所要時間には個人差があります。<br /><br />
+      試運転列車や回送列車、終夜運転や名港花火大会による臨時列車、遅延や運休による時刻変更はここには反映されません。<br />
+      実際の状況は、駅の掲示ならびに名市交のホームページや公式SNS等をご確認ください。<br /><br />
+      名城線, 名港線では、2025年9月にダイヤ改正が予定されています。<br /><br />
+      名市交は、土日祝日および12月28日～1月3日の年末年始期間、8月13日～15日のお盆期間は休日ダイヤで運転します。<br />
+      東山線は、12月31日～1月3日まで特別ダイヤで運転します。
+    </p>
+    <table id="operationStatus">
+      <tr>
+        <th style="width: max(6.1em, 10vw)">路線</th>
+        <th>運行情報</th>
+      </tr>
+    </table>
+    <script src="./next-subway.js"></script>
+    <!-- ここより上に書いてください -->
+    <footer></footer>
+    <script>
+      $(function () {
+        $("footer").load("/footer.html");
+      });
+    </script>
+  </body>
+</html>
