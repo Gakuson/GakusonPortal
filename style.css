@@ -161,7 +161,7 @@ a {
   #classProgressBar {
     position: absolute;
     bottom: 1em;
-    width: calc(90vw - 2em);
+    width: calc(90vw - 3em);
     margin-left: 5vw;
     background: var(--bgColor);
     -webkit-appearance: none;
