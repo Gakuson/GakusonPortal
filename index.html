@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
     <!-- GoogleTag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
     <script>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="centerContentsBase">
-      <h1>がくそん</h1>
+      <h1>がくそん Renewal</h1>
       <div class="linkButtons">
         <a target="_blank" href="https://porta.nanzan-u.ac.jp/md-portal/#/pt010111">PORTA</a>
         <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/">Webclass</a>
@@ -75,22 +75,22 @@
         >
       </div>
 
-      <div class="newsContainer">
+      <div class="newsContainer" id="newsContainer">
         <div class="newsTitle">ニュース</div>
         <hr />
-        <a href="/">
-          <span class="newsTitle">ポータルサイトがリニューアル</span><br />
-          HTMLで書き直されて見た目がきれいになりました！
+        <a href="./news.html?newsId=1">
+          <span class="newsTitle">読み込み中</span><br />
+          Loading...
         </a>
         <hr />
-        <a href="/">
-          <span class="newsTitle">がくそんメンバー募集中</span><br />
-          サイトの運営に関わりたい人、Nanトピの記事を書きたい人、SNSで宣伝したい人など誰でも募集～
+        <a href="./news.html?newsId=5">
+          <span class="newsTitle">読み込み中</span><br />
+          Loading...
         </a>
         <hr />
-        <a href="/">
-          <span class="newsTitle">テストテスト3枠目</span><br />
-          ほげほげふーばーほげほげふーばー
+        <a href="./news.html?newsId=4">
+          <span class="newsTitle">読み込み中</span><br />
+          Loading...
         </a>
         <hr />
         <a href="./news.html" class="showMore">もっと見る</a>
@@ -104,7 +104,7 @@
           margin: 2em 0;
           padding-left: 0;
           display: block;
-          border: 3px double black;
+          border: 3px double var(--pColor);
           width: 100%;
           & > * {
             width: 100%;
@@ -129,6 +129,7 @@
             padding: 0.3em 0;
             font-size: 160%;
             text-align: center;
+            color: var(--pColor);
           }
           a.showMore {
             padding: 0.3em 0;
@@ -237,6 +238,7 @@
     <div class="xEmbedBase">Posts by Nanzan_Gakuson</div>
 
     <script src="./classProgress.js"></script>
+    <script src="./newsLoader.js"></script>
     <!-- ここより上に書いてください -->
     <footer></footer>
     <script>

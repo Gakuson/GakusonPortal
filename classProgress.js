@@ -52,7 +52,7 @@ setInterval(() => {
       classProgressBarElem.value = classProgrPercent;
       classProgressValElem.innerHTML = `${classProgrPercent}%`;
       const currClassNo = Math.ceil(now_grid / 2);
-      classProgressParCurrElem.innerHTML = `<span class="larger">${currClassNo}</span>限講義中 / あと<span class="larger">${remaining_min}</span>分`;
+      classProgressParCurrElem.innerHTML = `<span class="larger">${currClassNo}</span>限終了まで<span class="larger">${remaining_min}</span>分`;
     }
     manageNextgrid: {
       if (now_grid == 9) {
@@ -73,7 +73,7 @@ setInterval(() => {
       classProgressBarElem.value = breakProgrPercent;
       classProgressValElem.innerHTML = `${breakProgrPercent}%`;
       const soonClassNo = now_grid / 2 + 1;
-      classProgressParCurrElem.innerHTML = `<span class="larger">${soonClassNo}</span>限まであと休憩<span class="larger">${remaining_min}</span>分`;
+      classProgressParCurrElem.innerHTML = `<span class="larger">${soonClassNo}</span>限開始まで<span class="larger">${remaining_min}</span>分`;
     }
     manageNextgrid: {
       if (now_grid == 8) {

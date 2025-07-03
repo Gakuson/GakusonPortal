@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
     <!-- GoogleTag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
     <script>
@@ -26,7 +26,7 @@
     <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
     <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
     <style>
-      body {
+      div.calendarContainer {
         text-align: center;
         line-height: 1.3em;
       }
@@ -58,9 +58,6 @@
       }
       .sunday {
         background-color: #ff000077;
-      }
-      .event-day {
-        ackground-color: #00ff0077;
       }
       .cellDate {
         font-size: 1.3em;
@@ -130,18 +127,20 @@
     </script>
 
     <!-- ここより下に書いてください -->
-    <div class="nav-buttons">
-      <button onclick="changeMonth(-1)">前の月</button>
-      <span id="month-year"></span>
-      <button onclick="changeMonth(1)">次の月</button>
-    </div>
-    <div id="calendar-container">
-      <table>
-        <thead>
-          <tr id="calendar-header"></tr>
-        </thead>
-        <tbody id="calendar-body"></tbody>
-      </table>
+    <div class="calendarContainer">
+      <div class="nav-buttons">
+        <button onclick="changeMonth(-1)">前の月</button>
+        <span id="month-year"></span>
+        <button onclick="changeMonth(1)">次の月</button>
+      </div>
+      <div id="calendar-container">
+        <table>
+          <thead>
+            <tr id="calendar-header"></tr>
+          </thead>
+          <tbody id="calendar-body"></tbody>
+        </table>
+      </div>
     </div>
 
     <dialog id="eventDialog">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
     <!-- GoogleTag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
     <script>
@@ -38,12 +38,142 @@
     <!-- ここより下に書いてください -->
 
     <h1>ニュース</h1>
-    <div style="margin: 0 2vw">
-      <p class="center">
-        このページはまだ表示できません。
-      </p>
-    </div>
+    <div id="news-container">読み込み中...</div>
 
+    <style>
+      #news-container {
+        padding: 1em 3vw 2em 3vw;
+      }
+      .news {
+        border: 1px solid var(--pColor);
+        margin-bottom: 1em;
+      }
+      .accordion-header {
+        padding: 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        color: var(--pColor);
+        background: var(--bgColor);
+        transition: 0.25s;
+      }
+      .accordion-header:hover {
+        background: var(--bgThinColor);
+      }
+      .title {
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+      .date {
+        font-size: 0.9em;
+        text-align: right;
+      }
+      .full-content {
+        height: 0;
+        overflow: hidden;
+        padding: 0 15px;
+        transition: height 0.3s ease;
+        color: var(--pColor);
+      }
+      .full-content-inner {
+        padding: 1em 0;
+        border-top: 1px solid var(--pColor);
+      }
+    </style>
+
+    <script>
+      const container = document.getElementById("news-container");
+      const newsElementsById = {};
+
+      (async () => {
+        try {
+          const res = await fetch("./newsData.json");
+          const data = await res.json();
+          container.innerHTML = "";
+
+          const allNews = [
+            ...[...data.pinned].reverse().map((n) => ({ ...n, isPinned: true })),
+            ...[...data.regular].reverse().map((n) => ({ ...n, isPinned: false })),
+          ];
+
+          for (const news of allNews) {
+            const newsDiv = document.createElement("div");
+            newsDiv.className = "news";
+            //if (news.isPinned) newsDiv.classList.add("pinned");
+            newsDiv.id = `news-${news.id}`;
+
+            // ヘッダー（開閉用）
+            const headerDiv = document.createElement("div");
+            headerDiv.className = "accordion-header";
+
+            const titleEl = document.createElement("div");
+            titleEl.className = "title";
+            titleEl.innerHTML = news.title;
+            if (news.isPinned) titleEl.innerHTML = `<span style="color: red">HOT</span> ${news.title}`;
+
+            const dateEl = document.createElement("div");
+            dateEl.className = "date";
+            dateEl.textContent = news.date;
+
+            headerDiv.appendChild(titleEl);
+            headerDiv.appendChild(dateEl);
+
+            // コンテンツ領域（アニメーション対象）
+            const contentWrapper = document.createElement("div");
+            contentWrapper.className = "full-content";
+
+            // 内部：高さ計算の基準（scrollHeight）
+            const contentInner = document.createElement("div");
+            contentInner.className = "full-content-inner";
+            contentInner.innerHTML = news.fullContent;
+
+            contentWrapper.appendChild(contentInner);
+
+            // トグル処理（heightをscrollHeightで操作）
+            let isOpen = false;
+            headerDiv.addEventListener("click", () => {
+              if (isOpen) {
+                contentWrapper.style.height = "0";
+              } else {
+                const scrollHeight = contentInner.scrollHeight;
+                contentWrapper.style.height = scrollHeight + "px";
+              }
+              isOpen = !isOpen;
+            });
+
+            newsDiv.appendChild(headerDiv);
+            newsDiv.appendChild(contentWrapper);
+            container.appendChild(newsDiv);
+
+            newsElementsById[news.id] = {
+              wrapper: newsDiv,
+              contentWrapper,
+              contentInner,
+              open: () => {
+                const h = contentInner.scrollHeight;
+                contentWrapper.style.height = h + "px";
+                isOpen = true;
+              },
+            };
+          }
+
+          // クエリ処理（初期展開）
+          const params = new URLSearchParams(window.location.search);
+          const newsId = params.get("newsId");
+          if (newsId && Object.prototype.hasOwnProperty.call(newsElementsById, newsId)) {
+            const target = newsElementsById[newsId];
+            target.open();
+            setTimeout(() => {
+              target.wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+          } else if (newsId) {
+            console.warn(`指定されたnewsId "${newsId}" は存在しません。`);
+          }
+        } catch (err) {
+          container.innerHTML = "ニュースの読み込みに失敗しました。";
+          console.error(err);
+        }
+      })();
+    </script>
     <!-- ここより上に書いてください -->
     <footer></footer>
     <script>

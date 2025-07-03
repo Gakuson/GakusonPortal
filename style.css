@@ -30,7 +30,7 @@
 * {
   scroll-behavior: smooth;
   box-sizing: border-box;
-  transition: 0.3s;
+  transition: 0.25s;
   line-height: 1.35em;
   font-family: "Myriad", "Noto", sans-serif;
 }

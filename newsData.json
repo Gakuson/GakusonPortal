@@ -1,0 +1,125 @@
+{
+  "pinned": [
+    {
+      "id": "99",
+      "title": "ポータルサイトがリニューアル！",
+      "content": "HTMLで書き直されて見た目・機能ともに進化しました",
+      "date": "2026-01-15 00:00",
+      "fullContent": "HTMLで書き直されて見た目・機能ともに進化しました"
+    }
+  ],
+  "regular": [
+    {
+      "id": "101",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "102",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "103",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "104",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "105",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "106",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "107",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "108",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "109",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "110",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "111",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "1",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 1",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 1"
+    },
+    {
+      "id": "2",
+      "title": "TEST CONTENT",
+      "content": "this is the test content 2",
+      "date": "2025-12-03 12:34",
+      "fullContent": "this is full content 2 super long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long"
+    },
+    {
+      "id": "3",
+      "title": "ついに311系引退、315系が新快速としても運転開始",
+      "content": "this is the test content 3",
+      "date": "2025-07-01 17:05",
+      "fullContent": "これはテストコンテンツです。JR東海の311系は6月30日にラストランとなり、当日の大垣駅は入庫する車両を撮影しようとファンで賑わいました。<br>夕方には前日まで311系だった行路でなんと315系が走行。315系が東海道線の大府以東を営業運転したのは初めてで、今後のラッシュアワーにおける刈谷駅前後の混雑緩和が見込まれます。2026年ダイヤ改正でこれらの車両は武豊線や関西線でワンマン運転に使用されるものとなるため、この運用は1年足らずで見納めとなるかもしれません。"
+    },
+    {
+      "id": "4",
+      "title": "スターレイルVer3.4が到来",
+      "content": "これはテストテキストです。みんなもやらないかい",
+      "date": "2025-07-02 11:00",
+      "fullContent": "みんなもやらないかい？<br />miHoYoの有名作のひとつだよ"
+    },
+    {
+      "id": "5",
+      "title": "ユーザーアンケート実施中",
+      "content": "本サイトをお使いの皆様から感想や意見を募集中～",
+      "date": "2025-07-02 17:41",
+      "fullContent": "本サイトをお使いの皆様から感想や意見を募集中～<br /><a href='https://example.com' target='_blank'>Google Forms</a>から回答お待ちしています。"
+    }
+  ]
+}
