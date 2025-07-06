@@ -75,66 +75,45 @@
         >
       </div>
 
-      <div class="newsContainer" id="newsContainer">
-        <div class="newsTitle">ニュース</div>
-        <hr />
-        <a href="./news.html?newsId=1">
-          <span class="newsTitle">読み込み中</span><br />
-          Loading...
-        </a>
-        <hr />
-        <a href="./news.html?newsId=5">
-          <span class="newsTitle">読み込み中</span><br />
-          Loading...
-        </a>
-        <hr />
-        <a href="./news.html?newsId=4">
-          <span class="newsTitle">読み込み中</span><br />
-          Loading...
-        </a>
-        <hr />
-        <a href="./news.html" class="showMore">もっと見る</a>
+      <div class="news-section">
+        <div class="news newsTitle">
+          <a style="text-align: center">ニュース</a>
+        </div>
+        <div id="news-container"></div>
+        <div class="news viewMore">
+          <a href="./news.html">もっと見る</a>
+        </div>
       </div>
       <style>
-        hr {
-          height: 0;
-          margin: 0;
-        }
-        div.newsContainer {
+        .news-section {
           margin: 2em 0;
-          padding-left: 0;
-          display: block;
           border: 3px double var(--pColor);
-          width: 100%;
-          & > * {
-            width: 100%;
-          }
-          a {
-            text-decoration: none;
-            display: block;
-            background: var(--bgColor);
-            color: var(--pColor);
-          }
-          a:hover {
-            filter: invert(1);
-          }
-          a:not(.showMore) {
-            padding: 0.5em 0;
-            padding-left: 2em;
-            .newsTitle {
-              font-size: 120%;
-            }
-          }
-          div.newsTitle {
-            padding: 0.3em 0;
-            font-size: 160%;
-            text-align: center;
-            color: var(--pColor);
-          }
-          a.showMore {
-            padding: 0.3em 0;
-            text-align: center;
-          }
+        }
+        .news {
+          border-bottom: 1px solid var(--pColor);
+          margin-bottom: 0em;
+          border-collapse: collapse;
+        }
+        .news a {
+          display: block;
+          padding: 0.5em 1.5em;
+          text-decoration: none;
+          color: inherit;
+        }
+        .news:hover {
+          background: var(--bgThinColor);
+        }
+        .title {
+          font-size: 1.1em;
+          font-weight: bold;
+        }
+        .date {
+          font-size: 0.9em;
+          text-align: right;
+        }
+        .content {
+          color: var(--pColor);
+          margin-top: 0px;
         }
       </style>
 
