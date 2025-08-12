@@ -158,7 +158,7 @@ function checkHolidayByDate(date, sys = false) {
     if (date.getMonth() + 1 === h.m && weekNo === h.w && isMonday) return true;
   }
   if (sys) return false;
-  //国民の休日
+  /*//国民の休日
   const yesterday = new Date(date);
   yesterday.setDate(date.getDate() - 1);
   const tomorrow = new Date(date);
@@ -172,5 +172,5 @@ function checkHolidayByDate(date, sys = false) {
     nDaysAgo.setDate(nDaysAgo.getDate() - 1);
     if (!checkHolidayByDate(nDaysAgo, true)) return false;
     if (nDaysAgo.getDay() === 0) return true;
-  }
+  }*/
 }

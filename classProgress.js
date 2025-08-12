@@ -11,7 +11,8 @@ setInterval(() => {
   const CSS_root = getComputedStyle(CSS_vars);
   const CSS_bgColorVal = CSS_root.getPropertyValue("--bgColor").trim();
 
-  const now = new Date();
+  //const now = new Date("2025-01-01 11:45:14") //デバッグ用の任意の時刻
+  const now = new Date(); //本番環境用
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
   const ss = String(now.getSeconds()).padStart(2, "0");
@@ -42,8 +43,8 @@ setInterval(() => {
   } else if (now_grid == 10) {
     classProgressBarElem.style.display = "none";
     classProgressValElem.innerHTML = "";
-    classProgressParCurrElem.style.display = "none";
-    classProgressParNextElem.innerHTML = `本日の授業終了<br>お疲れ様でした`;
+    classProgressParCurrElem.innerHTML = "本日の授業終了！<br>お疲れ様でした";
+    classProgressParNextElem.style.display = "none";
   } else if (now_grid % 2) {
     updateProgressBarColor("orange", CSS_bgColorVal);
     manageCurrGrid: {
@@ -56,7 +57,7 @@ setInterval(() => {
     }
     manageNextgrid: {
       if (now_grid == 9) {
-        classProgressParNextElem.innerHTML = `今日の授業はこれで最後！`;
+        classProgressParNextElem.innerHTML = `今日の授業はこれで最後！<br>夕方までお疲れ様です`;
         break manageNextgrid;
       }
       const tillNext_h = Math.floor(classTimes_hhmm[now_grid + 1] / 100) - Math.floor(now_hhmm / 100);
@@ -77,7 +78,7 @@ setInterval(() => {
     }
     manageNextgrid: {
       if (now_grid == 8) {
-        classProgressParNextElem.innerHTML = `今日の授業は次で最後！`;
+        classProgressParNextElem.innerHTML = `今日の授業は次で最後！<br>夕方までお疲れ様です`;
         break manageNextgrid;
       }
       const tillNext_h = Math.floor(classTimes_hhmm[now_grid + 2] / 100) - Math.floor(now_hhmm / 100);

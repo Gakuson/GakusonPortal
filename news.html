@@ -155,15 +155,15 @@
             };
           }
 
-          // クエリ処理（初期展開）
+          // クエリ処理
           const params = new URLSearchParams(window.location.search);
           const newsId = params.get("newsId");
           if (newsId && Object.prototype.hasOwnProperty.call(newsElementsById, newsId)) {
             const target = newsElementsById[newsId];
             target.open();
-            setTimeout(() => {
+            /*setTimeout(() => {
               target.wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
-            }, 100);
+            }, 100);*/ //スクロール処理いらんくね
           } else if (newsId) {
             console.warn(`指定されたnewsId "${newsId}" は存在しません。`);
           }
