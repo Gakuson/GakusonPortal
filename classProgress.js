@@ -11,7 +11,7 @@ setInterval(() => {
   const CSS_root = getComputedStyle(CSS_vars);
   const CSS_bgColorVal = CSS_root.getPropertyValue("--bgColor").trim();
 
-  //const now = new Date("2025-01-01 11:45:14") //デバッグ用の任意の時刻
+  //const now = new Date("2025-01-01 11:13:14") //デバッグ用の任意の時刻
   const now = new Date(); //本番環境用
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
