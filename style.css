@@ -126,6 +126,10 @@ a {
   align-items: center;
   justify-content: center;
   font-size: 0;
+  a {
+    display: block;
+    width: 100%;
+  }
 }
 .controls {
   position: sticky;
