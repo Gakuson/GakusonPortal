@@ -25,6 +25,35 @@
     <meta property="og:title" content="TOP - がくそん" />
     <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
     <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
+    <style>
+      .news-section {
+        margin: 2em 0;
+        border: 3px double var(--pColor);
+        color: var(--pColor);
+      }
+      .news {
+        border-bottom: 1px solid var(--pColor);
+        margin-bottom: 0em;
+        border-collapse: collapse;
+      }
+      .news a {
+        display: block;
+        padding: 0.5em 1.5em;
+        text-decoration: none;
+        color: var(--pColor);
+      }
+      .news:not(.newsTitle):hover {
+        background: var(--bgThinColor);
+      }
+      .title {
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+      .date {
+        font-size: 0.9em;
+        text-align: right;
+      }
+    </style>
   </head>
   <body>
     <header></header>
@@ -38,7 +67,7 @@
     <div class="classProgressBase">
       <div class="classProgressSet">
         <p id="currentTime">
-          現在時刻 <span class="larger">00:00</span><span style="margin-left: 0.2em; font-size: 130%">00</span>
+          現在時刻 <span class="larger">00:00</span><span style="margin-left: 0.14em; font-size: 130%">00</span>
         </p>
         <p id="classProgressParCurr"><span class="larger">0</span>限講義中 / あと<span class="larger">0</span>分</p>
         <progress id="classProgressBar" max="100" value="0"></progress>
@@ -47,16 +76,11 @@
       </div>
     </div>
 
-    
-    <div class="bannerLeft">
-      <div class="xEmbedBase">Posts by Nanzan_Gakuson</div>
-    </div>
-    
     <div class="centerContentsBase">
       <h1>がくそん</h1>
       <div class="linkButtons">
         <a target="_blank" href="https://porta.nanzan-u.ac.jp/md-portal/#/pt010111">PORTA</a>
-        <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/">Webclass</a>
+        <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/">WebClass</a>
         <a target="_blank" href="https://handout.nanzan-u.ac.jp/classes/">講義資料</a>
         <a target="_blank" href="https://fx.nanzan-u.ac.jp/">Proself</a>
         <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl" class="multiline"
@@ -82,42 +106,15 @@
 
       <div class="news-section">
         <div class="news newsTitle">
-          <a style="text-align: center;">ニュース</a>
+          <a style="text-align: center">ニュース</a>
         </div>
-        <div id="news-container"></div>
+        <div id="news-container">
+          <p style="height: 12em; display: block"></p>
+        </div>
         <div class="news viewMore">
           <a style="text-align: center" href="./news.html">もっと見る</a>
         </div>
       </div>
-      <style>
-        .news-section {
-          margin: 2em 0;
-          border: 3px double var(--pColor);
-          color: var(--pColor);
-        }
-        .news {
-          border-bottom: 1px solid var(--pColor);
-          margin-bottom: 0em;
-          border-collapse: collapse;
-        }
-        .news a {
-          display: block;
-          padding: 0.5em 1.5em;
-          text-decoration: none;
-          color: var(--pColor);
-        }
-        .news:not(.newsTitle):hover {
-          background: var(--bgThinColor);
-        }
-        .title {
-          font-size: 1.1em;
-          font-weight: bold;
-        }
-        .date {
-          font-size: 0.9em;
-          text-align: right;
-        }
-      </style>
 
       <div style="display: flex; flex-wrap: wrap">
         <table class="classSchedule">
@@ -197,6 +194,32 @@
       </div>
     </div>
 
+    <div class="bannerLeft">
+      <div class="adTitle">ad</div>
+      <div class="adContainer">
+        <div class="adContent">
+          <a target="_blank" href="./about.html">
+            <img src="./img/gakusonApplicate.avif" width="100%" />
+          </a>
+        </div>
+        <div class="adContent">
+          <a target="_blank" href="https://connpass.com/event/367869/">
+            <img src="./img/hackerthon.jpg" width="100%" />
+          </a>
+        </div>
+        <div class="adContent">
+          <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScEAb5iv-_RMjfz36COfSBgq32AsDx8kyBky_3PKgq5rtOBuw/viewform">
+            <img src="./img/surveyOngoing.avif" width="100%" />
+          </a>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="prevBtn">◀</button>
+        <span id="indicator">0 / 0</span>
+        <button id="nextBtn">▶</button>
+      </div>
+    </div>
 
     <div class="bannerRight">
       <a target="_blank" href="http://kitchen-car.com/kumiai/s-column/nanzan/" id="kitchenCarBanner">
@@ -204,8 +227,12 @@
       </a>
     </div>
 
+    <br class="SP_ONLY">
+
     <script src="./classProgress.js"></script>
     <script src="./newsLoader.js"></script>
+    <script src="./indexCarousel.js"></script>
+
     <!-- ここより上に書いてください -->
     <footer></footer>
     <script>

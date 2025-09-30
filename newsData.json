@@ -1,4 +1,6 @@
 {
+  "comment": "IDはユニークなら途中抜けても逆転してもいいです。",
+  "commen2" : "pinnedの末尾3個 (pinnedが3個未満ならregularから追加で残りの個数) がトップに表示されます。",
   "pinned": [
     {
       "id": "99",
@@ -10,83 +12,6 @@
   ],
   "regular": [
     {
-      "id": "101",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "102",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "103",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "104",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "105",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "106",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "107",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "108",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "109",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "110",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
-      "id": "111",
-      "title": "TEST CONTENT",
-      "content": "this is the test content 1",
-      "date": "2025-12-03 12:34",
-      "fullContent": "this is full content 1"
-    },
-    {
       "id": "1",
       "title": "TEST CONTENT",
       "content": "this is the test content 1",
@@ -94,7 +19,7 @@
       "fullContent": "this is full content 1"
     },
     {
-      "id": "5",
+      "id": "4",
       "title": "ユーザーアンケート実施中",
       "content": "本サイトをお使いの皆様から感想や意見を募集中～",
       "date": "2025-07-02 17:41",

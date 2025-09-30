@@ -43,6 +43,12 @@ html {
 body {
   margin: 0;
   position: relative;
+  @media (width < 960px) {
+    margin-top: 80px;
+  }
+  @media (960px <= width) {
+    margin-top: 6em;
+  }
 }
 h1 {
   text-align: center;
@@ -78,31 +84,62 @@ a {
 }
 
 /*Lefter Div*/
-@media (width < 960px) {
-  .xEmbedBase {
-    width: 94%;
-    height: 400px;
+.bannerLeft {
+  background: var(--bgColor);
+  color: var(--pColor);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--pColor);
+  box-sizing: border-box;
+  @media (width < 960px) {
+    width: 60vw;
+    height: calc(60vw / 3 * 4 + 30px);
     line-height: 400px;
     margin: 2em auto 2em;
-    background: var(--bgThinColor);
-    color: var(--pColor);
-    text-align: center;
   }
-}
-@media (960px <= width) {
-  .xEmbedBase {
+  @media (960px <= width) {
     position: fixed;
-    background: var(--bgThinColor);
-    color: var(--pColor);
-    text-align: center;
-    top: 6em;
+    top: 7.5em;
     left: 1%;
     width: 18%;
-    height: calc(100vh - 12.5em);
     overflow-y: auto;
-    line-height: calc(100vh - 12.5em);
   }
 }
+.adTitle {
+  text-align: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 1.5em;
+  line-height: 1.5em;
+}
+.adContainer {
+  text-align: center;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+.adContent {
+  margin: 0;
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+.controls {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
 /*Righter Div*/
 @media (width < 960px) {
   .classProgressBase {

@@ -1,7 +1,4 @@
 @media (width < 960px) {
-  body {
-    margin-top: 80px;
-  }
   .PreventBodyScroll {
     overflow: hidden !important;
   }
@@ -19,9 +16,6 @@
     background: var(--bgColor);
     border-bottom: 1px solid var(--pColor);
     z-index: 114514;
-  }
-  body {
-    margin-top: 6em;
   }
   .SP_ONLY {
     display: none !important;

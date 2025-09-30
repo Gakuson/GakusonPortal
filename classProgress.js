@@ -16,7 +16,7 @@ setInterval(() => {
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
   const ss = String(now.getSeconds()).padStart(2, "0");
-  currentTimeElem.innerHTML = `<p id="currentTime">現在時刻 <span class="larger">${hh}:${mm}</span><span style="margin-left:0.2em;font-size:130%">${ss}</span></p>`;
+  currentTimeElem.innerHTML = `<p id="currentTime">現在時刻 <span class="larger">${hh}:${mm}</span><span style="margin-left:0.14em;font-size:130%">${ss}</span></p>`;
   const now_hhmm = now.getHours() * 100 + now.getMinutes();
   //1限前は0, 1限中は1, ... 5限中は9, 5限後は10
   let now_grid = 0;
