@@ -93,8 +93,6 @@ a {
   box-sizing: border-box;
   @media (width < 960px) {
     width: 60vw;
-    height: calc(60vw / 3 * 4 + 30px);
-    line-height: 400px;
     margin: 2em auto 2em;
   }
   @media (960px <= width) {
@@ -105,7 +103,7 @@ a {
     overflow-y: auto;
   }
 }
-.adTitle {
+.kkTitle {
   text-align: center;
   position: sticky;
   top: 0;
@@ -113,16 +111,17 @@ a {
   height: 1.5em;
   line-height: 1.5em;
 }
-.adContainer {
+.kkContainer {
   text-align: center;
   margin: 0;
   display: flex;
   width: 100%;
   transition: transform 0.5s ease;
 }
-.adContent {
+.kkContent {
   margin: 0;
   flex: 0 0 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
