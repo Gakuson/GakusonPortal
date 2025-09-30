@@ -1,6 +1,6 @@
 // DOM要素取得
-const adContainer = document.querySelector(".adContainer");
-const adContents = document.querySelectorAll(".adContent");
+const adContainer = document.querySelector(".kkContainer");
+const adContents = document.querySelectorAll(".kkContent");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const indicator = document.getElementById("indicator");
