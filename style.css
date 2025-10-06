@@ -39,6 +39,7 @@
 html {
   padding: 0;
   background: var(--bgColor);
+  overflow-y: scroll;
 }
 body {
   margin: 0;

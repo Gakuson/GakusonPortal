@@ -21,10 +21,10 @@
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/style.css" />
     <meta property="og:site_name" content="がくそん" />
-    <title>TOP - がくそん</title>
-    <meta property="og:title" content="TOP - がくそん" />
-    <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
-    <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。" />
+    <title>カレンダー - がくそん</title>
+    <meta property="og:title" content="カレンダー - がくそん" />
+    <meta name="description" content="年間予定表のページです。" />
+    <meta property="og:description" content="年間予定表のページです。" />
     <style>
       div.calendarContainer {
         text-align: center;
@@ -125,29 +125,18 @@
         $("header").load("/header.html");
       });
     </script>
-
     <!-- ここより下に書いてください -->
-    <div class="calendarContainer">
-      <div class="nav-buttons">
-        <button onclick="changeMonth(-1)">前の月</button>
-        <span id="month-year"></span>
-        <button onclick="changeMonth(1)">次の月</button>
-      </div>
-      <div id="calendar-container">
-        <table>
-          <thead>
-            <tr id="calendar-header"></tr>
-          </thead>
-          <tbody id="calendar-body"></tbody>
-        </table>
-      </div>
-    </div>
 
-    <dialog id="eventDialog">
-      <h3 id="dialog-date"></h3>
-      <ul id="dialog-events"></ul>
-      <button onclick="document.getElementById('eventDialog').close()">閉じる</button>
-    </dialog>
+    <div style="margin: auto; text-align: center">
+      <h2>今日は<span id="today"></span>です</h2>
+      <img src="./img/calendar.webp" width="96%" />
+    </div>
+    <script>
+      const today = document.getElementById("today");
+      const date = new Date();
+      today.innerHTML = `${date.getMonth() + 1}月${date.getDate()}日`;
+    </script>
+
     <!-- ここより上に書いてください -->
     <footer></footer>
     <script>
@@ -156,147 +145,4 @@
       });
     </script>
   </body>
-
-  <script>
-    const events = {
-      "2025-08-11": ["山の日"],
-      "2025-08-13": ["お盆ダイヤ"],
-      "2025-08-14": ["お盆ダイヤ"],
-      "2025-08-15": ["お盆ダイヤ"],
-      "2025-08-18": ["電気設備点検"],
-      "2025-08-22": ["追試験1日目"],
-      "2025-08-25": ["追試験2日目"],
-      "2025-08-26": ["追試験3日目"],
-      "2025-08-29": ["秋入学者卒業式"],
-      "2025-09-05": ["Q1,Q2成績発表", "9月卒業者発表"],
-      "2025-09-08": ["履修登録"],
-      "2025-09-09": ["履修登録"],
-      "2025-09-12": ["9月卒業者卒業式", "秋入学者入学式"],
-      "2025-09-15": ["履修登録"],
-      "2025-09-16": ["履修変更"],
-      "2025-09-17": ["履修変更"],
-      "2025-09-23": ["秋分の日"],
-      "2025-10-13": ["スポーツの日"],
-    };
-
-    const weekStart = 0;
-    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    let currentDate = new Date();
-
-    function formatDate(year, month, day) {
-      return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    }
-
-    let isAnimating = false;
-
-    function changeMonth(offset) {
-      if (isAnimating) return;
-      isAnimating = true;
-
-      const table = document.querySelector("#calendar-container table");
-
-      const direction = offset > 0 ? -1 : 1;
-      table.style.transform = `translateX(${direction * 100}vw)`;
-      setTimeout(() => {
-        currentDate.setMonth(currentDate.getMonth() + offset);
-        generateCalendar(currentDate);
-        table.style.transition = "none";
-        table.style.transform = `translateX(${direction * -100}vw)`;
-        void table.offsetWidth;
-        table.style.transition = "transform 0.3s ease-out";
-        table.style.transform = "translateX(0)";
-        isAnimating = false;
-      }, 300);
-    }
-
-    function openDialog(dateStr, eventList) {
-      const dialog = document.getElementById("eventDialog");
-      const dialogDate = document.getElementById("dialog-date");
-      const dialogEvents = document.getElementById("dialog-events");
-
-      dialogDate.textContent = `${dateStr} のイベント`;
-      dialogEvents.innerHTML = "";
-      eventList.forEach((e) => {
-        const li = document.createElement("li");
-        li.textContent = e;
-        dialogEvents.appendChild(li);
-      });
-      dialog.showModal();
-    }
-
-    function generateCalendar(date) {
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const today = new Date();
-
-      const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
-      const daysInMonth = lastDay.getDate();
-
-      const headerRow = document.getElementById("calendar-header");
-      headerRow.innerHTML = "";
-      for (let i = 0; i < 7; i++) {
-        const dayIndex = (i + weekStart) % 7;
-        const th = document.createElement("th");
-        th.textContent = weekDays[dayIndex];
-        headerRow.appendChild(th);
-      }
-
-      document.getElementById("month-year").textContent = `${year}年${String(month + 1).padStart(2, 0)}月`;
-
-      const calendarBody = document.getElementById("calendar-body");
-      calendarBody.innerHTML = "";
-
-      let startDayOfWeek = (firstDay.getDay() - weekStart + 7) % 7;
-      let dateCounter = 1;
-
-      for (let i = 0; i < 6; i++) {
-        let row = document.createElement("tr");
-
-        for (let j = 0; j < 7; j++) {
-          let cell = document.createElement("td");
-          if (i === 0 && j < startDayOfWeek) {
-            cell.innerHTML = "";
-          } else if (dateCounter > daysInMonth) {
-            cell.innerHTML = "";
-          } else {
-            const fullDate = formatDate(year, month, dateCounter);
-            const weekDay = (j + weekStart) % 7;
-            const isToday =
-              dateCounter === today.getDate() && year === today.getFullYear() && month === today.getMonth();
-
-            if (weekDay === 0) cell.classList.add("sunday");
-            else if (weekDay === 6) cell.classList.add("saturday");
-            if (events[fullDate]) cell.classList.add("event-day");
-            if (isToday) cell.classList.add("today");
-
-            cell.innerHTML = `<div class="cellDate">${dateCounter}</div>`;
-            if (events[fullDate]) {
-              const eventList = events[fullDate];
-              const eventDiv = document.createElement("div");
-              eventDiv.className = "event";
-              if (eventList[0].length > 8 && eventList.length > 1)
-                eventDiv.textContent = eventList[0].substring(0, 7) + "…";
-              else eventDiv.textContent = eventList[0];
-              cell.appendChild(eventDiv);
-
-              if (eventList.length > 1) {
-                const showAll = document.createElement("span");
-                showAll.className = "show-all";
-                showAll.textContent = "すべて表示";
-                showAll.onclick = () => openDialog(fullDate, eventList);
-                cell.appendChild(showAll);
-              }
-            }
-            dateCounter++;
-          }
-          row.appendChild(cell);
-        }
-        calendarBody.appendChild(row);
-        if (dateCounter > daysInMonth) break;
-      }
-    }
-
-    window.onload = () => generateCalendar(currentDate);
-  </script>
 </html>
