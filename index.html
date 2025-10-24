@@ -16,7 +16,6 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="icon" href="/favicon.ico" />
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/style.css" />
@@ -58,17 +57,16 @@
   <body>
     <header></header>
     <script>
-      $(function () {
-        $("header").load("/header.html");
-      });
+      (async () => {
+        const res = await fetch("/header.html");
+        document.querySelector("header").innerHTML = await res.text();
+      })();
     </script>
 
     <!-- ここより下に書いてください -->
     <div class="classProgressBase">
       <div class="classProgressSet">
-        <p id="currentTime">
-          現在時刻 <span class="larger">00:00</span><span style="margin-left: 0.14em; font-size: 130%">00</span>
-        </p>
+        <p id="currentTime">現在時刻 <span class="larger">00:00</span><span style="margin-left: 0.14em; font-size: 130%">00</span></p>
         <p id="classProgressParCurr"><span class="larger">0</span>限講義中 / あと<span class="larger">0</span>分</p>
         <progress id="classProgressBar" max="100" value="0"></progress>
         <span id="classProgressVal"></span>
@@ -83,25 +81,14 @@
         <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/">WebClass</a>
         <a target="_blank" href="https://handout.nanzan-u.ac.jp/classes/">講義資料</a>
         <a target="_blank" href="https://fx.nanzan-u.ac.jp/">Proself</a>
-        <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl" class="multiline"
-          >プリント<br />サービス</a
-        >
+        <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl" class="multiline">プリント<br />サービス</a>
         <a target="_blank" href="https://outlook.office365.com/mail/">Outlook</a>
         <a target="_blank" href="https://porta.nanzan-u.ac.jp/syllabus/">シラバス</a>
         <a target="_blank" href="https://www.nanzan-u.ac.jp/" class="multiline">南山大学<br />HP</a>
-        <a target="_blank" href="https://office.nanzan-u.ac.jp/KYOUMU/course-class/class03.html" class="multiline"
-          >休講等<br />情報</a
-        >
+        <a target="_blank" href="https://office.nanzan-u.ac.jp/KYOUMU/course-class/class03.html" class="multiline">休講等<br />情報</a>
         <a target="_blank" href="https://opac.nanzan-u.ac.jp/" class="multiline">図書館<br />蔵書検索</a>
-        <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="multiline"
-          >大学<br />問い合わせ</a
-        >
-        <a
-          target="_blank"
-          href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform"
-          class="multiline"
-          >がくそん<br />問い合わせ</a
-        >
+        <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="multiline">大学<br />問い合わせ</a>
+        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform" class="multiline">がくそん<br />問い合わせ</a>
       </div>
 
       <div class="news-section">
@@ -227,7 +214,7 @@
       </a>
     </div>
 
-    <br class="SP_ONLY">
+    <br class="SP_ONLY" />
 
     <script src="./classProgress.js"></script>
     <script src="./newsLoader.js"></script>
@@ -236,9 +223,10 @@
     <!-- ここより上に書いてください -->
     <footer></footer>
     <script>
-      $(function () {
-        $("footer").load("/footer.html");
-      });
+      (async () => {
+        const res = await fetch("/footer.html");
+        document.querySelector("footer").innerHTML = await res.text();
+      })();
     </script>
   </body>
 </html>

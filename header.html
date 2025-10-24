@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="/header.css" />
 
-<div class="menu-btn" id="menu-btn">
+<input type="checkbox" id="menu-btn" hidden style="display: none; height: 0;">
+<label class="menu-btn" for="menu-btn">
   <span></span>
   <span></span>
   <span></span>
-</div>
-<div class="menu" id="menu">
+</label>
+<div class="menu">
   <div class="logo">
     <a class="rootLink" href="/"><img height="60" style="margin: auto" src="./img/logo.png" /></a>
   </div>
@@ -53,13 +54,3 @@
   </a>
   <button id="theme-toggle" onclick="toggleTheme()">テーマ切替</button>
 </div>
-
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const menu = document.getElementById("menu");
-  menuBtn.addEventListener("click", function () {
-    menu.classList.toggle("open");
-    menuBtn.classList.toggle("open");
-    document.body.classList.toggle("PreventBodyScroll");
-  });
-</script>
