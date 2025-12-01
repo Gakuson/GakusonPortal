@@ -1,36 +1,36 @@
 {
-  "comment": "IDはユニークなら途中抜けても逆転してもいいです。",
-  "commen2" : "pinnedの末尾3個 (pinnedが3個未満ならregularから追加で残りの個数) がトップに表示されます。",
-  "pinned": [
-    {
-      "id": "99",
-      "title": "ポータルサイトがリニューアル！",
-      "content": "HTMLで書き直されて見た目・機能ともに進化しました",
-      "date": "2025-09-15 00:00",
-      "fullContent": "HTMLで書き直されて見た目・機能ともに進化しました"
-    }
-  ],
-  "regular": [
-    {
-      "id": "1",
-      "title": "Nanトピのご案内",
-      "content": "がくそんメンバーが運営する大学関連のブログサイトをぜひご覧ください",
-      "date": "2025-07-01 00:00",
-      "fullContent": "<a href='https://nantopi.com/' target='_blank'>Nanトピ</a>はがくそんが運営しているブログサイトです。現在はメンバーが記事を執筆しています。学生生活に役立つ情報を手に入れよう！"
-    },
-    {
-      "id": "4",
-      "title": "ユーザーアンケート実施中",
-      "content": "本サイトをお使いの皆様から感想や意見を募集中～",
-      "date": "2025-07-02 17:41",
-      "fullContent": "本サイトをお使いの皆様から感想や意見を募集中～<br /><a href='https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform' target='_blank'>Google Forms</a>から回答お待ちしています。"
-    },
+    "comment": "IDはユニークなら途中抜けても逆転してもいいです。",
+    "domment": "pinnedの末尾3個 (pinnedが3個未満ならregularから追加で残りの個数) がトップに表示されます。",
+    "pinned": [
         {
-      "id": "5",
-      "title": "名城線はダイヤ改正がありました",
-      "content": "列車の時刻が変わっています。大学に遅刻しないように注意しましょう！",
-      "date": "2025-09-27 04:30",
-      "fullContent": "2025年9月27日に名城線の平日ダイヤが改正されました。名城線全体での運行本数は変わっていませんが、東半分の大曽根～八事日赤～金山は2本増便されています。列車の時刻変更があり、八事や金山での乗り継ぎが従来通りできなくなった時間帯があります。なお昼や深夜の運行時刻は変わっておらず、ラッシュ時のみの変更です。<br><a href='https://www.kotsu.city.nagoya.jp/jp/pc/SUBWAY/TRP0005245.htm' target='_blank'>公式サイト</a>から詳しい情報を確認できます。"
-    }
-  ]
+            "id": "99",
+            "title": "ポータルサイトがリニューアル！",
+            "content": "HTMLで書き直されて見た目・機能ともに進化しました",
+            "date": "2025-09-15 00:00",
+            "fullContent": "HTMLで書き直されて見た目・機能ともに進化しました"
+        }
+    ],
+    "regular": [
+        {
+            "id": "1",
+            "title": "Nanトピのご案内",
+            "content": "がくそんメンバーが運営する大学関連のブログサイトをぜひご覧ください",
+            "date": "2025-07-01 00:00",
+            "fullContent": "<a href='https://nantopi.com/' target='_blank'>Nanトピ</a>はがくそんが運営しているブログサイトです。現在はメンバーが記事を執筆しています。学生生活に役立つ情報を手に入れよう！"
+        },
+        {
+            "id": "4",
+            "title": "ユーザーアンケート実施中",
+            "content": "本サイトをお使いの皆様から感想や意見を募集中～",
+            "date": "2025-07-02 17:41",
+            "fullContent": "本サイトをお使いの皆様から感想や意見を募集中～<br /><a href='https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform' target='_blank'>Google Forms</a>から回答お待ちしています。"
+        },
+        {
+            "id": "5",
+            "title": "名城線はダイヤ改正がありました",
+            "content": "列車の時刻が変わっています。大学に遅刻しないように注意しましょう！",
+            "date": "2025-09-27 04:30",
+            "fullContent": "2025年9月27日に名城線の平日ダイヤが改正されました。名城線全体での運行本数は変わっていませんが、東半分の大曽根～八事日赤～金山は2本増便されています。列車の時刻変更があり、八事や金山での乗り継ぎが従来通りできなくなった時間帯があります。なお昼や深夜の運行時刻は変わっておらず、ラッシュ時のみの変更です。<br><a href='https://www.kotsu.city.nagoya.jp/jp/pc/SUBWAY/TRP0005245.htm' target='_blank'>公式サイト</a>から詳しい情報を確認できます。"
+        }
+    ]
 }

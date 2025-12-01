@@ -1,47 +1,32 @@
-// DOM要素取得
-const adContainer = document.querySelector(".kkContainer");
-const adContents = document.querySelectorAll(".kkContent");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const indicator = document.getElementById("indicator");
+let d = document;
+let $ = (e) => d.getElementById(e);
 
-let currentIndex = 0; // 現在のページ
-const total = adContents.length;
-const interval = 5000; // クールタイム(ms)
-let timer;
+let b = d.querySelector(".kkContainer");
+let c = d.querySelectorAll(".kkContent");
+let n = $("indicator");
 
-// 表示更新
-function updateCarousel() {
-  // コンテナを移動
-  adContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-  // インジケータ更新
-  indicator.textContent = `${currentIndex + 1} / ${total}`;
+let i = 0;
+let l = c.length;
+let t;
+
+function u() {
+    b.style.transform = `translateX(-${i * 100}%)`;
+    n.textContent = `${i + 1} / ${l}`;
+    clearInterval(t);
+    t = setInterval(n, 5e3);
 }
 
-// 次へ移動
-function next() {
-  currentIndex = (currentIndex + 1) % total;
-  updateCarousel();
-  resetTimer();
+function n() {
+    i = (i + 1) % l;
+    u();
 }
 
-// 前へ移動
-function prev() {
-  currentIndex = (currentIndex - 1 + total) % total;
-  updateCarousel();
-  resetTimer();
+function p() {
+    i = (i - 1 + l) % l;
+    u();
 }
 
-// タイマーリセット
-function resetTimer() {
-  clearInterval(timer);
-  timer = setInterval(next, interval);
-}
+$("nextBtn").addEventListener("click", n);
+$("prevBtn").addEventListener("click", p);
 
-// イベント設定
-nextBtn.addEventListener("click", next);
-prevBtn.addEventListener("click", prev);
-
-// 初期表示 & 自動スライド開始
-updateCarousel();
-resetTimer();
+u();

@@ -1,27 +1,28 @@
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
+const d = document;
+function getCookie(k) {
+    const value = `; ${d.cookie}`;
+    const parts = value.split(`; ${k}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
 }
-function setCookie(name, value, days) {
-  const expires = new Date(Date.now() + days * 864e5).toUTCString();
-  document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+function setCookie(k, v, d) {
+    const e = new Date(Date.now() + d * 864e5).toUTCString();
+    d.cookie = `${k}=${v}; expires=${e}; path=/`;
 }
-function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
+function applyTheme(t) {
+    d.documentElement.setAttribute("data-theme", t);
 }
 (() => {
-  let theme = getCookie("theme");
-  if (!theme) {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    theme = prefersDark ? "dark" : "light";
-    setCookie("theme", theme, 30);
-  }
-  applyTheme(theme);
+    let t = getCookie("theme");
+    if (!t) {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        t = prefersDark ? "dark" : "light";
+        setCookie("theme", t, 30);
+    }
+    applyTheme(t);
 })();
 function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  applyTheme(newTheme);
-  setCookie("theme", newTheme, 30);
+    const tOld = d.documentElement.getAttribute("data-theme");
+    const tNew = tOld === "dark" ? "light" : "dark";
+    applyTheme(tNew);
+    setCookie("theme", tNew, 30);
 }

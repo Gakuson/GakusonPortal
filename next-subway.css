@@ -1,101 +1,101 @@
 .hasshahyoContainer {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  * {
-    box-sizing: border-box;
-  }
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    * {
+        box-sizing: border-box;
+    }
 }
 span {
-  line-height: 1.35em;
+    line-height: 1.35em;
 }
 .machine-lefter,
 .machine-righter {
-  margin-bottom: 0.5em;
-  position: relative;
-  display: inline-block;
-  color: white;
-  background-color: black;
-  border: 1px solid white;
-  width: 28em;
-  height: 7.2em;
-  overflow: hidden;
-  span {
+    margin-bottom: 0.5em;
+    position: relative;
+    display: inline-block;
     color: white;
-  }
-  @media (width < 28em) {
-    min-width: 28em;
-    transform: scale(80%);
-  }
+    background-color: black;
+    border: 1px solid white;
+    width: 28em;
+    height: 7.2em;
+    overflow: hidden;
+    span {
+        color: white;
+    }
+    @media (width < 28em) {
+        min-width: 28em;
+        transform: scale(80%);
+    }
 }
 .machine-lefter {
-  padding: 0.3em 0.5em 0.5em 5em;
+    padding: 0.3em 0.5em 0.5em 5em;
 }
 .machine-righter {
-  padding: 0.3em 5em 0.5em 0.5em;
+    padding: 0.3em 5em 0.5em 0.5em;
 }
 .track {
-  position: absolute;
-  top: 0.3rem;
-  font-size: 3.5rem;
-  .machine-lefter & {
-    left: 1.8rem;
-  }
-  .machine-righter & {
-    right: 1.8rem;
-  }
+    position: absolute;
+    top: 0.3rem;
+    font-size: 3.5rem;
+    .machine-lefter & {
+        left: 1.8rem;
+    }
+    .machine-righter & {
+        right: 1.8rem;
+    }
 }
 .toward {
-  position: absolute;
-  top: 4.5rem;
-  font-size: 1.1rem;
-  text-align: center;
-  .machine-lefter & {
-    left: 1rem;
-  }
-  .machine-righter & {
-    right: 1rem;
-  }
+    position: absolute;
+    top: 4.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+    .machine-lefter & {
+        left: 1rem;
+    }
+    .machine-righter & {
+        right: 1rem;
+    }
 }
 .disp {
-  display: flex;
-  height: 1.4em;
-  margin-top: 0.2em;
-  justify-content: space-between;
-  background-color: #333;
-  padding: 0 0.3em;
-  border: 1px solid #b074d6;
-  border-radius: 2px;
+    display: flex;
+    height: 1.4em;
+    margin-top: 0.2em;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 0 0.3em;
+    border: 1px solid #b074d6;
+    border-radius: 2px;
 }
 .time {
-  width: 3.2em;
-  text-align: right;
+    width: 3.2em;
+    text-align: right;
 }
-.bound {
-  width: 4em;
+.dest {
+    width: 4em;
 }
-.com {
-  width: 12em;
+.comm {
+    width: 12em;
 }
 .currTime {
-  color: yellow !important;
+    color: yellow !important;
 }
 .telop {
-  color: lightgreen !important;
+    color: lightgreen !important;
 }
 
 #operationStatus {
-  width: min(96%, 900px);
-  border-collapse: collapse;
-  margin: 2em auto 3em;
-  th,
-  td {
-    border: 1px solid var(--pColor);
-    padding: 3px 1em;
-  }
-  th {
-    font-weight: unset;
-    color: black;
-    background: #fab123;
-  }
+    width: min(96%, 900px);
+    border-collapse: collapse;
+    margin: 2em auto 3em;
+    th,
+    td {
+        border: 1px solid var(--pColor);
+        padding: 3px 1em;
+    }
+    th {
+        font-weight: unset;
+        color: black;
+        background: #fab123;
+    }
 }

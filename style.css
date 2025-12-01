@@ -1,61 +1,61 @@
 @font-face {
-  font-family: "Myriad";
-  src: url("/fonts/Myriad.ttf");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Myriad";
+    src: url("/fonts/Myriad.ttf");
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Noto";
-  src: url("/fonts/NotoSans.ttf");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Noto";
+    src: url("/fonts/NotoSans.ttf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 /*カラースキーム*/
 :root {
-  &[data-theme="dark"] {
-    --bgColor: #000000;
-    --bgThinColor: #333733;
-    --pColor: #e8eaed;
-    --linkColor: #7da9fe;
-  }
-  &[data-theme="light"] {
-    --bgColor: #ffffff;
-    --bgThinColor: #cccccc;
-    --pColor: #202124;
-    --linkColor: #1558d6;
-  }
+    &[data-theme="dark"] {
+        --bgColor: #000000;
+        --bgThinColor: #333733;
+        --pColor: #e8eaed;
+        --linkColor: #7da9fe;
+    }
+    &[data-theme="light"] {
+        --bgColor: #ffffff;
+        --bgThinColor: #cccccc;
+        --pColor: #202124;
+        --linkColor: #1558d6;
+    }
 }
 
 * {
-  scroll-behavior: smooth;
-  box-sizing: border-box;
-  transition: 0.25s;
-  line-height: 1.35em;
-  font-family: "Myriad", "Noto", sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    transition: 0.25s;
+    line-height: 1.35em;
+    font-family: "Myriad", "Noto", sans-serif;
 }
 
 /*basic style*/
 html {
-  padding: 0;
-  background: var(--bgColor);
-  overflow-y: scroll;
+    padding: 0;
+    background: var(--bgColor);
+    overflow-y: scroll;
 }
 body {
-  margin: 0;
-  position: relative;
-  @media (width < 960px) {
-    margin-top: 80px;
-  }
-  @media (960px <= width) {
-    margin-top: 6em;
-  }
+    margin: 0;
+    position: relative;
+    @media (width < 960px) {
+        margin-top: 80px;
+    }
+    @media (960px <= width) {
+        margin-top: 6em;
+    }
 }
 h1 {
-  text-align: center;
+    text-align: center;
 }
 p {
-  margin: 1em;
+    margin: 1em;
 }
 p,
 span,
@@ -64,295 +64,295 @@ h2,
 h3,
 th,
 td {
-  color: var(--pColor);
+    color: var(--pColor);
 }
 a {
-  color: var(--linkColor);
+    color: var(--linkColor);
 }
 /*positioning*/
 .left {
-  float: left;
-  text-align: left;
+    float: left;
+    text-align: left;
 }
 .leftAlone {
-  text-align: left;
+    text-align: left;
 }
 .right {
-  text-align: right;
+    text-align: right;
 }
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 /*Lefter Div*/
 .bannerLeft {
-  background: var(--bgColor);
-  color: var(--pColor);
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--pColor);
-  box-sizing: border-box;
-  @media (width < 960px) {
-    width: 60vw;
-    margin: 2em auto 2em;
-  }
-  @media (960px <= width) {
-    position: fixed;
-    top: 7.5em;
-    left: 1%;
-    width: 18%;
-    overflow-y: auto;
-  }
+    background: var(--bgColor);
+    color: var(--pColor);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--pColor);
+    box-sizing: border-box;
+    @media (width < 960px) {
+        width: 60vw;
+        margin: 2em auto 2em;
+    }
+    @media (960px <= width) {
+        position: fixed;
+        top: 7.5em;
+        left: 1%;
+        width: 18%;
+        overflow-y: auto;
+    }
 }
 .kkTitle {
-  text-align: center;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 1.5em;
-  line-height: 1.5em;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 1.5em;
+    line-height: 1.5em;
 }
 .kkContainer {
-  text-align: center;
-  margin: 0;
-  display: flex;
-  width: 100%;
-  transition: transform 0.5s ease;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
 }
 .kkContent {
-  margin: 0;
-  flex: 0 0 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0;
-  a {
-    display: block;
+    margin: 0;
+    flex: 0 0 100%;
     width: 100%;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    a {
+        display: block;
+        width: 100%;
+    }
 }
 .controls {
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 8px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
 }
 
 /*Righter Div*/
 @media (width < 960px) {
-  .classProgressBase {
-    position: relative;
-    background: var(--bgThinColor);
-    margin-top: -20px;
-    padding: 0 0;
-    width: 100%;
-    height: 90px;
-    text-align: center;
-  }
+    .classProgressBase {
+        position: relative;
+        background: var(--bgThinColor);
+        margin-top: -20px;
+        padding: 0 0;
+        width: 100%;
+        height: 90px;
+        text-align: center;
+    }
 }
 @media (960px <= width < 1120px) {
-  .classProgressBase {
-    position: fixed;
-    background: var(--bgThinColor);
-    top: 6em;
-    padding: 0 1em;
-    right: 1%;
-    width: 18%;
-    height: 18em;
-  }
+    .classProgressBase {
+        position: fixed;
+        background: var(--bgThinColor);
+        top: 6em;
+        padding: 0 1em;
+        right: 1%;
+        width: 18%;
+        height: 18em;
+    }
 }
 @media (1120px <= width) {
-  .classProgressBase {
-    position: fixed;
-    background: var(--bgThinColor);
-    top: 6em;
-    padding: 0 1em;
-    right: 1%;
-    width: 18%;
-    height: 13.8em;
-  }
+    .classProgressBase {
+        position: fixed;
+        background: var(--bgThinColor);
+        top: 6em;
+        padding: 0 1em;
+        right: 1%;
+        width: 18%;
+        height: 13.8em;
+    }
 }
 
 @media (width < 960px) {
-  .classProgressSet {
-    display: flex;
-  }
-  #currentTime {
-    display: none;
-  }
-  #classProgressParCurr {
-    flex-grow: 1;
-    margin: 0;
-    margin-top: 0.6em;
-    padding: 0;
-  }
-  #classProgressParNext {
-    flex-grow: 1;
-    border-left: 2px solid var(--pColor);
-    margin: 0;
-    margin-top: 0.6em;
-    padding: 0;
-  }
-  #classProgressBar {
-    position: absolute;
-    bottom: 1em;
-    width: calc(90vw - 3em);
-    margin-left: 5vw;
-    background: var(--bgColor);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 1px solid var(--pColor);
-  }
-  #classProgressVal {
-    position: absolute;
-    bottom: 1em;
-    right: 5vw;
-    display: inline-block;
-    width: 2em;
-    text-align: right;
-    line-height: 1.1em;
-  }
+    .classProgressSet {
+        display: flex;
+    }
+    #currentTime {
+        display: none;
+    }
+    #classProgressParCurr {
+        flex-grow: 1;
+        margin: 0;
+        margin-top: 0.6em;
+        padding: 0;
+    }
+    #classProgressParNext {
+        flex-grow: 1;
+        border-left: 2px solid var(--pColor);
+        margin: 0;
+        margin-top: 0.6em;
+        padding: 0;
+    }
+    #classProgressBar {
+        position: absolute;
+        bottom: 1em;
+        width: calc(90vw - 3em);
+        margin-left: 5vw;
+        background: var(--bgColor);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid var(--pColor);
+    }
+    #classProgressVal {
+        position: absolute;
+        bottom: 1em;
+        right: 5vw;
+        display: inline-block;
+        width: 2em;
+        text-align: right;
+        line-height: 1.1em;
+    }
 }
 @media (960px <= width) {
-  #currentTime {
-    margin: 1em 0 0 0;
-  }
-  #classProgressBar {
-    width: calc(18vw - 5em);
-    background: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 1px solid var(--pColor);
-  }
-  #classProgressParCurr {
-    border-top: 2px solid var(--pColor);
-    margin: 0.85em 0 0 0;
-    padding-top: 0.5em;
-  }
-  #classProgressParNext {
-    border-top: 2px solid var(--pColor);
-    margin: 1em 0 0 0;
-    padding-top: 0.5em;
-  }
+    #currentTime {
+        margin: 1em 0 0 0;
+    }
+    #classProgressBar {
+        width: calc(18vw - 5em);
+        background: transparent;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid var(--pColor);
+    }
+    #classProgressParCurr {
+        border-top: 2px solid var(--pColor);
+        margin: 0.85em 0 0 0;
+        padding-top: 0.5em;
+    }
+    #classProgressParNext {
+        border-top: 2px solid var(--pColor);
+        margin: 1em 0 0 0;
+        padding-top: 0.5em;
+    }
 }
 .larger {
-  font-size: 180%;
+    font-size: 180%;
 }
 /*Banner Media*/
 @media (width < 960px) {
-  #kitchenCarBanner {
-    display: block;
-    width: 94vw;
-    margin: auto;
-  }
+    #kitchenCarBanner {
+        display: block;
+        width: 94vw;
+        margin: auto;
+    }
 }
 @media (960px <= width < 1120px) {
-  #kitchenCarBanner {
-    position: fixed;
-    top: 25.2em;
-    right: 1%;
-    width: 18%;
-  }
+    #kitchenCarBanner {
+        position: fixed;
+        top: 25.2em;
+        right: 1%;
+        width: 18%;
+    }
 }
 @media (1120px <= width) {
-  #kitchenCarBanner {
-    position: fixed;
-    top: 21em;
-    right: 1%;
-    width: 18%;
-  }
+    #kitchenCarBanner {
+        position: fixed;
+        top: 21em;
+        right: 1%;
+        width: 18%;
+    }
 }
 /*Center Div*/
 @media (width < 960px) {
-  .centerContentsBase {
-    width: 94%;
-    margin: 2em auto 2em;
-  }
+    .centerContentsBase {
+        width: 94%;
+        margin: 2em auto 2em;
+    }
 }
 @media (960px <= width) {
-  .centerContentsBase {
-    margin-left: 20%;
-    width: 60%;
-  }
+    .centerContentsBase {
+        margin-left: 20%;
+        width: 60%;
+    }
 }
 /*link buttons*/
 div.linkButtons {
-  border: none;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  a {
-    height: 80px;
-    line-height: 60px;
-    padding: 10px 0;
-    width: 135px;
-    margin-bottom: 0.6em;
-    font-size: 150%;
-    text-align: center;
-    background: var(--bgColor);
-    color: var(--pColor);
-    text-decoration: none;
-    &.multiline {
-      line-height: 30px;
+    border: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    a {
+        height: 80px;
+        line-height: 60px;
+        padding: 10px 0;
+        width: 135px;
+        margin-bottom: 0.6em;
+        font-size: 150%;
+        text-align: center;
+        background: var(--bgColor);
+        color: var(--pColor);
+        text-decoration: none;
+        &.multiline {
+            line-height: 30px;
+        }
+        &:nth-child(3n) {
+            border: 3px solid orange;
+        }
+        &:nth-child(3n + 1) {
+            border: 3px solid royalblue;
+        }
+        &:nth-child(3n + 2) {
+            border: 3px solid deeppink;
+        }
+        &:hover {
+            background: var(--pColor);
+            color: var(--bgColor);
+        }
+        @media (width < 960px) {
+            width: 30vw;
+            font-size: 120%;
+        }
     }
-    &:nth-child(3n) {
-      border: 3px solid orange;
-    }
-    &:nth-child(3n + 1) {
-      border: 3px solid royalblue;
-    }
-    &:nth-child(3n + 2) {
-      border: 3px solid deeppink;
-    }
-    &:hover {
-      background: var(--pColor);
-      color: var(--bgColor);
-    }
-    @media (width < 960px) {
-      width: 30vw;
-      font-size: 120%;
-    }
-  }
 }
 
 /*時間割*/
 .classSchedule,
 .examSchedule {
-  margin: 1em;
-  border-collapse: collapse;
+    margin: 1em;
+    border-collapse: collapse;
 }
 .classSchedule {
-  width: 15em;
+    width: 15em;
 }
 .examSchedule {
-  width: 20em;
+    width: 20em;
 }
 .classSchedule th,
 .examSchedule th {
-  border: 1px solid var(--pColor);
-  font-weight: normal;
-  padding: 3px 0;
+    border: 1px solid var(--pColor);
+    font-weight: normal;
+    padding: 3px 0;
 }
 .classSchedule th {
-  background: orange;
-  color: black;
+    background: orange;
+    color: black;
 }
 .examSchedule th {
-  background: blue;
-  color: white;
+    background: blue;
+    color: white;
 }
 .classSchedule td,
 .examSchedule td {
-  text-align: center;
-  padding: 2px 0;
-  border: 1px solid var(--pColor);
+    text-align: center;
+    padding: 2px 0;
+    border: 1px solid var(--pColor);
 }
