@@ -13,7 +13,7 @@ function u() {
     b.style.transform = `translateX(-${i * 100}%)`;
     n.textContent = `${i + 1} / ${l}`;
     clearInterval(t);
-    t = setInterval(n, 5e3);
+    t = setInterval(p, 5e3);
 }
 
 function p() {
