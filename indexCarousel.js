@@ -1,8 +1,8 @@
-let d = document;
-let $ = (e) => d.getElementById(e);
+let D = document;
+let $ = (e) => D.getElementById(e);
 
-let b = d.querySelector(".kkContainer");
-let c = d.querySelectorAll(".kkContent");
+let b = D.querySelector(".kkContainer");
+let c = D.querySelectorAll(".kkContent");
 let n = $("indicator");
 
 let i = 0;
