@@ -16,17 +16,17 @@ function u() {
     t = setInterval(n, 5e3);
 }
 
-function n() {
+function p() {
     i = (i + 1) % l;
     u();
 }
 
-function p() {
+function m() {
     i = (i - 1 + l) % l;
     u();
 }
 
-$("nextBtn").addEventListener("click", n);
-$("prevBtn").addEventListener("click", p);
+$("nextBtn").addEventListener("click", p);
+$("prevBtn").addEventListener("click", m);
 
 u();

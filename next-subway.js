@@ -61,7 +61,7 @@ const operationElem = $("operationStatus");
         });
 
         const todayDate = new Date();
-        const isHoliday = todayDate.getDay() == 0 || todayDate.getDay() == 6 || checkHolidayByDate(todayDate);
+        const isHoliday = isDayoff(todayDate);
 
         const mL = await (await fetch(`./subwayTimetable/meidai-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
         const mR = await (await fetch(`./subwayTimetable/meidai-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
@@ -126,12 +126,20 @@ function getDeparture(timeTable, nth) {
 }
 
 // FIXME: 国民の休日に未対応
-function checkHolidayByDate(date) {
-    return checkNationalHolidayByDate(date);
+function isDayoff(date) {
+    return isSaturday(date) || isSunday(date) || isDefinedHoliday(date) || isAlternateHoliday(date);
 }
 
-function checkNationalHolidayByDate(date) {
-    //定義された祝日
+function isSaturday(date) {
+    return date.getDay() === 6;
+}
+
+function isSunday(date) {
+    return date.getDay() === 0;
+}
+
+// 当日の月日または月週が一致するなら、定義祝日
+function isDefinedHoliday(date) {
     const isSameDate = (d, m, day) => d.getMonth() + 1 === m && d.getDate() === day;
     for (const h of dateBasedHolidays) {
         if (isSameDate(date, h.m, h.d)) return true;
@@ -142,4 +150,21 @@ function checkNationalHolidayByDate(date) {
         if (date.getMonth() + 1 === h.m && weekNo === h.w && isMonday) return true;
     }
     return false;
+}
+
+// 前日が日曜かつ定義祝日なら、振替休日
+function isAlternateHoliday(date) {
+    const prevDate = new Date(date);
+    prevDate.setDate(date.getDate() - 1);
+    return isDefinedHoliday(prevDate) && prevDate.getDay() === 0;
+}
+
+// 前日と翌日の両方が日曜または定義祝日なら、国民の休日
+// FIXME: 振替休日と定義祝日に挟まれた日はどうなのか？(国民の休日の定義が曖昧)
+function isCitizenHoliday(date) {
+    const prevDate = new Date(date);
+    prevDate.setDate(date.getDate() - 1);
+    const nextDate = new Date(date);
+    nextDate.setDate(date.getDate() + 1);
+    return (isDefinedHoliday(prevDate) || isSunday(prevDate)) && (isDefinedHoliday(nextDate) || isSunday(nextDate));
 }

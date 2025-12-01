@@ -5,6 +5,8 @@ const classProgressBarElem = getElem("classProgressBar");
 const classProgressValElem = getElem("classProgressVal");
 const classProgressParNextElem = getElem("classProgressParNext");
 
+
+// FIXME: 授業のない日に未対応
 const classTimes_hhmm = [910, 1050, 1105, 1245, 1335, 1515, 1530, 1710, 1725, 1905, 2400];
 setInterval(() => {
     const CSS_vars = document.documentElement;
