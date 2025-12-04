@@ -125,9 +125,8 @@ function getDeparture(timeTable, nth) {
     }
 }
 
-// FIXME: 国民の休日に未対応
 function isDayoff(date) {
-    return isSaturday(date) || isSunday(date) || isDefinedHoliday(date) || isAlternateHoliday(date);
+    return isSaturday(date) || isSunday(date) || isDefinedHoliday(date) || isAlternateHoliday(date) || isCitizenHoliday(date);
 }
 
 function isSaturday(date) {
@@ -156,7 +155,7 @@ function isDefinedHoliday(date) {
 function isAlternateHoliday(date) {
     const prevDate = new Date(date);
     prevDate.setDate(date.getDate() - 1);
-    return isDefinedHoliday(prevDate) && prevDate.getDay() === 0;
+    return isDefinedHoliday(prevDate) && isSunday(prevDate);
 }
 
 // 前日と翌日の両方が日曜または定義祝日なら、国民の休日
