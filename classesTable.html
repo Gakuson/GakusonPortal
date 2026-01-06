@@ -137,6 +137,7 @@
 
         <script>
             function isValidRoom(room) {
+                /*
                 const rules = {
                     B: [],
                     D: [],
@@ -175,13 +176,15 @@
                 }
                 // 教室じゃない
                 return true;
+                */
+                // 教室データを実装するまではすべての入力を有効とする
+                return true;
             }
 
             const timetable = document.getElementById("timetableBody");
             const popup = document.getElementById("popup");
             let currentCell = null;
             let popupClickHandler = null;
-            let fallbackOutsideHandler = null;
 
             // ダイアログが閉じられたときのクリーンアップ
             popup.addEventListener("close", () => {
@@ -189,16 +192,7 @@
                     popup.removeEventListener("click", popupClickHandler);
                     popupClickHandler = null;
                 }
-                if (fallbackOutsideHandler) {
-                    document.removeEventListener("click", fallbackOutsideHandler);
-                    fallbackOutsideHandler = null;
-                }
             });
-            // Escなどでキャンセルされたときは何もしない（ただ閉じる）
-            popup.addEventListener("cancel", (e) => {
-                // デフォルトの挙動（閉じる）はそのままにしておく。
-            });
-
             // 時間割を初期化
             for (let period = 1; period <= 5; period++) {
                 const row = timetable.insertRow();
@@ -222,59 +216,42 @@
                 buttons.innerHTML = "";
 
                 if (data) {
-                    // 更新ボタン
-                    const updateBtn = document.createElement("button");
-                    updateBtn.textContent = "更新";
-                    updateBtn.className = "btn update";
-                    updateBtn.onclick = saveData;
-                    buttons.appendChild(updateBtn);
+                    const updBtn = document.createElement("button");
+                    updBtn.textContent = "更新";
+                    updBtn.className = "btn update";
+                    updBtn.onclick = saveData;
+                    buttons.appendChild(updBtn);
 
-                    // 削除ボタン（確認付き）
-                    const deleteBtn = document.createElement("button");
-                    deleteBtn.textContent = "削除";
-                    deleteBtn.className = "btn delete";
-                    deleteBtn.type = "button";
-                    deleteBtn.onclick = () => {
+                    const delBtn = document.createElement("button");
+                    delBtn.textContent = "削除";
+                    delBtn.className = "btn delete";
+                    delBtn.type = "button";
+                    delBtn.onclick = () => {
                         if (confirm("本当に削除しますか？")) deleteData();
                     };
-                    buttons.appendChild(deleteBtn);
+                    buttons.appendChild(delBtn);
                 } else {
-                    // 登録ボタン
-                    const registerBtn = document.createElement("button");
-                    registerBtn.textContent = "登録";
-                    registerBtn.className = "btn register";
-                    registerBtn.onclick = saveData;
-                    registerBtn.type = "button";
-                    buttons.appendChild(registerBtn);
+                    const regBtn = document.createElement("button");
+                    regBtn.textContent = "登録";
+                    regBtn.className = "btn register";
+                    regBtn.onclick = saveData;
+                    regBtn.type = "button";
+                    buttons.appendChild(regBtn);
                 }
-                // 常にキャンセルボタンを追加（Escと同じ動作）
                 const cancelBtn = document.createElement("button");
                 cancelBtn.textContent = "キャンセル";
                 cancelBtn.className = "btn";
                 cancelBtn.type = "button";
                 cancelBtn.onclick = closePopup;
                 buttons.appendChild(cancelBtn);
-                // dialogをモーダル表示し、外側クリックで閉じるハンドラを設定
-                if (typeof popup.showModal === "function") {
-                    popup.showModal();
-                    // backdropクリック（ダイアログ自身へのクリック）で閉じるハンドラ
-                    popupClickHandler = (e) => {
-                        if (e.target === popup) closePopup();
-                    };
-                    popup.addEventListener("click", popupClickHandler);
-                    // 古いブラウザやフォールバックのため、documentクリックも監視
-                    fallbackOutsideHandler = (e) => {
-                        if (!popup.contains(e.target)) closePopup();
-                    };
-                    // 微小遅延で追加して、開いた直後のクリックを無視する
-                    setTimeout(() => document.addEventListener("click", fallbackOutsideHandler), 0);
-                } else {
-                    // 古いブラウザ向けフォールバック
-                    popup.style.display = "block";
-                }
+
+                popup.showModal();
+                popupClickHandler = (e) => {
+                    if (e.target === popup) closePopup();
+                };
+                popup.addEventListener("click", popupClickHandler);
             }
 
-            // データ保存（登録または更新）
             function saveData() {
                 const subject = document.getElementById("subject").value.trim();
                 const room = document.getElementById("room").value.trim();
@@ -290,14 +267,12 @@
                 closePopup();
             }
 
-            // データ削除
             function deleteData() {
                 document.cookie = `${currentCell.key}=; max-age=0; path=/;`;
                 currentCell.cell.innerHTML = "";
                 closePopup();
             }
 
-            // ポップアップを閉じる
             function closePopup() {
                 try {
                     if (typeof popup.close === "function" && popup.open) popup.close();
@@ -307,10 +282,6 @@
                 if (popupClickHandler) {
                     popup.removeEventListener("click", popupClickHandler);
                     popupClickHandler = null;
-                }
-                if (fallbackOutsideHandler) {
-                    document.removeEventListener("click", fallbackOutsideHandler);
-                    fallbackOutsideHandler = null;
                 }
             }
 
@@ -329,8 +300,6 @@
                 }
                 return null;
             }
-
-            // dialogで置き換えたため、オーバーレイ要素は不要
         </script>
         <!-- ここより上に書いてください -->
         <footer></footer>

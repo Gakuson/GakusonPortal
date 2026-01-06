@@ -46,14 +46,30 @@ header {
         }
     }
 
+    /* custom header color */
     .ColorTagDefault,
     .ColorTagDefault .number {
-        border-color: var(--linkColor);
+        border-color: #38b6ff;
+    }
+    .ColorTagYellow,
+    .ColorTagYellow .number {
+        border-color: #fac014;
+    }
+    .ColorTagSky,
+    .ColorTagSky .number {
+        border-color: #38b6ff;
+    }
+    .ColorTagBlue,
+    .ColorTagBlue .number {
+        border-color: #031491;
     }
     .container {
         &:hover,
         &:active {
-            filter: invert(1);
+            background: var(--pColor);
+            span {
+                color: var(--bgColor);
+            }
         }
     }
 
