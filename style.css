@@ -11,6 +11,17 @@
     font-style: normal;
 }
 
+@media (width <= 960px) {
+    .PC_ONLY {
+        display: none !important;
+    }
+}
+@media (960px < width) {
+    .SP_ONLY {
+        display: none !important;
+    }
+}
+
 /*カラースキーム*/
 :root {
     &[data-theme="dark"] {
@@ -127,6 +138,7 @@ a {
     align-items: center;
     justify-content: center;
     font-size: 0;
+    aspect-ratio: 3 / 4;
     a {
         display: block;
         width: 100%;

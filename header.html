@@ -1,5 +1,33 @@
 <link rel="stylesheet" href="/header.css" />
-
+<style>
+    @media (width <= 960px) {
+        header .menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+        }
+    }
+    @media (960px <= width) {
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: calc(4.2em + 1px);
+            border-bottom: 1px solid var(--pColor);
+            z-index: 114514;
+            div.menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 4.2em;
+                display: flex;
+                z-index: 99;
+            }
+        }
+    }
+</style>
 <input type="checkbox" id="menu-btn" hidden style="display: none; height: 0" />
 <label class="menu-btn" for="menu-btn">
     <span></span>
@@ -8,7 +36,7 @@
 </label>
 <div class="menu">
     <div class="logo">
-        <a class="rootLink" href="/"><img height="60" style="margin: auto" src="./img/logo.png" /></a>
+        <a class="rootLink" href="/"><img style="margin: auto" src="./img/logo.png" alt="がくそんのロゴマーク" height="60" width="60" /></a>
     </div>
     <a href="/" class="container ColorTagDefault SP_ONLY">
         <span class="number"></span>
@@ -34,8 +62,8 @@
     <a href="/calendar.html" class="container ColorTagDefault">
         <span class="number"></span>
         <div class="content">
-            <span class="upper">カレンダー</span>
-            <span class="lower">年間予定表<br /></span>
+            <span class="upper">年間予定表</span>
+            <span class="lower">授業や試験の日程を<br />確認しよう</span>
         </div>
     </a>
     <a href="/classesTable.html" class="container ColorTagDefault">

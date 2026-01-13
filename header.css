@@ -2,9 +2,6 @@
     html:has(#menu-btn:checked) {
         overflow: hidden !important;
     }
-    .PC_ONLY {
-        display: none !important;
-    }
 }
 @media (960px <= width) {
     header {
@@ -16,9 +13,6 @@
         background: var(--bgColor);
         border-bottom: 1px solid var(--pColor);
         z-index: 114514;
-    }
-    .SP_ONLY {
-        display: none !important;
     }
 }
 
