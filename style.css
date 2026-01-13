@@ -291,8 +291,20 @@ div.linkButtons {
     flex-wrap: wrap;
     justify-content: space-around;
     a {
-        height: 80px;
-        line-height: 60px;
+        @media (width < 960px) {
+            height: 75px;
+            line-height: 55px;
+            &.multiline {
+                line-height: 27px;
+            }
+        }
+        @media (960px <= width) {
+            height: 80px;
+            line-height: 60px;
+            &.multiline {
+                line-height: 30px;
+            }
+        }
         padding: 10px 0;
         width: 135px;
         margin-bottom: 0.6em;
@@ -301,9 +313,6 @@ div.linkButtons {
         background: var(--bgColor);
         color: var(--pColor);
         text-decoration: none;
-        &.multiline {
-            line-height: 30px;
-        }
         &:nth-child(3n) {
             border: 3px solid orange;
         }

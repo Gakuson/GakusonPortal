@@ -1,32 +1,37 @@
-let D = document;
-let $ = (e) => D.getElementById(e);
+window.onload = async () => {
+    let D = document;
+    let $ = (e) => D.querySelector(e);
 
-let b = D.querySelector(".kkContainer");
-let c = D.querySelectorAll(".kkContent");
-let n = $("indicator");
+    let R = await fetch("/kkContents.html");
+    $(".bannerLeft").innerHTML = await R.text();
 
-let i = 0;
-let l = c.length;
-let t;
+    let b = $(".kkContainer");
+    let c = D.querySelectorAll(".kkContent");
+    let n = $("#indicator");
 
-function u() {
-    b.style.transform = `translateX(-${i * 100}%)`;
-    n.textContent = `${i + 1} / ${l}`;
-    clearInterval(t);
-    t = setInterval(p, 5e3);
-}
+    let i = 0;
+    let l = c.length;
+    let t;
 
-function p() {
-    i = (i + 1) % l;
+    function u() {
+        b.style.transform = `translateX(-${i * 100}%)`;
+        n.textContent = `${i + 1} / ${l}`;
+        clearInterval(t);
+        t = setInterval(p, 5e3);
+    }
+
+    function p() {
+        i = (i + 1) % l;
+        u();
+    }
+
+    function m() {
+        i = (i - 1 + l) % l;
+        u();
+    }
+
+    $("#nextBtn").addEventListener("click", p);
+    $("#prevBtn").addEventListener("click", m);
+
     u();
-}
-
-function m() {
-    i = (i - 1 + l) % l;
-    u();
-}
-
-$("nextBtn").addEventListener("click", p);
-$("prevBtn").addEventListener("click", m);
-
-u();
+};
