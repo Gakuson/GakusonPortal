@@ -2,7 +2,7 @@
 
 <div class="kkContainer">
     <div class="kkContent">
-        <a target="_blank" href="https://x.com/nz_hoyobu">
+        <a target="_blank" href="https://x.com/nz_hoyobu" data-ga-click="kk_click_content_hoyo_circle">
             <img src="./img/NanHoyoPoster2.avif" alt="南山大学HoYoVerseサークルの告知画像" width="100%" />
         </a>
     </div>
@@ -12,15 +12,24 @@
         </a>
     </div>-->
     <div class="kkContent">
-        <a target="_blank" href="https://forms.gle/9A2BdhN4CRiVN3dZ9">
+        <a target="_blank" href="https://forms.gle/9A2BdhN4CRiVN3dZ9" data-ga-click="kk_click_content_ad_recruitment">
             <img src="./img/placeholder.avif" alt="がくそん広告募集の告知画像" width="100%" />
         </a>
     </div>
 </div>
 
 <div class="controls">
-    <button id="prevBtn">◀</button>
+    <button id="prevBtn" data-ga-click="kk_click_container_prevbtn">◀</button>
     <span id="indicator">0 / 0</span>
-    <button id="nextBtn">▶</button>
+    <button id="nextBtn" data-ga-click="kk_click_container_nextbtn">▶</button>
 </div>
 
+<script>
+    document.querySelectorAll("[data-ga-click]").forEach((elem) => {
+        elem.addEventListener("click", () => {
+            gtag("event", "custom_click", {
+                click_target: elem.dataset.gaClick,
+            });
+        });
+    });
+</script>
