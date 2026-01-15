@@ -23,13 +23,3 @@
     <span id="indicator">0 / 0</span>
     <button id="nextBtn" data-ga-click="kk_click_container_nextbtn">▶</button>
 </div>
-
-<script>
-    document.querySelectorAll("[data-ga-click]").forEach((elem) => {
-        elem.addEventListener("click", () => {
-            gtag("event", "custom_click", {
-                click_target: elem.dataset.gaClick,
-            });
-        });
-    });
-</script>

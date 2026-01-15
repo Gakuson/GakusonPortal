@@ -1,12 +1,13 @@
 window.onload = async () => {
     let D = document;
     let $ = (e) => D.querySelector(e);
+    let $$ = (e) => D.querySelectorAll(e);
 
     let R = await fetch("/kkContents.html");
     $(".bannerLeft").innerHTML = await R.text();
 
     let b = $(".kkContainer");
-    let c = D.querySelectorAll(".kkContent");
+    let c = $$(".kkContent");
     let n = $("#indicator");
 
     let i = 0;
@@ -34,4 +35,10 @@ window.onload = async () => {
     $("#prevBtn").addEventListener("click", m);
 
     u();
+
+    $$("[data-ga-click]").forEach((e) => {
+        e.addEventListener("click", () => {
+            gtag("event", "custom_click", { click_target: e.dataset.gaClick });
+        });
+    });
 };
