@@ -6,7 +6,7 @@ BASE_URL="https://gakuson.com"
 OUTPUT="${SITE_ROOT}/sitemap.xml"
 
 # 除外したいパス（部分一致）
-EXCLUDE_DIRS="\/errors\/|header.html|footer.html|kkContents.html"
+EXCLUDE_DIRS="403|404|header.html|footer.html|kkContents.html"
 
 # ===== 処理開始 =====
 echo '<?xml version="1.0" encoding="UTF-8"?>' > "$OUTPUT"
