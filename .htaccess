@@ -45,7 +45,6 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^(www\.gakuson\.com)(:80)? [NC]
 RewriteRule ^(.*) http://gakuson.com/$1 [R=301,L]
 Redirect permanent /地下鉄時刻表 /next-subway.html
-Redirect permanent /GakusonPortal /index.html
 Redirect permanent /GakusonPortal/ /index.html
 Redirect permanent /map /map.html
 order deny,allow
