@@ -1,47 +1,245 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <!-- GoogleTag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-0CL1H2HGPL");
-    </script>
+    <head>
+        <!-- GoogleTag -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-0CL1H2HGPL");
+        </script>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" />
-    <script src="/theme.js"></script>
-    <link rel="stylesheet" href="/style.css" />
-    <meta property="og:site_name" content="がくそん" />
-    <title>マップ - がくそん</title>
-    <meta property="og:title" content="マップ - がくそん" />
-    <meta name="description" content="キャンパスマップを見ることができます。" />
-    <meta property="og:description" content="キャンパスマップを見ることができます。" />
-  </head>
-  <body>
-    <header></header>
-    <script>
-      (async () => {
-        const res = await fetch("/header.html");
-        document.querySelector("header").innerHTML = await res.text();
-      })();
-    </script>
-    <!-- ここより下に書いてください -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
+        <script src="/theme.js"></script>
+        <link rel="stylesheet" href="/style.css" />
+        <style>
+            .map-page {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 1rem;
+            }
 
-    <h1>マップ</h1>
+            .map-controls {
+                margin: 1rem 0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                align-items: center;
+                color: var(--pColor);
+            }
 
-    <!-- ここより上に書いてください -->
-    <footer></footer>
-    <script>
-      (async () => {
-        const res = await fetch("/footer.html");
-        document.querySelector("footer").innerHTML = await res.text();
-      })();
-    </script>
-  </body>
+            .map-controls select {
+                padding: 0.4rem 0.6rem;
+                font-size: 1rem;
+                min-width: 220px;
+                color: var(--pColor);
+                background: var(--bgColor);
+                border: 1px solid var(--pColor);
+            }
+
+            .map-container {
+                position: relative;
+                width: 100%;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            @media (width > 960px) {
+                .map-page {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 1.5rem;
+                    padding: 0;
+                }
+
+                .map-controls {
+                    flex: 0 0 260px;
+                }
+
+                .map-container {
+                    flex: 1;
+                    max-height: 65vh;
+                }
+            }
+
+            .map-container img,
+            .map-container svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .map-container img {
+                object-fit: contain;
+            }
+
+            .map-container svg {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                overflow: visible;
+            }
+
+            .map-pin {
+                fill: #e53935;
+                stroke: #ffffff;
+                stroke-width: 2;
+                filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+            }
+
+            .map-pin-circle {
+                fill: #ffffff;
+            }
+        </style>
+        <meta property="og:site_name" content="がくそん" />
+        <title>マップ - がくそん</title>
+        <meta property="og:title" content="マップ - がくそん" />
+        <meta name="description" content="キャンパスマップを見ることができます。" />
+        <meta property="og:description" content="キャンパスマップを見ることができます。" />
+    </head>
+    <body>
+        <header></header>
+        <script>
+            (async () => {
+                const res = await fetch("/header.html");
+                document.querySelector("header").innerHTML = await res.text();
+            })();
+        </script>
+        <!-- ここより下に書いてください -->
+        <h1>マップ</h1>
+        <main class="map-page">
+            <div class="map-controls">
+                <label for="building-select">建物を選択：</label>
+                <select id="building-select">
+                    <option value="">建物を選択してください</option>
+                </select>
+            </div>
+            <div class="map-container">
+                <img id="campus-map-image" src="/mapAssets/mapImage.png" alt="キャンパスマップ" />
+                <svg id="map-overlay" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+        </main>
+        <!-- ここより上に書いてください -->
+        <footer></footer>
+        <script>
+            (async () => {
+                const PIN_SIZE = 30; // ピン全体の基準サイズ（変更するとスケールします）
+
+                const select = document.getElementById("building-select");
+                const mapImg = document.getElementById("campus-map-image");
+                const svg = document.getElementById("map-overlay");
+
+                if (!select || !mapImg || !svg) return;
+
+                const SVG_NS = "http://www.w3.org/2000/svg";
+
+                let nodes = [];
+                try {
+                    const res = await fetch("/mapAssets/nodes.json");
+                    if (!res.ok) throw new Error("nodes.json の取得に失敗しました");
+                    nodes = await res.json();
+                } catch (err) {
+                    console.error("マップ用データの読み込みに失敗しました", err);
+                    return;
+                }
+
+                nodes.forEach((node, index) => {
+                    const option = document.createElement("option");
+                    option.value = String(index);
+                    option.textContent = node.name;
+                    select.appendChild(option);
+                });
+
+                function setupSvg() {
+                    const naturalWidth = mapImg.naturalWidth;
+                    const naturalHeight = mapImg.naturalHeight;
+                    if (!naturalWidth || !naturalHeight) return;
+
+                    svg.setAttribute("viewBox", `0 0 ${naturalWidth} ${naturalHeight}`);
+                    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+                    const container = svg.closest(".map-container");
+                    if (container) {
+                        container.style.aspectRatio = `${naturalWidth} / ${naturalHeight}`;
+                    }
+                }
+
+                if (mapImg.complete) {
+                    setupSvg();
+                } else {
+                    mapImg.addEventListener("load", setupSvg);
+                }
+
+                function clearPin() {
+                    while (svg.firstChild) {
+                        svg.removeChild(svg.firstChild);
+                    }
+                }
+
+                function showPin(node) {
+                    clearPin();
+                    if (!node || !Array.isArray(node.coords)) return;
+
+                    const [x, y] = node.coords;
+
+                    const group = document.createElementNS(SVG_NS, "g");
+                    group.setAttribute("class", "map-pin");
+                    group.setAttribute("transform", `translate(${x}, ${y})`);
+
+                    // Google Map 風のしずく形ピン
+                    const headRadius = PIN_SIZE; // 丸い部分の半径
+                    const headCenterY = -PIN_SIZE * 2; // 丸の中心（先端より上）
+                    const tailWidth = PIN_SIZE * 0.95; // しっぽの左右の広がり
+                    const tailHeight = PIN_SIZE * 2; // しっぽの高さ
+
+                    // しっぽ（三角形）: 先端(0,0) が指定座標になる
+                    const tail = document.createElementNS(SVG_NS, "path");
+                    tail.setAttribute("d", `M 0 0 L ${-tailWidth} ${-tailHeight} L ${tailWidth} ${-tailHeight} Z`);
+
+                    // 丸い頭の部分
+                    const outer = document.createElementNS(SVG_NS, "circle");
+                    outer.setAttribute("cx", "0");
+                    outer.setAttribute("cy", String(headCenterY));
+                    outer.setAttribute("r", String(headRadius));
+
+                    const inner = document.createElementNS(SVG_NS, "circle");
+                    inner.setAttribute("class", "map-pin-circle");
+                    inner.setAttribute("cx", "0");
+                    inner.setAttribute("cy", String(headCenterY));
+                    inner.setAttribute("r", String(headRadius / 2));
+
+                    group.appendChild(tail);
+                    group.appendChild(outer);
+                    group.appendChild(inner);
+                    svg.appendChild(group);
+                }
+
+                select.addEventListener("change", () => {
+                    if (!select.value) {
+                        clearPin();
+                        return;
+                    }
+
+                    const index = parseInt(select.value, 10);
+                    if (Number.isNaN(index) || !nodes[index]) {
+                        clearPin();
+                        return;
+                    }
+
+                    showPin(nodes[index]);
+                });
+            })();
+        </script>
+        <script>
+            (async () => {
+                const res = await fetch("/footer.html");
+                document.querySelector("footer").innerHTML = await res.text();
+            })();
+        </script>
+    </body>
 </html>
