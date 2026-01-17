@@ -168,7 +168,7 @@ header {
                 }
             }
             span:nth-child(4) {
-                color: #000;
+                color: #000 !important;
                 font-size: 0.8em;
                 margin-top: 0px;
                 &::before {
