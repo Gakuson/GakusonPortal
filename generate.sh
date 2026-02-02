@@ -1,11 +1,10 @@
 #!/bin/sh
 
-# ===== 設定 =====
 SITE_ROOT="$(pwd)"
 BASE_URL="https://gakuson.com"
 OUTPUT="${SITE_ROOT}/sitemap.xml"
 
-# 除外したいパス（部分一致）
+# 除外したいパス (正規表現)
 EXCLUDE_DIRS="403|404|header.html|footer.html|kkContents.html"
 
 # ===== 処理開始 =====
@@ -21,7 +20,7 @@ find "$SITE_ROOT" -type f -name "*.html" \
       | sed "s|$SITE_ROOT||" \
       | sed 's|index.html$||')
 
-    # 最終更新日（ISO 8601）
+    # 最終更新日 (ISO 8601)
     lastmod=$(date -u -r "$file" +"%Y-%m-%dT%H:%M:%SZ")
 
     echo "  <url>" >> "$OUTPUT"
