@@ -130,7 +130,7 @@ function calcProgressPercent(nowSeconds, startMinutes, endMinutes) {
 setInterval(() => {
     const CSS_vars = document.documentElement;
     const CSS_root = getComputedStyle(CSS_vars);
-    const CSS_bgColorVal = CSS_root.getPropertyValue("--bgColor").trim();
+    const CSS_bgColorVal = CSS_root.getPropertyValue("--boardColor").trim();
 
     //const now = new Date("2025-01-01 18:13:14") // デバッグ用の任意の時刻
     const now = new Date(); // 本番環境用
@@ -147,18 +147,23 @@ setInterval(() => {
     cpParE2.style.display = "block";
 
     // 深夜帯（20:00-00:30, 00:30-03:00）は専用メッセージ
+
+    //20時からの制御、休校・非休校の違いはない。
     if (isInRange(nowMinutes, eveningStart, eveningMidnightThreshold)) {
         cpBarE.style.display = "none";
         cpValE.innerHTML = "";
         cpParE1.innerHTML = "夜の自由時間です<br>一日お疲れさまでした";
+        cpParE1.style.fontSize = "16px"
         cpParE2.style.display = "none";
         return;
     }
 
+    //日をまたいでからの制御、休校・非休校の違いはない。
     if (isInRange(nowMinutes, eveningMidnightThreshold, dayThreshold)) {
         cpBarE.style.display = "none";
         cpValE.innerHTML = "";
         cpParE1.innerHTML = "深夜の時間帯です<br>明日に備えてゆっくり休みましょう";
+        cpParE1.style.fontSize = "16px"
         cpParE2.style.display = "none";
         return;
     }
@@ -173,6 +178,7 @@ setInterval(() => {
     if (mmddIncludes(mmdd, exHolidays)) isHoliday = true;
     if (mmddIncludes(mmdd, exWorkdays)) isHoliday = false;
 
+    //「授業前」の制御
     if (phase.type === "before_first_class") {
         cpBarE.style.display = "none";
         cpValE.innerHTML = "";
@@ -189,6 +195,7 @@ setInterval(() => {
         return;
     }
 
+    //「授業後」の制御
     if (phase.type === "after_last_class" || phase.type === "exception") {
         cpBarE.style.display = "none";
         cpValE.innerHTML = "";
@@ -196,9 +203,11 @@ setInterval(() => {
         if (isHoliday) {
             // 休校日の夕方〜
             cpParE1.innerHTML = "今日は休校日でした<br>一日お疲れさまでした";
+            cpParE1.style.fontSize = "16px";
         } else {
             // 授業日の夕方〜
             cpParE1.innerHTML = "本日の授業終了！<br>お疲れ様でした";
+            cpParE1.style.fontSize = "16px";
         }
         cpParE2.style.display = "none";
         return;
@@ -206,12 +215,14 @@ setInterval(() => {
 
     const lastIndex = classTimesParsed.length - 1;
 
+    //「授業時間」中の表示を制御
     if (phase.type === "in_class") {
         if (isHoliday) {
             // 休校日の日中（時刻としては授業コマの時間帯）
             cpBarE.style.display = "none";
             cpValE.innerHTML = "";
             cpParE1.innerHTML = "今日は休校日です";
+            cpParE1.style.fontSize = "16px";
             cpParE2.style.display = "none";
             return;
         }
@@ -237,12 +248,14 @@ setInterval(() => {
         return;
     }
 
+    //「昼休み時間」中の表示を制御
     if (phase.type === "break") {
         if (isHoliday) {
             // 休校日の日中（休み時間相当の時間帯）
             cpBarE.style.display = "none";
             cpValE.innerHTML = "";
             cpParE1.innerHTML = "今日は休校日です";
+            cpParE1.style.fontSize = "16px";
             cpParE2.style.display = "none";
             return;
         }
