@@ -4,7 +4,7 @@ window.onload = async () => {
     let $$ = (e) => D.querySelectorAll(e);
 
     let R = await fetch("/kkContents.html");
-    $(".bannerLeft").innerHTML = await R.text();
+    $(".bannerAd").innerHTML = await R.text();
 
     let b = $(".kkContainer");
     let c = $$(".kkContent");

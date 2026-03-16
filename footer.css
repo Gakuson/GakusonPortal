@@ -5,6 +5,8 @@ footer {
     width: 100%;
     padding: 0 1em;
     border-top: 5px solid var(--pColor);
+    z-index: 999;
+    background: var(--bgColor);
     .container {
         padding-top: 1em;
         display: flex;
