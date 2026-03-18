@@ -1,17 +1,19 @@
 <link rel="stylesheet" href="/header.css" />
 <style>
     @media (width <= 960px) {
-        header .menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
+        header {
+            div.menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+            }
         }
     }
     @media (960px <= width) {
         header {
             position: fixed;
             top: 0;
-            left: 0;
+            right: 0;
             width: 100vw;
             height: calc(4.2em + 1px);
             border-bottom: 1px solid var(--pColor);
@@ -19,11 +21,11 @@
             div.menu {
                 position: fixed;
                 top: 0;
-                left: 0;
+                right: 0;
                 width: 100vw;
                 height: 4.2em;
                 display: flex;
-                z-index: 99;
+                z-index: 9999;
             }
         }
     }
@@ -35,7 +37,7 @@
     <span></span>
     <span><!--MENU--></span>
 </label>
-<div class="header-sp">
+<!--<div class="header-sp">
     <div class="logo-sp">
         <a class="rootLink" href="/"><img style="margin: auto" src="/img/logo.png" alt="がくそんのロゴマーク" height="60" width="60" /></a>
     </div>
@@ -46,9 +48,9 @@
         </ul>
         <div class="empty"></div>
     </div>
-</div>
+</div>-->
 <div class="menu">
-    <div class="logo-pc">
+    <div class="logo">
         <a class="rootLink" href="/"><img style="margin: auto" src="/img/logo.png" alt="がくそんのロゴマーク" height="60" width="60" /></a>
     </div>
     <a href="/" class="container ColorTagDefault SP_ONLY">

@@ -1,11 +1,8 @@
 footer {
     position: absolute;
     bottom: 0;
-    right: 0;
-    width: 100%;
     padding: 0 1em;
     border-top: 5px solid var(--pColor);
-    z-index: 999;
     background: var(--bgColor);
     .container {
         padding-top: 1em;
@@ -22,6 +19,8 @@ footer {
 }
 @media (width < 960px) {
     footer {
+        right: 0;
+        width: 100%;
         height: 11em;
         .container > * {
             width: 100vw;
@@ -38,6 +37,8 @@ footer {
 }
 @media (960px <= width) {
     footer {
+        right: 20%;
+        width: 60%;
         height: 5em;
     }
     body {

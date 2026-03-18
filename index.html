@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
     <head>
         <!-- GoogleTag -->
@@ -30,10 +30,13 @@
                 border-radius: 10px;
                 background: var(--boardColor);
             }
-            .news {
+            .news:not(.viewMore) {
                 border-bottom: 1px solid var(--pColor);
                 margin-bottom: 0em;
                 border-collapse: collapse;
+            }
+            .news.viewMore {
+                border-radius: 0 0 10px 10px;
             }
             .news a {
                 display: block;
@@ -77,8 +80,8 @@
             </div>
         </div>
 
-        <div class="left-section">
-            <div class="bannerAd">
+        <div class="centerBoxContainer">
+            <div class="kkBox">
                 <div class="kkContainer">
                     <div class="kkContent">
                         <div style="width: 100%; aspect-ratio: 3 / 4"></div>
@@ -90,45 +93,47 @@
                     <button id="nextBtn">▶</button>
                 </div>
             </div>
-            <div class="bannerInduction">
+            <div class="ntBox">
+                <div class="ntTitle">Nanトピ 新着記事</div>
                 <a class="ind-article" href="#">
                     <div class="ind-thumbnail">
-                        <img src="img/samne.jpg" alt="nantopiのサムネ画像">
+                        <img src="img/samne.jpg" alt="nantopiのサムネ画像" />
                     </div>
-                    <h2 class="indArticle-title">南山ライフの第一歩！ 履修登録の流れと年間スケジュール解説</h2>
+                    <div class="indArticle-title">南山ライフの第一歩！ 履修登録の流れと年間スケジュール解説</div>
                 </a>
-                <div class="sns-account">
-                    <a class="sns-icon" target="_blank" href="https://x.com/nanzan_gakuson"><img class="sns-iconImg" src="/img/xIcon.png" alt="Xのロゴマーク" height="38" width="50" /></a>
-                    <a class="sns-icon" target="_blank" href="https://www.instagram.com/gakuson24/"><img class="sns-iconImg" src="/img/InstaIcon.png" alt="Instagramのロゴマーク" height="40" width="50" /></a>
-                </div>
             </div>
         </div>
+        <!--<div class="sns-account">
+            <a class="sns-icon" target="_blank" href="https://x.com/nanzan_gakuson"><img class="sns-iconImg" src="/img/xIcon.png" alt="Xのロゴマーク" height="38" width="50" /></a>
+            <a class="sns-icon" target="_blank" href="https://www.instagram.com/gakuson24/"><img class="sns-iconImg" src="/img/InstaIcon.png" alt="Instagramのロゴマーク" height="40" width="50" /></a>
+        </div>-->
 
         <div class="centerContentsBase">
-            <div class="cenetrLinks">
-                <div class="linkButtons">
-                    <a target="_blank" href="https://porta.nanzan-u.ac.jp/md-portal/#/pt010111" class="tileButton">
-                        <img class="linkButtons-img" src="img/portaIcon.avif" alt="portaへのリンク画像">
-                    </a>
-                    <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/" class="tileButton">
-                        <img class="linkButtons-img" src="img/webclassIcon.avif" alt="webclassへのリンク画像">
-                    </a>
-                    <a target="_blank" href="https://handout.nanzan-u.ac.jp/classes/" class="tileButton">
-                        <img class="linkButtons-img" src="img/materialIcon.avif" alt="講義資料へのリンク画像">
-                    </a>
-                    <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl" class="tileButton">プリント<br />サービス</a>
-                    <a target="_blank" href="https://office.nanzan-u.ac.jp/KYOUMU/course-class/class03.html" class="tileButton">休講等<br />情報</a>
-                    <a target="_blank" href="https://opac.nanzan-u.ac.jp/" class="tileButton">図書館<br />蔵書検索</a>
-                    <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="tileButton">大学<br />連絡先</a>
-                    <a href="/next-subway.html" class="tileButton tileButton__pc">地下鉄<br />時刻</a>
-                    <a target="_blank" href="https://fx.nanzan-u.ac.jp/" class="tileButton">Proself</a>
-                    <a target="_blank" href="https://outlook.office365.com/mail/" class="tileButton tileButton__more">Outlook</a>
-                    <a target="_blank" href="https://porta.nanzan-u.ac.jp/syllabus/" class="tileButton tileButton__more">シラバス</a>
-                    <a target="_blank" href="https://www.nanzan-u.ac.jp/" class="tileButton tileButton__more">南山大学<br />HP</a>
-                    <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform" class="tileButton tileButton__more">がくそん<br />問い合わせ</a>
-                </div>
-                <button class="moreButton">さらに表示</button>
+            <input type="checkbox" id="more-btn" hidden style="display: none; height: 0" />
+            <div class="linkButtons expandable">
+                <a target="_blank" href="https://porta.nanzan-u.ac.jp/md-portal/#/pt010111" class="tileButton">
+                    <img class="linkButtons-img" src="img/portaIcon.avif" alt="portaへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/" class="tileButton">
+                    <img class="linkButtons-img" src="img/webclassIcon.avif" alt="webclassへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://handout.nanzan-u.ac.jp/classes/" class="tileButton">
+                    <img class="linkButtons-img" src="img/materialIcon.avif" alt="講義資料へのリンク画像" />
+                </a>
+                <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl">プリント<br />サービス</a>
+                <a target="_blank" href="https://office.nanzan-u.ac.jp/KYOUMU/course-class/class03.html">休講等<br />情報</a>
+                <a href="/next-subway.html" class="SP_ONLY">地下鉄<br />時刻</a>
+                <a target="_blank" href="https://porta.nanzan-u.ac.jp/syllabus/">シラバス</a>
+                <a target="_blank" href="https://outlook.office365.com/mail/">Outlook</a>
+                <a target="_blank" href="https://fx.nanzan-u.ac.jp/">Proself</a>
+                <a target="_blank" href="https://opac.nanzan-u.ac.jp/">図書館<br />蔵書検索</a>
+                <a target="_blank" href="https://www.nanzan-u.ac.jp/">南山大学<br />HP</a>
+                <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="PC_ONLY">大学<br />連絡先</a>
+                <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform">がくそん<br />問い合わせ</a>
             </div>
+            <label class="more-btn" for="more-btn">
+                <span><!-- さらに表示 or 表示を減らす --></span>
+            </label>
 
             <div class="news-section">
                 <div class="news newsTitle">
@@ -231,7 +236,6 @@
         <script src="./classProgress.js"></script>
         <script src="./newsLoader.js"></script>
         <script src="./indexCarousel.js"></script>
-        <script src="./centerContentsBase.js"></script>
 
         <!-- ここより上に書いてください -->
         <footer></footer>
