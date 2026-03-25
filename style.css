@@ -24,26 +24,24 @@
 
 /*カラースキーム*/
 :root {
+    --mainBlueColor: #617bfa;
+    --mainYellowColor: #f9c54a;
     &[data-theme="dark"] {
-        --bgColor: #000000;
-        --boardColor: #000000;
+        --bgThemeColor: #000000; /*#222636*/
+        --bgPlainColor: #000000;
         --bgThinColor: #333733;
-        --hoverColor: #333733;
+        --hoverColor: #222522;
         --pColor: #e8eaed;
         --linkColor: #7da9fe;
-        --mainBlueColor: #617bfa;
-        --mainYellowColor: #f9c54a;
         --shadowColor: #000000;
     }
     &[data-theme="light"] {
-        --bgColor: #ffffff;
-        --boardColor: #ffffff;
+        --bgThemeColor: #ebf0ff;
+        --bgPlainColor: #ffffff;
         --bgThinColor: #cccccc;
-        --hoverColor: #cccccc;
+        --hoverColor: #dddddd;
         --pColor: #202124;
         --linkColor: #1558d6;
-        --mainBlueColor: #617bfa;
-        --mainYellowColor: #f9c54a;
         --shadowColor: #7a7a7a;
     }
 }
@@ -59,7 +57,7 @@
 /*basic style*/
 html {
     padding: 0;
-    background: var(--bgColor);
+    background: var(--bgThemeColor);
     overflow-y: scroll;
 }
 body {
@@ -120,7 +118,7 @@ a {
     overflow: hidden;
     border: 1px solid var(--pColor);
     box-sizing: border-box;
-    background: var(--boardColor);
+    background: var(--bgPlainColor);
     border-radius: 10px;
     box-shadow: 0 0 4px var(--shadowColor);
     @media (width < 960px) {
@@ -169,18 +167,13 @@ a {
     }
 }
 
-.indArticle-title {
-    color: var(--pColor);
-    text-decoration: none;
-    margin: 10px 4% 0;
-}
-
 .ntBox {
-    background: var(--boardColor);
+    background: var(--bgPlainColor);
     box-shadow: 0 0 4px var(--shadowColor);
     border: 1px solid var(--pColor);
     @media (width < 960px) {
         width: 48%;
+        border-radius: 10px;
     }
     @media (960px <= width) {
         position: fixed;
@@ -188,75 +181,39 @@ a {
         right: 1%;
         width: 18%;
     }
-}
-.ntTitle {
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid var(--pColor);
-    padding: 0.3em 0;
-}
-@media (960px <= width) {
-    /*.indArticle-title {
-        font-size: 1.4dvw;
+    .ntTitle {
+        color: var(--pColor);
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--pColor);
+        padding: 0.3em 0;
     }
-    .sns-account {
-        display: none;
-    }*/
-}
-@media (width < 960px) {
-    /*.indArticle-title {
-        font-size: 2.7dvw;
-    }
-    .sns-account {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 36dvw;
-        margin: 0 auto;
-    }
-    .sns-icon {
-        display: block;
-        text-decoration: none;
-        padding: 1.3dvw;
-        background: var(--mainBlueColor);
-        border-radius: 5px;
-        box-shadow: 0 0 4px var(--shadowColor);
-
-        &:hover {
-            background-color: #000000;
-        }
-    }
-    .sns-iconImg {
-        display: block;
-        width: 14dvw;
-        height: 14dvw;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-        border-radius: 5px;
-    }*/
-}
-
-.ind-article {
-    display: block;
-    width: 100%;
-    padding: 8px 0;
-    text-decoration: none;
-
-    &:hover {
-        background-color: var(--hoverColor);
-    }
-}
-.ind-thumbnail {
-    width: 92%;
-    margin: 0 auto;
-    border-radius: 10px;
-    border: 1px solid var(--pColor);
-
-    img {
+    .ntContent {
         display: block;
         width: 100%;
-        object-fit: cover;
-        border-radius: 10px;
+        padding: 8px 0;
+        text-decoration: none;
+
+        &:hover {
+            background-color: var(--hoverColor);
+        }
+        .ntThumb {
+            width: 92%;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid var(--pColor);
+            img {
+                display: block;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+        .ntArticleName {
+            color: var(--pColor);
+            text-decoration: none;
+            margin: 10px 4% 0;
+        }
     }
 }
 
@@ -320,7 +277,7 @@ a {
         bottom: 0.8em;
         width: calc(90vw - 3em);
         margin-left: 5vw;
-        background: var(--bgColor);
+        background: var(--bgThemeColor);
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -408,7 +365,7 @@ div.linkButtons {
         justify-content: center;
         margin-bottom: 0.6rem;
         text-align: center;
-        background: var(--boardColor);
+        background: var(--bgPlainColor);
         color: var(--pColor);
         text-decoration: none;
         border-radius: 8px;
@@ -424,9 +381,15 @@ div.linkButtons {
         &:nth-child(3n + 6) {
             border: 3px solid deeppink;
         }
+        img {
+            width: 100%;
+            border-radius: inherit;
+            aspect-ratio: 1 / 1;
+        }
         &:hover {
             background: var(--pColor);
-            color: var(--bgColor);
+            color: var(--bgThemeColor);
+            transform: scale(110%);
         }
         @media (width < 960px) {
             width: min(30vw, 130px);
@@ -456,7 +419,7 @@ div.linkButtons.expandable {
 
         & ~ label.more-btn {
             span {
-                color: var(--bgColor);
+                color: var(--bgThemeColor);
                 &::before {
                     content: "さらに表示";
                 }
@@ -489,29 +452,12 @@ div.linkButtons.expandable {
     }
 }
 
-.linkButtons-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    transition: transform 0.3s;
-    border: none;
-
-    &:hover {
-        transform: scale(1.1);
-        transition: transform 0.3s;
-        border: 1px solid black;
-    }
-}
-
 /*時間割*/
 .classSchedule,
 .examSchedule {
     margin: 1em;
     border-collapse: collapse;
-    background: var(--boardColor);
+    background: var(--bgPlainColor);
 }
 .classSchedule {
     width: 15em;

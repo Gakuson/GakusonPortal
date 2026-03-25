@@ -83,19 +83,3 @@ span {
 .telop {
     color: lightgreen !important;
 }
-
-#operationStatus {
-    width: min(96%, 900px);
-    border-collapse: collapse;
-    margin: 2em auto 3em;
-    th,
-    td {
-        border: 1px solid var(--pColor);
-        padding: 3px 1em;
-    }
-    th {
-        font-weight: unset;
-        color: black;
-        background: #fab123;
-    }
-}

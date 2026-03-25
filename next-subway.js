@@ -40,26 +40,6 @@ const operationElem = $("operationStatus");
 
 (async () => {
     try {
-        const url = "https://www.kotsu.city.nagoya.jp/jp/datas/latest_traffic.json";
-
-        const lineId = {
-            S_LINE: "桜通線",
-            K_LINE: "上飯田線",
-            T_LINE: "鶴舞線",
-            M_LINE: "名城線, 名港線",
-            H_LINE: "東山線",
-            B_LINE: "市バス",
-        };
-
-        const data = await (await fetch(url, { cache: "no-store" })).json();
-        data.forEach((e) => {
-            const stat = e.traffic_title;
-            let cause = stat == "平常運行" ? "" : `${e.traffic_cause.replace("による", "")}により${e.traffic_section}で`;
-            const tr = document.createElement("tr");
-            tr.innerHTML = `<td>${lineId[e.rosen_id]}</td><td>${cause}${stat}</td>`;
-            operationElem.appendChild(tr);
-        });
-
         const todayDate = new Date();
         const isHoliday = isDayoff(todayDate);
 

@@ -130,7 +130,7 @@ function calcProgressPercent(nowSeconds, startMinutes, endMinutes) {
 setInterval(() => {
     const CSS_vars = document.documentElement;
     const CSS_root = getComputedStyle(CSS_vars);
-    const CSS_bgColorVal = CSS_root.getPropertyValue("--boardColor").trim();
+    const CSS_bgColorVal = CSS_root.getPropertyValue("--bgPlainColor").trim();
 
     //const now = new Date("2025-01-01 18:13:14") // デバッグ用の任意の時刻
     const now = new Date(); // 本番環境用
