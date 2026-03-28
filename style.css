@@ -108,7 +108,7 @@ a {
     @media (width < 960px) {
         display: flex;
         width: 94%;
-        margin: 2em 3%;
+        margin: 1em 3%;
         justify-content: space-between;
         align-items: flex-start;
     }
@@ -168,12 +168,8 @@ a {
 }
 
 .ntBox {
-    background: var(--bgPlainColor);
-    box-shadow: 0 0 4px var(--shadowColor);
-    border: 1px solid var(--pColor);
     @media (width < 960px) {
         width: 48%;
-        border-radius: 10px;
     }
     @media (960px <= width) {
         position: fixed;
@@ -181,38 +177,61 @@ a {
         right: 1%;
         width: 18%;
     }
-    .ntTitle {
-        color: var(--pColor);
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid var(--pColor);
-        padding: 0.3em 0;
+    .mediaContainer {
+        @media (width < 960px) {
+            text-align: center;
+            margin: 0.5em 0;
+        }
+        @media (960px <= width) {
+            display: none;
+        }
+        * {
+            padding: 0 5px;
+        }
     }
-    .ntContent {
-        display: block;
-        width: 100%;
-        padding: 8px 0;
-        text-decoration: none;
-
-        &:hover {
-            background-color: var(--hoverColor);
-        }
-        .ntThumb {
-            width: 92%;
-            margin: 0 auto;
+    .ntContainer {
+        background: var(--bgPlainColor);
+        box-shadow: 0 0 4px var(--shadowColor);
+        border: 1px solid var(--pColor);
+        @media (width < 960px) {
             border-radius: 10px;
-            border: 1px solid var(--pColor);
-            img {
-                display: block;
-                width: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-            }
         }
-        .ntArticleName {
+        .ntTitle {
             color: var(--pColor);
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid var(--pColor);
+            padding: 0.3em 0;
+        }
+        .ntContent {
+            display: block;
+            width: 100%;
+            padding: 8px 0;
             text-decoration: none;
-            margin: 10px 4% 0;
+
+            &:hover {
+                background-color: var(--hoverColor);
+            }
+            .ntThumb {
+                width: 92%;
+                margin: 0 auto;
+                border-radius: 10px;
+                border: 1px solid var(--pColor);
+                img {
+                    display: block;
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
+            }
+            .ntArticleName {
+                color: var(--pColor);
+                text-decoration: none;
+                margin: 10px 4% 0;
+                font-size: 80%;
+                line-height: 1.35em;
+                max-height: calc(1.35em * 3);
+            }
         }
     }
 }
@@ -342,7 +361,7 @@ a {
 @media (width < 960px) {
     .centerContentsBase {
         width: 94%;
-        margin: 2em 3% 2em;
+        margin: 1em 3% 2em;
     }
 }
 @media (960px <= width) {
