@@ -96,13 +96,24 @@
             <div class="ntBox">
                 <div class="ntContainer">
                     <div class="ntTitle">Nanトピ 新着記事</div>
-                    <a class="ntContent" href="#">
+                    <a class="ntContent" target="_blank">
                         <div class="ntThumb">
-                            <img src="img/samne.jpg" alt="nantopiのサムネ画像" />
+                            <img src="" alt="Nanトピ記事のサムネイル" />
                         </div>
-                        <div class="ntArticleName">南山ライフの第一歩！ 履修登録の流れと年間スケジュール解説</div>
+                        <div class="ntArticleName">読み込み中…</div>
                     </a>
                 </div>
+                <script>
+                    (async () => {
+                        const r = await fetch("https://nantopi.com/wp-json/gakuson/v1/picks");
+                        const d = (await r.json()).items;
+                        console.log(d);
+                        const c = document.querySelector(".ntContent");
+                        c.href = d[0].url;
+                        c.querySelector(".ntArticleName").textContent = d[0].title;
+                        c.querySelector(".ntThumb img").src = d[0].image;
+                    })();
+                </script>
                 <div class="mediaContainer">
                     <a target="_blank" href="https://x.com/nanzan_gakuson"><img src="/img/x.png" alt="Xのロゴマーク" height="38" width="50" /></a>
                     <a target="_blank" href="https://www.instagram.com/gakuson24/"><img src="/img/insta.webp" alt="Instagramのロゴマーク" height="40" width="50" /></a>

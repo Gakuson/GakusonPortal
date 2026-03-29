@@ -1,43 +1,33 @@
-const container = document.getElementById("news-container");
-
+let N = document.getElementById("news-container");
+let _ = (e) => document.createElement(e);
+let v = "div";
 (async () => {
     try {
-        const res = await fetch("./newsData.json");
-        const data = await res.json();
-        container.innerHTML = "";
-
-        const allNews = [...[...data.pinned].reverse().map((n) => ({ ...n, isPinned: true })), ...[...data.regular].reverse().map((n) => ({ ...n, isPinned: false }))].slice(0, 3);
-
-        for (const news of allNews) {
-            const newsDiv = document.createElement("div");
-            newsDiv.className = "news";
-
-            // ニュース個別ページへのリンク
-            const link = document.createElement("a");
-            link.href = `news.html?newsId=${encodeURIComponent(news.id)}`;
-
-            const titleEl = document.createElement("div");
-            titleEl.className = "title";
-            titleEl.textContent = news.title;
-            if (news.isPinned) titleEl.innerHTML = `<span style="color: red">HOT</span> ${news.title}`;
-
-            const dateEl = document.createElement("div");
-            dateEl.className = "date";
-            dateEl.textContent = news.date;
-
-            const contentEl = document.createElement("div");
-            contentEl.className = "content";
-            contentEl.textContent = news.content;
-
-            link.appendChild(titleEl);
-            link.appendChild(contentEl);
-            link.appendChild(dateEl);
-
-            newsDiv.appendChild(link);
-            container.appendChild(newsDiv);
+        let r = await fetch("./newsData.json");
+        let d = await r.json();
+        N.innerHTML = "";
+        let ns = [...[...d.pinned].reverse().map((n) => ({ ...n, isPinned: true })), ...[...d.regular].reverse().map((n) => ({ ...n, isPinned: false }))].slice(0, 3);
+        for (let n of ns) {
+            let e = _(v);
+            e.className = "news";
+            let l = _("a");
+            l.href = `news.html?newsId=${encodeURIComponent(n.id)}`;
+            let t = _(v);
+            t.className = "title";
+            t.textContent = n.title;
+            if (n.isPinned) t.innerHTML = `<span style="color:red">HOT</span> ${n.title}`;
+            let d = _(v);
+            d.className = "date";
+            d.textContent = n.date;
+            let c = _(v);
+            c.className = "content";
+            c.textContent = n.content;
+            l.append(t, c, d);
+            e.append(l);
+            N.append(e);
         }
-    } catch (err) {
-        container.innerHTML = "プレビューの読み込みに失敗しました。";
-        console.error(err);
+    } catch (E) {
+        N.innerHTML = "プレビューの読み込みに失敗しました";
+        console.error(E);
     }
 })();
