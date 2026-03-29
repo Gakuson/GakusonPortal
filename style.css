@@ -390,19 +390,9 @@ div.linkButtons {
         border-radius: 8px;
         box-shadow: 0 0 4px var(--shadowColor);
         border: 2px solid black;
-
-        &:nth-child(3n + 4) {
-            border: 3px solid orange;
-        }
-        &:nth-child(3n + 5) {
-            border: 3px solid royalblue;
-        }
-        &:nth-child(3n + 6) {
-            border: 3px solid deeppink;
-        }
         img {
             width: 100%;
-            border-radius: inherit;
+            border-radius: 6.5px;
             aspect-ratio: 1 / 1;
         }
         &:hover {

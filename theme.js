@@ -14,8 +14,8 @@ function applyTheme(t) {
 (() => {
     let t = getCookie("theme");
     if (!t) {
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        t = prefersDark ? "dark" : "light";
+        //const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        t = "light"; // prefersDark ? "dark" : "light";
         setCookie("theme", t, 30);
     }
     applyTheme(t);
