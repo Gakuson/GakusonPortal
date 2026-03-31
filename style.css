@@ -153,6 +153,11 @@ a {
             display: block;
             width: 100%;
         }
+        img {
+            aspect-ratio: 3 / 4;
+            object-fit: fill;
+            object-position: top;
+        }
     }
     .controls {
         position: sticky;
