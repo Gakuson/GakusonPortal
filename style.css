@@ -354,7 +354,7 @@ a {
 @media (960px <= width) {
     #kitchenCarBanner {
         position: fixed;
-        top: 32em;
+        top: calc(calc(18vw / 3 * 4) + 7em + 30px);
         left: 1%;
         width: 18%;
     }
