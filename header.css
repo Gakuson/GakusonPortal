@@ -129,9 +129,6 @@ header {
             font-size: 20px;
             background: var(--bgThinColor);
         }
-        .rootLink {
-            pointer-events: none;
-        }
         .menu {
             background-color: #999999dd;
             position: fixed;
