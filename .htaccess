@@ -1,47 +1,39 @@
-<Files ~ "^\.(htaccess|htpasswd)$">
-    deny from all
-</Files>
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
 <IfModule mod_expires.c>
     ExpiresActive On
 
-    # HTML
     ExpiresByType text/html "access plus 1 days"
 
-    # CSS / JS
     ExpiresByType text/css "access plus 1 days"
     ExpiresByType application/javascript "access plus 1 days"
     ExpiresByType application/json "access plus 1 days"
 
-    # 画像
     ExpiresByType image/png "access plus 1 month"
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/webp "access plus 1 month"
     ExpiresByType image/avif "access plus 1 month"
-    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 3 days"
 
-    # フォント
     ExpiresByType font/ttf "access plus 3 months"
 
-    <Files "newsData.json">
+    <FilesMatch "^(newsData\.json|kkContents\.html)$">        
         Header set Cache-Control "no-store, no-cache, must-revalidate"
         Header set Pragma "no-cache"
         Header set Expires "0"
-    </Files>
-    <Files "kkContents.html">
-        Header set Cache-Control "no-store, no-cache, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
-    </Files>
-
+    </FilesMatch>
 </IfModule>
 
-
+<FilesMatch "^\.ht">
+    Require all denied
+</FilesMatch>
 
 Options -Indexes
+
 ErrorDocument 403 /errorPage/403.html
 ErrorDocument 404 /errorPage/404.html
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^(www\.gakuson\.com)(:80)? [NC]
-RewriteRule ^(.*) http://gakuson.com/$1 [R=301,L]
-order deny,allow
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.gakuson\.com$ [NC]
+RewriteRule ^(.*)$ https://gakuson.com/$1 [R=301,L]
