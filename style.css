@@ -22,6 +22,29 @@
     }
 }
 
+/* 臨時スタイル */
+.kitchenCarSuspention {
+    position: absolute;
+    text-align: center;
+    background: #000a;
+    color: white;
+    border-radius: 10px;
+    z-index: 999;
+    @media (width < 960px) {
+        width: 94vw;
+        line-height: 66.42vw;
+        font-size: 8vw;
+    }
+    @media (960px <= width) {
+        width: 18vw;
+        line-height: 12.72vw;
+        font-size: 1.5vw;
+    }
+    a:has(&) {
+        pointer-events: none;
+    }
+}
+
 /*カラースキーム*/
 :root {
     --mainBlueColor: #617bfa;
