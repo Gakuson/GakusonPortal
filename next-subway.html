@@ -1,168 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-  <head>
-    <!-- GoogleTag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-0CL1H2HGPL");
-    </script>
+    <head>
+        <!-- GoogleTag -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-0CL1H2HGPL");
+        </script>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" />
-    <script src="/theme.js"></script>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" href="/next-subway.css" />
-    <meta property="og:site_name" content="がくそん" />
-    <title>地下鉄時刻 - がくそん</title>
-    <meta property="og:title" content="地下鉄時刻 - がくそん" />
-    <meta
-      name="description"
-      content="名古屋大学駅と八事日赤駅における次の電車までの時間と、名古屋市交通局の運行状況を表示しています。"
-    />
-    <meta
-      property="og:description"
-      content="名古屋大学駅と八事日赤駅における次の電車までの時間と、名古屋市交通局の運行状況を表示しています。"
-    />
-  </head>
-  <body>
-    <header></header>
-    <script>
-      (async () => {
-        const res = await fetch("/header.html");
-        document.querySelector("header").innerHTML = await res.text();
-      })();
-    </script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
+        <script src="/theme.js"></script>
+        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="/next-subway.css" />
+        <meta property="og:site_name" content="がくそん" />
+        <title>地下鉄時刻 - がくそん</title>
+        <meta property="og:title" content="地下鉄時刻 - がくそん" />
+        <meta name="description" content="南山大学の最寄駅である名古屋大学駅・八事日赤駅の発車時刻を表示しています。学校から間に合うかチェックしよう！" />
+        <meta property="og:description" content="南山大学の最寄駅である名古屋大学駅・八事日赤駅の発車時刻を表示しています。学校から間に合うかチェックしよう！" />
+    </head>
+    <body>
+        <header></header>
+        <script>
+            (async () => {
+                const res = await fetch("/header.html");
+                document.querySelector("header").innerHTML = await res.text();
+            })();
+        </script>
 
-    <!-- ここより下に書いてください -->
+        <!-- ここより下に書いてください -->
 
-    <h1>地下鉄時刻</h1>
-    <p style="text-align: center">名古屋大学駅</p>
-    <div class="hasshahyoContainer">
-      <div class="machine-lefter">
-        <div>
-          <div class="track">1</div>
-          <div class="toward">左回り</div>
+        <h1>地下鉄時刻</h1>
+        <p style="text-align: center">名古屋大学駅</p>
+        <div class="hasshahyoContainer">
+            <div class="machine-lefter">
+                <div>
+                    <div class="track">1</div>
+                    <div class="toward">左回り</div>
+                </div>
+                <div class="disp">
+                    <span class="time" id="m-L-0-time"></span>
+                    <span class="dest" id="m-L-0-dest"></span>
+                    <span class="comm" id="m-L-0-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="m-L-1-time"></span>
+                    <span class="dest" id="m-L-1-dest"></span>
+                    <span class="comm" id="m-L-1-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="m-L-2-time"></span>
+                    <span class="dest" id="m-L-2-dest"></span>
+                    <span class="comm" id="m-L-2-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="telop">読み込み中</span>
+                    <span class="currTime"></span>
+                </div>
+            </div>
+            <div class="machine-righter">
+                <div>
+                    <div class="track">2</div>
+                    <div class="toward">右回り</div>
+                </div>
+                <div class="disp">
+                    <span class="time" id="m-R-0-time"></span>
+                    <span class="dest" id="m-R-0-dest"></span>
+                    <span class="comm" id="m-R-0-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="m-R-1-time"></span>
+                    <span class="dest" id="m-R-1-dest"></span>
+                    <span class="comm" id="m-R-1-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="m-R-2-time"></span>
+                    <span class="dest" id="m-R-2-dest"></span>
+                    <span class="comm" id="m-R-2-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="telop">読み込み中</span>
+                    <span class="currTime"></span>
+                </div>
+            </div>
         </div>
-        <div class="disp">
-          <span class="time" id="m-L-0-time"></span>
-          <span class="dest" id="m-L-0-dest"></span>
-          <span class="comm" id="m-L-0-comm"></span>
+        <p style="text-align: center">八事日赤駅</p>
+        <div class="hasshahyoContainer">
+            <div class="machine-lefter">
+                <div>
+                    <div class="track">1</div>
+                    <div class="toward">左回り</div>
+                </div>
+                <div class="disp">
+                    <span class="time" id="n-L-0-time"></span>
+                    <span class="dest" id="n-L-0-dest"></span>
+                    <span class="comm" id="n-L-0-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="n-L-1-time"></span>
+                    <span class="dest" id="n-L-1-dest"></span>
+                    <span class="comm" id="n-L-1-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="n-L-2-time"></span>
+                    <span class="dest" id="n-L-2-dest"></span>
+                    <span class="comm" id="n-L-2-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="telop">読み込み中</span>
+                    <span class="currTime"></span>
+                </div>
+            </div>
+            <div class="machine-righter">
+                <div>
+                    <div class="track">2</div>
+                    <div class="toward">右回り</div>
+                </div>
+                <div class="disp">
+                    <span class="time" id="n-R-0-time"></span>
+                    <span class="dest" id="n-R-0-dest"></span>
+                    <span class="comm" id="n-R-0-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="n-R-1-time"></span>
+                    <span class="dest" id="n-R-1-dest"></span>
+                    <span class="comm" id="n-R-1-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="time" id="n-R-2-time"></span>
+                    <span class="dest" id="n-R-2-dest"></span>
+                    <span class="comm" id="n-R-2-comm"></span>
+                </div>
+                <div class="disp">
+                    <span class="telop">読み込み中</span>
+                    <span class="currTime"></span>
+                </div>
+            </div>
         </div>
-        <div class="disp">
-          <span class="time" id="m-L-1-time"></span>
-          <span class="dest" id="m-L-1-dest"></span>
-          <span class="comm" id="m-L-1-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="m-L-2-time"></span>
-          <span class="dest" id="m-L-2-dest"></span>
-          <span class="comm" id="m-L-2-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="telop">読み込み中</span>
-          <span class="currTime"></span>
-        </div>
-      </div>
-      <div class="machine-righter">
-        <div>
-          <div class="track">2</div>
-          <div class="toward">右回り</div>
-        </div>
-        <div class="disp">
-          <span class="time" id="m-R-0-time"></span>
-          <span class="dest" id="m-R-0-dest"></span>
-          <span class="comm" id="m-R-0-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="m-R-1-time"></span>
-          <span class="dest" id="m-R-1-dest"></span>
-          <span class="comm" id="m-R-1-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="m-R-2-time"></span>
-          <span class="dest" id="m-R-2-dest"></span>
-          <span class="comm" id="m-R-2-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="telop">読み込み中</span>
-          <span class="currTime"></span>
-        </div>
-      </div>
-    </div>
-    <p style="text-align: center">八事日赤駅</p>
-    <div class="hasshahyoContainer">
-      <div class="machine-lefter">
-        <div>
-          <div class="track">1</div>
-          <div class="toward">左回り</div>
-        </div>
-        <div class="disp">
-          <span class="time" id="n-L-0-time"></span>
-          <span class="dest" id="n-L-0-dest"></span>
-          <span class="comm" id="n-L-0-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="n-L-1-time"></span>
-          <span class="dest" id="n-L-1-dest"></span>
-          <span class="comm" id="n-L-1-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="n-L-2-time"></span>
-          <span class="dest" id="n-L-2-dest"></span>
-          <span class="comm" id="n-L-2-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="telop">読み込み中</span>
-          <span class="currTime"></span>
-        </div>
-      </div>
-      <div class="machine-righter">
-        <div>
-          <div class="track">2</div>
-          <div class="toward">右回り</div>
-        </div>
-        <div class="disp">
-          <span class="time" id="n-R-0-time"></span>
-          <span class="dest" id="n-R-0-dest"></span>
-          <span class="comm" id="n-R-0-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="n-R-1-time"></span>
-          <span class="dest" id="n-R-1-dest"></span>
-          <span class="comm" id="n-R-1-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="time" id="n-R-2-time"></span>
-          <span class="dest" id="n-R-2-dest"></span>
-          <span class="comm" id="n-R-2-comm"></span>
-        </div>
-        <div class="disp">
-          <span class="telop">読み込み中</span>
-          <span class="currTime"></span>
-        </div>
-      </div>
-    </div>
-    <br />
-    <p style="text-align: center">
-      間に合う判定は山手通門から駅ホームまでの標準所要時間で行っています。<br class="SP_ONLY" />
-      所要時間には個人差があります。<br /><br />
-      試運転・回送・臨時列車および<br class="SP_ONLY" />ダイヤ乱れによる変更は表示されません。<br />
-      実際の時刻は駅の掲示をご確認ください。<br />
-    </p>
-    <script src="./next-subway.js"></script>
-    <!-- ここより上に書いてください -->
-    <footer></footer>
-    <script>
-      (async () => {
-        const res = await fetch("/footer.html");
-        document.querySelector("footer").innerHTML = await res.text();
-      })();
-    </script>
-  </body>
+        <br />
+        <p style="text-align: center">
+            間に合う判定は山手通門から駅ホームまでの標準所要時間で行っています。<br class="SP_ONLY" />
+            所要時間には個人差があります。<br /><br />
+            試運転・回送・臨時列車および<br class="SP_ONLY" />ダイヤ乱れによる変更は表示されません。<br />
+            実際の時刻は駅の掲示をご確認ください。<br />
+        </p>
+        <script src="./next-subway.js"></script>
+        <!-- ここより上に書いてください -->
+        <footer></footer>
+        <script>
+            (async () => {
+                const res = await fetch("/footer.html");
+                document.querySelector("footer").innerHTML = await res.text();
+            })();
+        </script>
+    </body>
 </html>
