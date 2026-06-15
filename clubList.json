@@ -1,0 +1,50 @@
+[
+    {
+        "name": "アイスホッケー部",
+        "nameKana": "あいすほっけーぶ",
+        "type": "sports",
+        "authorizationType": "official",
+        "members": { "m": 13, "f": 3, "n": 0 },
+        "activityTime": ["wed-4"],
+        "activityPlace": {
+            "onCampus": false,
+            "offCampus": true,
+            "placeList": ["名古屋スポーツセンター", "日本ガイシアリーナ", "邦和みなと"]
+        },
+        "fee": "1年生は無料",
+        "description": "アイスホッケー部は、氷上で行われるスピード感あふれるスポーツを楽しむ部活です。初心者から経験者まで幅広く歓迎しており、技術向上やチームワークの醸成を目指しています。練習は主に水曜日の午後4時から行われ、名古屋スポーツセンターや日本ガイシアリーナなどの施設を利用しています。部費は1年生が無料で、2年生以降は活動費用に応じて徴収されます。アイスホッケーの魅力を一緒に体験しましょう！",
+        "image": "/circle-thumb/sample.webp"
+    },
+    {
+        "name": "アメリカンフットボール部",
+        "nameKana": "あめりかんふっとぼーるぶ",
+        "type": "sports",
+        "authorizationType": "official",
+        "members": { "m": 25, "f": 21, "n": 0 },
+        "activityTime": ["tue-5", "wed-5", "thu-5", "sat-a", "sun-a"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["大学グラウンド"]
+        },
+        "fee": "2,000円 / 月",
+        "description": "アメリカンフットボール部は、戦略とフィジカルが融合したスポーツを楽しむ部活です。初心者から経験者まで幅広く歓迎しており、技術向上やチームワークの醸成を目指しています。練習は主に火曜日から木曜日の午後5時、土曜日と日曜日の午前中に大学グラウンドで行われます。アメリカンフットボールの魅力を一緒に体験しましょう！",
+        "image": null
+    },
+    {
+        "name": "バドミントン部",
+        "nameKana": "ばどみんとんぶ",
+        "type": "sports",
+        "authorizationType": "official",
+        "members": { "m": 15, "f": 11, "n": 0 },
+        "activityTime": ["mon-5", "wed-4", "wed-5", "sat-p"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["大学体育館"]
+        },
+        "fee": "1,000円 / 月",
+        "description": "バドミントン部は、スピードと技術が求められるスポーツを楽しむ部活です。初心者から経験者まで幅広く歓迎しており、技術向上やチームワークの醸成を目指しています。練習は主に月曜日の午後5時、水曜日の午後4時と5時、土曜日の午後で行われます。バドミントンの魅力を一緒に体験しましょう！",
+        "image": null
+    }
+]
