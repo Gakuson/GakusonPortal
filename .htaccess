@@ -1,3 +1,12 @@
+ErrorDocument 403 /errorPage/403.html
+ErrorDocument 404 /errorPage/404.html
+
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.gakuson\.com$ [NC]
+RewriteRule ^(.*)$ https://gakuson.com/$1 [R=301,L]
+
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
 <IfModule mod_expires.c>
@@ -29,11 +38,3 @@ Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains
 </FilesMatch>
 
 Options -Indexes
-
-ErrorDocument 403 /errorPage/403.html
-ErrorDocument 404 /errorPage/404.html
-
-RewriteEngine On
-RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} ^www\.gakuson\.com$ [NC]
-RewriteRule ^(.*)$ https://gakuson.com/$1 [R=301,L]
