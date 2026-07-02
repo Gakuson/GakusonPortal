@@ -36,14 +36,14 @@ const dayColor = { weekdays: "#ffffff", sat: "#bbeeff", sun: "#ffbbbb" };
 const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
 (async () => {
-    const clubListRaw = await fetch("clubList.json");
-    const clubList = await clubListRaw.json();
+    const circleListRaw = await fetch("circleList.json");
+    const circleList = await circleListRaw.json();
 
     const clubTypeSelect = $("#clubType");
     const clubSizeSelect = $("#clubSize");
     const sortOrderSelect = $("#sortOrder");
     const activityTimeContainer = $("#activityTime");
-    const clubListContainer = $(".clubSearchResults");
+    const circleListContainer = $(".clubSearchResults");
 
     const compareNameKanaAsc = (a, b) => {
         const aKey = String(a?.nameKana ?? a?.name ?? "");
@@ -131,11 +131,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
     const getActivityFrequencyScore = (club) => {
         const clubTimes = Array.isArray(club.activityTime) ? club.activityTime : [];
-        const daySet = new Set(
-            clubTimes
-                .map((code) => String(code).split("-")[0])
-                .filter((d) => d)
-        );
+        const daySet = new Set(clubTimes.map((code) => String(code).split("-")[0]).filter((d) => d));
         const dayCount = daySet.size;
         const timesCount = clubTimes.length;
         return { dayCount, timesCount };
@@ -154,7 +150,6 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         const amount = Number(m[1]);
         if (!Number.isFinite(amount)) return NaN;
         const unit = m[2];
-
 
         // 回ごとの場合、週何日活動するかを取得して換算
         if (!unit || unit === "回") {
@@ -345,60 +340,39 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         const tbody = document.createElement("tbody");
 
-        const addRow = (label, valueNode) => {
+        const addRow = (label, html) => {
             const tr = document.createElement("tr");
             const th = document.createElement("th");
             th.scope = "row";
             th.textContent = label;
 
             const td = document.createElement("td");
-            if (valueNode) {
-                td.appendChild(valueNode);
-            }
+            if (html) td.innerHTML = html;
 
             tr.append(th, td);
             tbody.appendChild(tr);
         };
 
-        addRow("メンバー数", document.createTextNode(`${getTotalMembers(club)}人`));
+        addRow("メンバー数", `${getTotalMembers(club)}人`);
 
         const activityList = getActivityTimeList(club);
         if (activityList.length === 0) {
-            addRow("活動日", document.createTextNode("未設定"));
+            addRow("活動日", "未設定");
         } else {
-            const ul = document.createElement("ul");
-            ul.className = "modalList";
-            activityList.forEach((text) => {
-                const li = document.createElement("li");
-                li.textContent = text;
-                ul.appendChild(li);
-            });
-            addRow("活動日", ul);
+            addRow("活動日", activityList.join("\n"));
         }
 
-        const placeList = Array.isArray(club?.activityPlace?.placeList)
-            ? club.activityPlace.placeList
-            : [];
+        const placeList = Array.isArray(club?.activityPlace?.placeList) ? club.activityPlace.placeList : [];
         if (placeList.length === 0) {
-            addRow("活動場所", document.createTextNode("未設定"));
+            addRow("活動場所", "未設定");
         } else {
-            const ul = document.createElement("ul");
-            ul.className = "modalList";
-            placeList.forEach((place) => {
-                const li = document.createElement("li");
-                li.textContent = String(place);
-                ul.appendChild(li);
-            });
-            addRow("活動場所", ul);
+            addRow("活動場所", placeList.join("\n"));
         }
 
-        addRow("部費", document.createTextNode(getFeeText(club)));
+        addRow("部費", getFeeText(club));
 
-        const desc =
-            typeof club?.description === "string" && club.description.trim() !== ""
-                ? club.description
-                : "このサークルには説明文が設定されていません。";
-        addRow("概要", document.createTextNode(desc));
+        const desc = club.description.trim() ? club.description : "このサークルには説明がありません。";
+        addRow("概要", desc);
 
         table.appendChild(tbody);
         return table;
@@ -477,11 +451,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         }
 
         // 派生タグ（JSONに書かなくてOK）
-        const derivedKeys = [
-            ...getDerivedTagKeysFromActivityTime(club),
-            ...getDerivedTagKeysFromFee(club),
-            ...getDerivedTagKeysFromActivityPlace(club),
-        ];
+        const derivedKeys = [...getDerivedTagKeysFromActivityTime(club), ...getDerivedTagKeysFromFee(club), ...getDerivedTagKeysFromActivityPlace(club)];
         Array.from(new Set(derivedKeys)).forEach((key) => {
             if (key in tagsList) {
                 const [label, color] = tagsList[key];
@@ -543,8 +513,8 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     };
 
     const render = () => {
-        clubListContainer.innerHTML = "";
-        const filtered = clubList.filter(passesFilters);
+        circleListContainer.innerHTML = "";
+        const filtered = circleList.filter(passesFilters);
 
         const sortOrder = sortOrderSelect?.value ?? "nameAsc";
         const sorted = filtered.slice();
@@ -559,19 +529,19 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         else sorted.sort(compareNameKanaAsc);
 
         sorted.forEach((club) => {
-            clubListContainer.appendChild(createClubCard(club));
+            circleListContainer.appendChild(createClubCard(club));
         });
+
+        if (sorted.length === 0) {
+            const noResults = document.createElement("h2");
+            noResults.textContent = "条件に一致するサークルは見つかりませんでした。";
+            circleListContainer.appendChild(noResults);
+        }
     };
 
     // 変更したら即時反映（検索ボタン無し）
     clubTypeSelect.addEventListener("change", render);
     clubSizeSelect.addEventListener("change", render);
     sortOrderSelect?.addEventListener("change", render);
-    /*activityTimeContainer.addEventListener("change", (e) => {
-        if (e.target?.matches?.('input[type="checkbox"]')) {
-            render();
-        }
-    });*/
-
     render();
 })();

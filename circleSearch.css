@@ -1,64 +1,65 @@
-label {
-    padding: 0.25rem 0.5rem;
-    width: stretch;
-    display: block;
-    text-align: center;
-}
-select {
-    margin-bottom: 1.5rem;
-    padding: 0.5rem;
-    border: 1px solid #000;
-    border-radius: 0px;
-}
-
-.selectors select{
-    width: stretch;
-}
-
-.sorters  #sortOrder{
-    margin-top: 1rem;
-    width: stretch;
-}
-
 .userChoiceContainer {
     position: fixed;
-    top: calc(4.2em + 1px);
-    left: 0;
     padding: 1em;
-    border-right: 1px solid #000;
-    height: 100%;
-    width: 14em;
-    & > div {
-        margin-bottom: 3em;
-    }
+    background: var(--bgPlainColor);
     p {
         font-size: 1.4em;
         margin: 0;
         padding: 0.2em 0;
         width: stretch;
         background: orange;
+        color: black;
         text-align: center;
     }
-}
-
-.clubSearchResults {
-    margin-left: 14em;
+    select {
+        margin-top: 0.5em;
+        padding: 0.5rem;
+        border: 1px solid #000;
+        border-radius: 0px;
+        width: stretch;
+    }
+    .selectorsContainer {
+        margin-bottom: 1em;
+    }
+    @media (width < 960px) {
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 16em;
+        border-bottom: 1px solid var(--pColor);
+    }
+    @media (960px <= width) {
+        top: calc(4.2em + 1px);
+        left: 0;
+        width: 14em;
+        height: 100%;
+        border-right: 1px solid var(--pColor);
+    }
 }
 
 .clubSearchResults {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+    margin-bottom: 2em;
     align-items: stretch;
     justify-content: center;
+    @media (width < 960px) {
+        margin-left: 0;
+        margin-top: calc(60px + 16em + 2em);
+    }
+    @media (960px <= width) {
+        margin-left: calc(14em + 2em);
+        margin-top: 0;
+    }
 }
 
 .clubCard {
     width: 280px;
-    border: 1px solid #000;
+    border: 1px solid var(--pColor);
     border-radius: 1em;
     padding: 2em 1em;
-    background: #fafafa;
+    background: var(--bgPlainColor);
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -79,6 +80,7 @@ select {
     height: 100%;
     object-fit: cover;
     display: block;
+    background: #fff;
 }
 
 .noImage {
@@ -93,6 +95,7 @@ select {
 }
 
 .name {
+    color: var(--pColor);
     font-size: 1.1rem;
     font-weight: 700;
 }
@@ -102,6 +105,9 @@ select {
     gap: 0.5rem;
     flex-wrap: wrap;
     height: 4em;
+    .tag {
+        color: #000;
+    }
 }
 
 .activityTags {
@@ -126,7 +132,8 @@ select {
 
 .detailsButton {
     padding: 0.5rem;
-    border: 1px solid #000;
+    border: 1px solid var(--pColor);
+    color: var(--pColor);
     background: transparent;
     cursor: pointer;
     width: 100%;
@@ -135,7 +142,7 @@ select {
 .modalOverlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(from var(--pColor) r g b / 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,15 +164,17 @@ select {
 
 .modalContent {
     width: min(640px, 100%);
-    background: #fff;
-    border: 1px solid #000;
+    background: var(--bgPlainColor);
+    border: 1px solid var(--pColor);
     padding: 1rem;
     position: relative;
     max-height: 80vh;
     overflow: auto;
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 300ms ease, transform 300ms ease;
+    transition:
+        opacity 300ms ease,
+        transform 300ms ease;
 }
 
 .modalOverlay.isOpen .modalContent {
@@ -177,7 +186,8 @@ select {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    border: 1px solid #000;
+    border: 1px solid var(--pColor);
+    color: var(--pColor);
     background: transparent;
     width: 2rem;
     height: 2rem;
@@ -185,6 +195,7 @@ select {
 }
 
 .modalTitle {
+    color: var(--pColor);
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
@@ -204,7 +215,7 @@ select {
 
 .modalTable th,
 .modalTable td {
-    border: 1px solid #000;
+    border: 1px solid var(--pColor);
     padding: 0.5rem;
     vertical-align: top;
 }
@@ -212,11 +223,6 @@ select {
 .modalTable th {
     width: 8em;
     font-weight: 700;
-}
-
-.modalList {
-    margin: 0;
-    padding-left: 1.2rem;
 }
 
 .genderRatioBar {

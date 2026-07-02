@@ -75,7 +75,7 @@
 |-- next-subway.js             # 地下鉄時刻表ロジック
 |-- theme.js                   # theme 切り替え
 |-- newsData.json              # ニュースデータ
-|-- clubList.json              # サークル検索データ
+|-- circleList.json              # サークル検索データ
 |-- mapAssets/                 # 地図画像と建物データ
 |-- subwayTimetable/           # 地下鉄時刻表 JSON
 |-- img/                       # 画像素材
@@ -103,7 +103,7 @@ http://localhost:8000/
 ## Maintenance Notes
 
 - ニュースは `newsData.json` を更新する。
-- サークル検索データは `clubList.json` を更新する。
+- サークル検索データは `circleList.json` を更新する。
 - キャンパスマップのピンは `mapAssets/nodes.json` を更新する。
 - 地下鉄時刻表は `subwayTimetable/` 配下の JSON を更新する。
 - sitemap を更新する必要がある場合は、Unix-like shell で `generate.sh` を実行する。

@@ -50,7 +50,7 @@
     --mainBlueColor: #617bfa;
     --mainYellowColor: #f9c54a;
     &[data-theme="dark"] {
-        --bgThemeColor: #000000; /*#222636*/
+        --bgThemeColor: #111111; /*#222636*/
         --bgPlainColor: #000000;
         --bgThinColor: #333733;
         --hoverColor: #222522;
