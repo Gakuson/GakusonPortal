@@ -374,6 +374,21 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         const desc = club.description.trim() ? club.description.replace(/\n/g, "<br />") : "このサークルには説明がありません。";
         addRow("概要", desc);
 
+        const links = club?.links ?? {};
+        let linkText = "";
+        Object.keys(links).forEach((key) => {
+            let href = links[key];
+            // 対応するプリセットキーであれば、URLではなくIDやアドレスを受け取る
+            if (key === "X") href = `https://x.com/${href}`;
+            if (key === "Instagram") href = `https://www.instagram.com/${href}`;
+            if (key === "メール") href = `mailto:${href}`;
+
+            if (href.trim() !== "") {
+                linkText += `${key}: <a href="${href}" target="_blank">${links[key]}</a><br />`;
+            }
+        });
+        addRow("リンク", linkText || "なし");
+
         table.appendChild(tbody);
         return table;
     };

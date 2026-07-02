@@ -12,7 +12,12 @@
             "placeList": ["Q棟"]
         },
         "fee": "無料",
-        "description": "がくそんはこのサイトを作っている有志団体です。ポータルサイトのほか、お役立ち記事のサイトの運営も行ったりしています。<br />プログラミングをしているメンバーだけではないのでぜひ覗いてみてください！",
+        "description": "記事執筆やSNS運用を通して、学生支援を行ってみませんか？私たちは南山生の約35%が利用する「がくそん」 (このサイト) や、南山大学にもっと詳しくなれるメディアサイト「Nanzan Topics!」の運営を通して、南山生の学生生活をサポートしています。「やってみたい！」を形に出来るサークルなので、興味を持った方は是非ご連絡ください！",
+        "links": {
+            "X": "Nanzan_Gakuson",
+            "Instagram": "gakuson24",
+            "Webサイト": "https://gakuson.com"
+        },
         "image": "/circle-thumb/gakuson.png"
     },
     {
@@ -29,6 +34,10 @@
         },
         "fee": "無料",
         "description": "南山大学HoYoverse同好会は、HoYoverse作品を楽しんだり関連する創作活動を行うサークルです。実店舗イベントに複数人で行ったりもしています！",
+        "links": {
+            "X": "NZ_HoYobu",
+            "Webサイト": "https://nz-hoyobu.github.io"
+        },
         "image": "/circle-thumb/hoyoverse.png"
     }
 ]
