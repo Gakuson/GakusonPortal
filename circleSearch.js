@@ -371,7 +371,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         addRow("部費", getFeeText(club));
 
-        const desc = club.description.trim() ? club.description : "このサークルには説明がありません。";
+        const desc = club.description.trim() ? club.description.replace(/\n/g, "<br />") : "このサークルには説明がありません。";
         addRow("概要", desc);
 
         table.appendChild(tbody);
@@ -486,29 +486,14 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     };
 
     const passesFilters = (club) => {
-        // サークル種別（択一）
         const clubType = clubTypeSelect.value;
         if (clubType !== "all" && club.type !== clubType) {
             return false;
         }
-
-        // サークル規模（択一）
         const size = clubSizeSelect.value;
         if (size !== "all" && getSizeKey(club) !== size) {
             return false;
         }
-
-        /* // 活動時間（複数選択）: どれか1つでも一致したらOK
-        const selectedTimes = getSelectedActivityTimes();
-        if (selectedTimes.length === 0) {
-            return false;
-        }
-        const clubTimes = Array.isArray(club.activityTime) ? club.activityTime : [];
-        const matches = clubTimes.some((t) => selectedTimes.includes(t));
-        if (!matches) {
-            return false;
-        } */
-
         return true;
     };
 
