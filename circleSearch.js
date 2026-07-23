@@ -445,10 +445,14 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         }
         clubCard.appendChild(imageWrap);
 
+        const nameTagsContainer = document.createElement("div");
+        nameTagsContainer.classList.add("nameTagsContainer");
+        clubCard.appendChild(nameTagsContainer);
+
         const name = document.createElement("div");
         name.classList.add("name");
         name.textContent = club.name;
-        clubCard.appendChild(name);
+        nameTagsContainer.appendChild(name);
 
         const tags = document.createElement("div");
         tags.classList.add("tags");
@@ -474,10 +478,10 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
             }
         });
 
-        clubCard.appendChild(tags);
+        nameTagsContainer.appendChild(tags);
 
         // 活動日時タグ（tagsの下）
-        clubCard.appendChild(createActivityTags(club));
+        nameTagsContainer.appendChild(createActivityTags(club));
 
         const memberInfo = document.createElement("div");
         memberInfo.classList.add("memberInfo");
