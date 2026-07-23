@@ -394,7 +394,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     };
 
     const openModal = (club) => {
-        modalTitle.textContent = club?.name ?? "詳細";
+        modalTitle.innerHTML = club?.name ?? "詳細";
         modalBody.innerHTML = "";
         modalBody.appendChild(createModalTable(club));
         if (modalCloseTimerId !== null) {
@@ -451,7 +451,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         const name = document.createElement("div");
         name.classList.add("name");
-        name.textContent = club.name;
+        name.innerHTML = club.name;
         nameTagsContainer.appendChild(name);
 
         const tags = document.createElement("div");
