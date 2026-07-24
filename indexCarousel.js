@@ -1,40 +1,58 @@
 window.onload = async () => {
-    let D = document;
-    let $ = (e) => D.querySelector(e);
-    let $$ = (e) => D.querySelectorAll(e);
+    const $ = (e) => document.querySelector(e);
+    const $$ = (e) => document.querySelectorAll(e);
 
-    let R = await fetch("/kkContents.html");
-    $(".kkBox").innerHTML = await R.text();
+    const res = await fetch("/kkContents.html");
+    $(".kkBox").innerHTML = await res.text();
 
-    let b = $(".kkContainer");
-    let c = $$(".kkContent");
-    let n = $("#indicator");
+    const todayStr = new Date().toLocaleDateString("sv-SE");
+    $$(".kkContent").forEach((e) => {
+        const from = e.getAttribute("from");
+        const to = e.getAttribute("to");
+        if (from && todayStr < from) {
+            e.remove();
+            return;
+        }
+        if (to && todayStr > to) {
+            e.remove();
+            return;
+        }
+    });
 
-    let i = 0;
-    let l = c.length;
-    let t;
+    const containerElem = $(".kkContainer");
+    const contentElems = $$(".kkContent");
+    const indElem = $("#indicator");
 
-    function u() {
-        b.style.transform = `translateX(-${i * 100}%)`;
-        n.textContent = `${i + 1} / ${l}`;
-        clearInterval(t);
-        t = setInterval(p, 5e3);
+    let currentIndex = 0;
+    const totalItems = contentElems.length;
+    if (!totalItems) {
+        indElem.textContent = "0 / 0";
+        return;
     }
 
-    function p() {
-        i = (i + 1) % l;
-        u();
+    let autoPlayTimer;
+
+    function updateCarousel() {
+        containerElem.style.transform = `translateX(-${currentIndex * 100}%)`;
+        indElem.textContent = `${currentIndex + 1} / ${totalItems}`;
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = setInterval(showNextSlide, 5000);
     }
 
-    function m() {
-        i = (i - 1 + l) % l;
-        u();
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
     }
 
-    $("#nextBtn").addEventListener("click", p);
-    $("#prevBtn").addEventListener("click", m);
+    function showPrevSlide() {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+    }
 
-    u();
+    $("#nextBtn").addEventListener("click", showNextSlide);
+    $("#prevBtn").addEventListener("click", showPrevSlide);
+
+    updateCarousel();
 
     $$("[data-ga-click]").forEach((e) => {
         e.addEventListener("click", () => {
