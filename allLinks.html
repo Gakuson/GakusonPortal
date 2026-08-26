@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- GoogleTag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-0CL1H2HGPL");
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <script src="/theme.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+
+    <meta property="og:site_name" content="がくそん" />
+    <title>リンク集 - がくそん</title>
+    <meta property="og:title" content="リンク集 - がくそん" />
+    <meta name="description" content="トップページに載せるほどではないが、それなりによく使うリンクをまとめています。" />
+    <meta property="og:description" content="トップページに載せるほどではないが、それなりによく使うリンクをまとめています。" />
+  </head>
+  <body>
+    <header></header>
+    <script>
+      (async () => {
+        const res = await fetch("/header.html");
+        document.querySelector("header").innerHTML = await res.text();
+      })();
+    </script>
+
+    <!-- ここより下に書いてください -->
+    <h1>リンク集</h1>
+    <div style="width: 96%; margin: auto">
+      <h2>運行情報</h2>
+      <div class="linkButtons">
+        <a target="_blank" href="https://traininfo.jreast.co.jp/train_info/">JR東日本</a>
+        <a target="_blank" href="https://traininfo.jr-central.co.jp/shinkansen/pc/ja/index.html" class="multiline">
+          JR東海<br />新幹線
+        </a>
+        <a target="_blank" href="https://traininfo.jr-central.co.jp/zairaisen/index.html" class="multiline">
+          JR東海<br />在来線
+        </a>
+        <a target="_blank" href="https://trafficinfo.westjr.co.jp/">JR西日本</a>
+        <a target="_blank" href="https://top.meitetsu.co.jp/em/">名鉄</a>
+        <a target="_blank" href="https://www.kintetsu.jp/unkou/unkou.html">近鉄</a>
+        <a target="_blank" href="https://www.kotsu.city.nagoya.jp/jp/pc/emergency/index.html" class="multiline">
+          名古屋市<br />交通局
+        </a>
+      </div>
+      <h2>本屋オンラインオーダー</h2>
+      <div class="linkButtons">
+        <a target="_blank" href="https://www.maruzenjunkudo.co.jp/">丸善</a>
+        <a target="_blank" href="https://honto.jp/">Honto</a>
+        <a target="_blank" href="https://www.kinokuniya.co.jp/" class="multiline">紀伊国屋<br />書店</a>
+        <a target="_blank" href="https://userweb.alles.or.jp/asanobk/index.html" class="multiline">
+          アサノ<br />ブックス
+        </a>
+      </div>
+    </div>
+    <style>
+      h2 {
+        text-align: center;
+      }
+    </style>
+    <!-- ここより上に書いてください -->
+    <footer></footer>
+    <script>
+      (async () => {
+        const res = await fetch("/footer.html");
+        document.querySelector("footer").innerHTML = await res.text();
+      })();
+    </script>
+  </body>
+</html>

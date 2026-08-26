@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="/header.css" />
+<style>
+    @media (width <= 960px) {
+        header {
+            div.menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+            }
+        }
+    }
+    @media (960px <= width) {
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: calc(4.2em + 1px);
+            border-bottom: 1px solid var(--pColor);
+            z-index: 114514;
+            div.menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100vw;
+                height: 4.2em;
+                display: flex;
+                z-index: 9999;
+            }
+        }
+    }
+</style>
+<input type="checkbox" id="menu-btn" hidden style="display: none; height: 0" />
+<label class="menu-btn" for="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span><!--MENU--></span>
+</label>
+<div class="menu">
+    <div class="logo">
+        <a class="rootLink" href="/"><img style="margin: auto" src="/img/logo.png" alt="がくそんのロゴマーク" height="60" width="60" /></a>
+    </div>
+    <a href="/" class="container ColorTagDefault SP_ONLY">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">TOP</span>
+            <span class="lower">がくそん</span>
+        </div>
+    </a>
+    <a href="/next-subway.html" class="container ColorTagDefault PC_ONLY">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">地下鉄時刻</span>
+            <span class="lower">次の発車まで何分？<br />学校から間に合うかな</span>
+        </div>
+    </a>
+    <a href="/map.html" class="container ColorTagDefault">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">マップ</span>
+            <span class="lower">学内の地図<br /></span>
+        </div>
+    </a>
+    <a href="/news.html" class="container ColorTagDefault">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">ニュース</span>
+            <span class="lower">主要行事などを<br />お伝えします</span>
+        </div>
+    </a>
+    <a href="/calendar.html" class="container ColorTagDefault">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">年間予定表</span>
+            <span class="lower">授業や試験の日程を<br />確認しよう</span>
+        </div>
+    </a>
+    <a href="/classesTable.html" class="container ColorTagDefault">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">時間割表</span>
+            <span class="lower">自分用の<br />予定を作ろう</span>
+        </div>
+    </a>
+    <a href="/allLinks.html" class="container ColorTagDefault">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">リンク集</span>
+            <span class="lower">使いそうなページ<br />まとめてみた</span>
+        </div>
+    </a>
+    <a href="/about.html" class="container ColorTagDefault">
+        <span class="number"></span>
+        <div class="content">
+            <span class="upper">がくそんとは</span>
+            <span class="lower">このページや<br />制作団体の紹介</span>
+        </div>
+    </a>
+    <button id="theme-toggle" onclick="toggleTheme()">テーマ切替</button>
+</div>

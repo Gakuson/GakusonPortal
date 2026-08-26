@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!-- GoogleTag -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0CL1H2HGPL"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-0CL1H2HGPL");
+        </script>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
+        <script src="/theme.js"></script>
+        <link rel="stylesheet" href="/style.css" />
+        <meta property="og:site_name" content="がくそん" />
+        <title>TOP - がくそん</title>
+        <meta property="og:title" content="TOP - がくそん" />
+        <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。PORTA・WebClass・プリンター・シラバスなどよく使うページへのリンクはもちろん、学内団体からの掲示やキッチンカーの情報も取り扱っています！" />
+        <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。PORTA・WebClass・プリンター・シラバスなどよく使うページへのリンクはもちろん、学内団体からの掲示やキッチンカーの情報も取り扱っています！" />
+        <style>
+            .news-section {
+                margin: 2em 0;
+                border: 3px double var(--pColor);
+                color: var(--pColor);
+                border-radius: 10px;
+                background: var(--bgPlainColor);
+            }
+            .news:not(.viewMore) {
+                border-bottom: 1px solid var(--pColor);
+                margin-bottom: 0em;
+                border-collapse: collapse;
+            }
+            .news.viewMore {
+                border-radius: 0 0 10px 10px;
+            }
+            .news a {
+                display: block;
+                padding: 0.5em 1.5em;
+                text-decoration: none;
+                color: var(--pColor);
+                @media (width <= 960px) {
+                    font-size: 0.9em;
+                }
+            }
+            .news:not(.newsTitle):hover {
+                background: var(--hoverColor);
+            }
+            .title {
+                font-size: 1.1em;
+                font-weight: bold;
+            }
+            .date {
+                font-size: 0.9em;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
+        <script>
+            (async () => {
+                const res = await fetch("/header.html");
+                document.querySelector("header").innerHTML = await res.text();
+            })();
+        </script>
+
+        <!-- ここより下に書いてください -->
+        <div class="classProgressBase">
+            <div class="classProgressSet">
+                <p id="currentTime">現在時刻 <span class="larger">00:00</span><span style="margin-left: 0.14em; font-size: 130%">00</span></p>
+                <p id="classProgressParCurr"><span class="larger">0</span>限終了まで<span class="larger">0</span>分</p>
+                <progress id="classProgressBar" max="100" value="0"></progress>
+                <span id="classProgressVal"></span>
+                <p id="classProgressParNext"><span class="larger">0</span>限開始まで<span class="larger">0</span>分</p>
+            </div>
+        </div>
+
+        <div class="centerBoxContainer">
+            <div class="kkBox">
+                <div class="kkContainer">
+                    <div class="kkContent">
+                        <div style="width: 100%; aspect-ratio: 3 / 4"></div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="prevBtn">◀</button>
+                    <span id="indicator">0 / 0</span>
+                    <button id="nextBtn">▶</button>
+                </div>
+            </div>
+            <div class="ntBox">
+                <div class="ntContainer">
+                    <div class="ntTitle">Nanトピ 新着記事</div>
+                    <a class="ntContent" target="_blank">
+                        <div class="ntThumb">
+                            <img src="" alt="Nanトピ記事のサムネイル" />
+                        </div>
+                        <div class="ntArticleName">読み込み中…</div>
+                    </a>
+                </div>
+                <script>
+                    (async () => {
+                        const r = await fetch("https://nantopi.com/wp-json/wp/v2/posts?per_page=1&_embed");
+                        const d = (await r.json());
+                        console.log(d);
+                        const c = document.querySelector(".ntContent");
+                        c.href = `${d[0].link}?utm_source=gakuson&utm_medium=referral&utm_campaign=gakuson_static_grid`;
+                        c.querySelector(".ntArticleName").textContent = d[0].title.rendered;
+                        c.querySelector(".ntThumb img").src = d[0]._embedded["wp:featuredmedia"][0].source_url;
+                    })();
+                </script>
+                <div class="mediaContainer">
+                    <a target="_blank" href="https://x.com/nanzan_gakuson"><img src="/img/x.png" alt="Xのロゴマーク" height="38" width="50" /></a>
+                    <a target="_blank" href="https://www.instagram.com/gakuson24/"><img src="/img/insta.webp" alt="Instagramのロゴマーク" height="40" width="50" /></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="centerContentsBase">
+            <input type="checkbox" id="more-btn" hidden style="display: none; height: 0" />
+            <div class="linkButtons expandable">
+                <a target="_blank" href="https://porta.nanzan-u.ac.jp/md-portal/#/pt010111">
+                    <img src="icon/porta.png" alt="PORTAへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://webclass.nanzan-u.ac.jp/webclass/">
+                    <img src="icon/webclass.png" alt="WebClassへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://handout.nanzan-u.ac.jp/classes/">
+                    <img src="icon/document.png" alt="講義資料へのリンク画像" />
+                </a>
+                <a target="_blank" href="https://pr.ic.nanzan-u.ac.jp/bin/prportal.pl">
+                    <img src="icon/print.png" alt="プリンター指令ページへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://office.nanzan-u.ac.jp/KYOUMU/course-class/class03.html">
+                    <img src="icon/cancel.png" alt="休講情報へのリンク画像" />
+                </a>
+                <a href="/next-subway.html" class="SP_ONLY">
+                    <img src="icon/subway.png" alt="地下鉄時刻へのリンク画像" />
+                </a>
+                <a target="_blank" href="https://porta.nanzan-u.ac.jp/syllabus/">
+                    <img src="icon/syllabus.png" alt="シラバスへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://outlook.office365.com/mail/">
+                    <img src="icon/outlook.png" alt="Outlookへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://fx.nanzan-u.ac.jp/">
+                    <img src="icon/proself.png" alt="Proselfへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://opac.nanzan-u.ac.jp/">
+                    <img src="icon/opac.png" alt="蔵書検索ページへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://www.nanzan-u.ac.jp/">
+                    <img src="icon/univhp.png" alt="南山大学ホームページへのリンク画像" />
+                </a>
+                <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="PC_ONLY">
+                    <img src="icon/contact.png" alt="大学連絡先へのリンク画像" />
+                </a>
+                <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform?utm_source=gakuson&utm_medium=referral&utm_campaign=gakuson_static_grid">
+                    <img src="icon/inquiry.png" alt="がくそん問い合わせへのリンク画像" />
+                </a>
+            </div>
+            <label class="more-btn" for="more-btn">
+                <span><!-- さらに表示 or 表示を減らす --></span>
+            </label>
+
+            <div class="news-section">
+                <div class="news newsTitle">
+                    <a style="text-align: center">ニュース</a>
+                </div>
+                <div id="news-container">
+                    <p style="height: 12em; display: block"></p>
+                </div>
+                <div class="news viewMore">
+                    <a style="text-align: center" href="./news.html">もっと見る</a>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap">
+                <table class="classSchedule">
+                    <tr>
+                        <th colspan="2">授業時間割</th>
+                    </tr>
+                    <tr>
+                        <td style="width: 30%">1限</td>
+                        <td>09:10 - 10:50</td>
+                    </tr>
+                    <tr>
+                        <td>2限</td>
+                        <td>11:05 - 12:45</td>
+                    </tr>
+                    <tr>
+                        <td>3限</td>
+                        <td>13:35 - 15:15</td>
+                    </tr>
+                    <tr>
+                        <td>4限</td>
+                        <td>15:30 - 17:10</td>
+                    </tr>
+                    <tr>
+                        <td>5限</td>
+                        <td>17:25 - 19:05</td>
+                    </tr>
+                    <tr>
+                        <td>夜1限</td>
+                        <td>18:30 - 20:10</td>
+                    </tr>
+                    <tr>
+                        <td>夜2限</td>
+                        <td>20:15 - 21:55</td>
+                    </tr>
+                </table>
+
+                <table class="examSchedule">
+                    <tr>
+                        <th colspan="3">定期試験時間割</th>
+                    </tr>
+                    <tr>
+                        <td style="width: 22%">1限</td>
+                        <td>09:20 - 10:10</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2限</td>
+                        <td>10:35 - 11:25</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3限</td>
+                        <td>11:50 - 12:40</td>
+                        <td>11:50 - 13:10</td>
+                    </tr>
+                    <tr>
+                        <td>4限</td>
+                        <td>13:40 - 14:30</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5限</td>
+                        <td>14:55 - 15:45</td>
+                        <td>14:55 - 16:15</td>
+                    </tr>
+                    <tr>
+                        <td>6限</td>
+                        <td>16:40 - 17:30</td>
+                        <td>16:40 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>7限</td>
+                        <td></td>
+                        <td>18:40 - 20:00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="bannerRight">
+            <a target="_blank" href="https://kitchen-car.com/kumiai/s-column/nanzan/" id="kitchenCarBanner">
+                <img class="kitchenCarBannerImg" src="./img/kitchencar.avif" alt="「今月のキッチンカー情報はこちら」という文が書かれた画像" style="width: 100%" />
+            </a>
+        </div>
+
+        <br class="SP_ONLY" />
+
+        <script src="./classProgress.js"></script>
+        <script src="./newsLoader.js"></script>
+        <script src="./indexCarousel.js"></script>
+
+        <!-- ここより上に書いてください -->
+        <footer style="right: 20%; width: 60%"></footer>
+        <script>
+            (async () => {
+                const res = await fetch("/footer.html");
+                document.querySelector("footer").innerHTML = await res.text();
+            })();
+        </script>
+    </body>
+</html>

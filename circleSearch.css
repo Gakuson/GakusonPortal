@@ -1,0 +1,311 @@
+.userChoiceContainer {
+    position: fixed;
+    background: var(--bgPlainColor);
+    p {
+        font-size: 1.4em;
+        margin: 0;
+        padding: 0.2em 0;
+        width: stretch;
+        background: orange;
+        color: black;
+        text-align: center;
+        @media (width < 960px) {
+            display: none;
+        }
+    }
+    select {
+        margin-top: 0.5em;
+        padding: 0.5rem;
+        border: 1px solid #000;
+        border-radius: 0px;
+        width: stretch;
+    }
+    .selectorsContainer {
+        @media (width < 960px) {
+            display: flex;
+            gap: 0.5em;
+            select {
+                width: calc(50% - 0.25em);
+            }
+        }
+        @media (960px <= width) {
+            margin-bottom: 1em;
+        }
+    }
+    @media (width < 960px) {
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 6.8em;
+        padding: 0.5em 1em;
+        border-bottom: 1px solid var(--pColor);
+    }
+    @media (960px <= width) {
+        top: calc(4.2em + 1px);
+        left: 0;
+        width: 14em;
+        height: 100%;
+        padding: 1em;
+        border-right: 1px solid var(--pColor);
+    }
+}
+
+.clubSearchResults {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 2em;
+    align-items: stretch;
+    justify-content: center;
+    @media (width < 960px) {
+        margin-left: 0;
+        margin-top: calc(60px + 6.8em + 1.5em);
+    }
+    @media (960px <= width) {
+        margin-left: calc(14em + 2em);
+        margin-top: 0;
+    }
+}
+
+.clubCard {
+    border: 1px solid var(--pColor);
+    border-radius: 1em;
+    background: var(--bgPlainColor);
+    display: flex;
+    @media (width < 960px) {
+        width: 90%;
+        height: 12em;
+        padding: 1em;
+        gap: 0.5em;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    @media (960px <= width) {
+        width: 280px;
+        padding: 2em 1em;
+        gap: 1em;
+        flex-direction: column;
+    }
+}
+
+.image {
+    aspect-ratio: 1 / 1;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    @media (width < 960px) {
+        height: 6.4em;
+        width: 6.4em;
+    }
+    @media (960px <= width) {
+        width: 100%;
+    }
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #fff;
+}
+
+.noImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.nameTagsContainer {
+    /* スマホでflexが意図通りにならないのを修正するためだけのコンテナ */
+    display: flex;
+    flex-direction: column;
+    @media (width < 960px) {
+        padding-left: 0.5em;
+        width: calc(100% - 7em);
+        gap: 0.25rem;
+    }
+    @media (960px <= width) {
+        gap: 1em;
+    }
+}
+
+.name {
+    color: var(--pColor);
+    overflow: hidden;
+    font-size: 1.1rem;
+    font-weight: 700;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    .tag {
+        color: #000;
+    }
+    @media (width < 960px) {
+        gap: 0.4rem;
+        &.activityTags {
+            display: none;
+        }
+    }
+    @media (960px <= width) {
+        gap: 0.5rem;
+        height: 4em;
+    }
+}
+
+.activityTags {
+    height: 4em;
+    @media (width < 960px) {
+        height: unset;
+        width: calc(100% - 6em);
+        gap: 0.25rem;
+    }
+}
+
+.tag {
+    border: 1px solid #000;
+    text-align: center;
+    @media (width < 960px) {
+        height: 1.35rem;
+        line-height: 1rem;
+        width: 5em;
+        padding: 0.2rem 0rem;
+        font-size: min(0.67rem, 2.9vw);
+    }
+    @media (960px <= width) {
+        height: 1.75rem;
+        line-height: 1.4rem;
+        width: 31%;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+.memberInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    @media (width < 960px) {
+        width: 50%;
+    }
+}
+
+.detailsButton {
+    padding: 0.5rem;
+    border: 1px solid var(--pColor);
+    color: var(--pColor);
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    @media (width < 960px) {
+        height: 2.2rem;
+        margin-left: 1em;
+        width: calc(50% - 2em);
+    }
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(from var(--pColor) r g b / 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+}
+
+.modalOverlay.isOpen {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalOverlay[hidden] {
+    display: none;
+}
+
+.modalContent {
+    width: min(640px, 100%);
+    background: var(--bgPlainColor);
+    border: 1px solid var(--pColor);
+    padding: 1rem;
+    position: relative;
+    max-height: 80vh;
+    overflow: auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 300ms ease,
+        transform 300ms ease;
+}
+
+.modalOverlay.isOpen .modalContent {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modalClose {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    border: 1px solid var(--pColor);
+    color: var(--pColor);
+    background: transparent;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.modalTitle {
+    color: var(--pColor);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    padding-right: 2.5rem;
+}
+
+.modalBody {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.modalTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.modalTable th,
+.modalTable td {
+    border: 1px solid var(--pColor);
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+.modalTable th {
+    width: 8em;
+    font-weight: 700;
+}
+
+.genderRatioBar {
+    display: flex;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #000;
+}

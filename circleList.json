@@ -1,0 +1,43 @@
+[
+    {
+        "name": "がくそん",
+        "nameKana": "がくそん",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": { "m": 11, "f": 8, "n": 0 },
+        "activityTime": ["mon-5"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["Q棟"]
+        },
+        "fee": "無料",
+        "description": "記事執筆やSNS運用を通して、学生支援を行ってみませんか？私たちは南山生の約35%が利用する「がくそん」 (このサイト) や、南山大学にもっと詳しくなれるメディアサイト「Nanzan Topics!」の運営を通して、南山生の学生生活をサポートしています。「やってみたい！」を形に出来るサークルなので、興味を持った方は是非ご連絡ください！",
+        "links": {
+            "X": "Nanzan_Gakuson",
+            "Instagram": "gakuson24",
+            "Webサイト": "https://gakuson.com"
+        },
+        "image": "/circle-thumb/gakuson.png"
+    },
+    {
+        "name": "南山大学<wbr>HoYoverse<wbr>同好会",
+        "nameKana": "ほよばーすどうこうかい",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": { "m": 9, "f": 3, "n": 0 },
+        "activityTime": ["wed-4"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["S棟"]
+        },
+        "fee": "無料",
+        "description": "南山大学HoYoverse同好会は、HoYoverse作品を楽しんだり関連する創作活動を行うサークルです。実店舗イベントに複数人で行ったりもしています！",
+        "links": {
+            "X": "NZ_HoYobu",
+            "Webサイト": "https://nz-hoyobu.github.io"
+        },
+        "image": "/circle-thumb/hoyoverse.png"
+    }
+]
