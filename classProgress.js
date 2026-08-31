@@ -206,7 +206,7 @@ setInterval(() => {
             cpParE1.style.fontSize = "16px";
         } else {
             // 授業日の夕方〜
-            cpParE1.innerHTML = "本日の授業終了！<br>お疲れ様でした";
+            cpParE1.innerHTML = "本日の授業終了！<br>一日お疲れさまでした";
             cpParE1.style.fontSize = "16px";
         }
         cpParE2.style.display = "none";

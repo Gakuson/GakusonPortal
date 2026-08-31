@@ -343,7 +343,6 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         const addRow = (label, html) => {
             const tr = document.createElement("tr");
             const th = document.createElement("th");
-            th.scope = "row";
             th.textContent = label;
 
             const td = document.createElement("td");

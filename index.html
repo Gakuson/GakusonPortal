@@ -20,8 +20,14 @@
         <meta property="og:site_name" content="がくそん" />
         <title>TOP - がくそん</title>
         <meta property="og:title" content="TOP - がくそん" />
-        <meta name="description" content="南山大学の非公式便利サイト「がくそん」のトップページです。PORTA・WebClass・プリンター・シラバスなどよく使うページへのリンクはもちろん、学内団体からの掲示やキッチンカーの情報も取り扱っています！" />
-        <meta property="og:description" content="南山大学の非公式便利サイト「がくそん」のトップページです。PORTA・WebClass・プリンター・シラバスなどよく使うページへのリンクはもちろん、学内団体からの掲示やキッチンカーの情報も取り扱っています！" />
+        <meta
+            name="description"
+            content="南山大学の非公式便利サイト「がくそん」のトップページです。PORTA・WebClass・プリンター・シラバスなどよく使うページへのリンクはもちろん、学内団体からの掲示やキッチンカーの情報も取り扱っています！"
+        />
+        <meta
+            property="og:description"
+            content="南山大学の非公式便利サイト「がくそん」のトップページです。PORTA・WebClass・プリンター・シラバスなどよく使うページへのリンクはもちろん、学内団体からの掲示やキッチンカーの情報も取り扱っています！"
+        />
         <style>
             .news-section {
                 margin: 2em 0;
@@ -106,7 +112,7 @@
                 <script>
                     (async () => {
                         const r = await fetch("https://nantopi.com/wp-json/wp/v2/posts?per_page=1&_embed");
-                        const d = (await r.json());
+                        const d = await r.json();
                         console.log(d);
                         const c = document.querySelector(".ntContent");
                         c.href = `${d[0].link}?utm_source=gakuson&utm_medium=referral&utm_campaign=gakuson_static_grid`;
@@ -160,7 +166,10 @@
                 <a target="_blank" href="https://www.nanzan-u.ac.jp/Information/toiawase.html" class="PC_ONLY">
                     <img src="icon/contact.png" alt="大学連絡先へのリンク画像" />
                 </a>
-                <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform?utm_source=gakuson&utm_medium=referral&utm_campaign=gakuson_static_grid">
+                <a
+                    target="_blank"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScTLI8qRoDnSZGA4BpXaavgjXD8Y6B9TYYuB3fNIHpD6dyhAA/viewform?utm_source=gakuson&utm_medium=referral&utm_campaign=gakuson_static_grid"
+                >
                     <img src="icon/inquiry.png" alt="がくそん問い合わせへのリンク画像" />
                 </a>
             </div>
@@ -271,7 +280,7 @@
         <script src="./indexCarousel.js"></script>
 
         <!-- ここより上に書いてください -->
-        <footer style="right: 20%; width: 60%"></footer>
+        <footer></footer>
         <script>
             (async () => {
                 const res = await fetch("/footer.html");
