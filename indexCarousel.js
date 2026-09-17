@@ -19,7 +19,7 @@ window.onload = async () => {
         if (e.from) kkContentElem.setAttribute("from", e.from);
         if (e.to) kkContentElem.setAttribute("to", e.to);
         kkContentElem.innerHTML = `
-            <a target="_blank" href="${e.href}" data-ga4="${e.ga4}">
+            <a target="_blank" href="${e.href}" data-ga-click="${e.ga4}">
                 <img src="${e.img}" alt="${e.alt}" width="100%" />
             </a>
         `;
