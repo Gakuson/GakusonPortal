@@ -1,0 +1,29 @@
+[
+    {
+        "to": "2026-10-22",
+        "href": "https://www.instagram.com/uflea.m",
+        "img": "./img/kk_asobi_frima_2609.avif",
+        "alt": "遊フリマの告知画像",
+        "ga4": "kk_asobi_frima_2609"
+    },
+    {
+        "to": "2026-09-30",
+        "href": "https://forms.gle/84Diooi3tXB4PxDT6",
+        "img": "./img/kk_nanfes_stage_2608.avif",
+        "alt": "南山大学祭ステージ企画の告知画像",
+        "ga4": "kk_nanfes_stage_2608"
+    },
+    {
+        "href": "https://www.instagram.com/nanzan_koto",
+        "img": "./img/kk_soukyoku_2606.avif",
+        "alt": "南山大学箏曲部の告知画像",
+        "ga4": "kk_soukyoku_2606"
+    },
+    {
+        "to": "2026-09-30",
+        "href": "https://forms.gle/rB1RbJX3K7HhfVf2A",
+        "img": "./img/kk_nanfes_kaisai26.avif",
+        "alt": "南山大学祭コンテストの告知画像",
+        "ga4": "kk_nanfes_kaisai26"
+    }
+]
