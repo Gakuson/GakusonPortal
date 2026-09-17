@@ -32,51 +32,10 @@ const weekNoBasedHolidays = [
     { m: 10, w: 2 }, // スポ
 ];
 
-const $ = (e) => document.getElementById(e);
+const $ = (e) => document.querySelector(e);
 const $$ = (e) => document.querySelectorAll(e);
 const currentTimeElems = $$(".currTime");
 const diaElems = $$(".telop");
-const operationElem = $("operationStatus");
-
-(async () => {
-    try {
-        const todayDate = new Date();
-        const isHoliday = isDayoff(todayDate);
-
-        const mL = await (await fetch(`./subwayTimetable/meidai-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
-        const mR = await (await fetch(`./subwayTimetable/meidai-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
-        const nL = await (await fetch(`./subwayTimetable/nisseki-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
-        const nR = await (await fetch(`./subwayTimetable/nisseki-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
-        const timetables = {
-            m: { L: mL, R: mR },
-            n: { L: nL, R: nR },
-        };
-        setInterval(() => {
-            const now = new Date();
-            const h = String(now.getHours());
-            const mm = String(now.getMinutes()).padStart(2, "0");
-            for (const e of currentTimeElems) e.innerHTML = `${h}:${mm}`;
-            for (const e of diaElems) e.innerHTML = `今日は${isHoliday ? "休日" : "平日"}ダイヤです`;
-            for (let i = 0; i < 12; i++) {
-                const sta = i < 6 ? "m" : "n";
-                const dir = i % 6 > 2 ? "R" : "L";
-                const nth = i % 3;
-                const [diff, dest] = getDeparture(timetables[sta][dir], nth);
-                const comm = (() => {
-                    if (!diff) return "まもなく発車";
-                    if (diff < timeThreshold[sta][0]) return msgTexts[0];
-                    if (diff < timeThreshold[sta][1]) return msgTexts[1];
-                    return msgTexts[2];
-                })();
-                $(`${sta}-${dir}-${nth}-time`).innerHTML = `${diff ? `${diff}分後` : "現在"}`;
-                $(`${sta}-${dir}-${nth}-dest`).innerHTML = dest;
-                $(`${sta}-${dir}-${nth}-comm`).innerHTML = comm;
-            }
-        }, 1000);
-    } catch (error) {
-        console.error("エラー:", error);
-    }
-})();
 
 function getDeparture(timeTable, nth) {
     const now = new Date();
@@ -139,7 +98,6 @@ function isAlternateHoliday(date) {
 }
 
 // 前日と翌日の両方が日曜または定義祝日なら、国民の休日
-// FIXME: 振替休日と定義祝日に挟まれた日はどうなのか？(国民の休日の定義が曖昧)
 function isCitizenHoliday(date) {
     const prevDate = new Date(date);
     prevDate.setDate(date.getDate() - 1);
@@ -147,3 +105,79 @@ function isCitizenHoliday(date) {
     nextDate.setDate(date.getDate() + 1);
     return (isDefinedHoliday(prevDate) || isSunday(prevDate)) && (isDefinedHoliday(nextDate) || isSunday(nextDate));
 }
+
+(async () => {
+    try {
+        const jrcData = await (await fetch("./api/data_jrc.json")).json();
+        const ntbData = await (await fetch("./api/data_ntb.json")).json();
+
+        const jrcStatuses = {
+            平常運行: "○",
+            "遅れ／運休あり": "△",
+            運転見合わせ: "✕",
+        };
+        $("#JRC_CA_N").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "東海道線(豊橋～米原)").status] || "エラー";
+        $("#JRC_CF").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "中央線").status] || "エラー";
+        $("#JRC_CJ").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "関西線").status] || "エラー";
+        $("#JRC_CE").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "武豊線").status] || "エラー";
+        $("#JRC_CG").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "高山線").status] || "エラー";
+        $("#JRC_CI").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "太多線").status] || "エラー";
+
+        // TODO: 名市交の平常運行以外の文字列を調べる、とりあえず△にする
+        $("#NTB_H").innerHTML = ntbData.find((e) => e.line === "東山線").status === "平常運行" ? "○" : "△";
+        $("#NTB_M").innerHTML = ntbData.find((e) => e.line === "名城線").status === "平常運行" ? "○" : "△";
+        $("#NTB_T").innerHTML = ntbData.find((e) => e.line === "鶴舞線").status === "平常運行" ? "○" : "△";
+        $("#NTB_S").innerHTML = ntbData.find((e) => e.line === "桜通線").status === "平常運行" ? "○" : "△";
+        $("#NTB_K").innerHTML = ntbData.find((e) => e.line === "上飯田線").status === "平常運行" ? "○" : "△";
+
+        const tableCells = $$(".operationStatusTable td");
+        tableCells.forEach((cell) => {
+            if (cell.innerHTML === "○") {
+                cell.style.backgroundColor = "#b4efb4";
+            } else if (cell.innerHTML === "△") {
+                cell.style.backgroundColor = "#efe0b4";
+            } else if (cell.innerHTML === "✕") {
+                cell.style.backgroundColor = "#efb4b4";
+            }
+        });
+    } catch (error) {
+        console.error("運行情報表示エラー:", error);
+    }
+    try {
+        const todayDate = new Date();
+        const isHoliday = isDayoff(todayDate);
+
+        const mL = await (await fetch(`./subwayTimetable/meidai-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const mR = await (await fetch(`./subwayTimetable/meidai-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const nL = await (await fetch(`./subwayTimetable/nisseki-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const nR = await (await fetch(`./subwayTimetable/nisseki-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const timetables = {
+            m: { L: mL, R: mR },
+            n: { L: nL, R: nR },
+        };
+        setInterval(() => {
+            const now = new Date();
+            const h = String(now.getHours());
+            const mm = String(now.getMinutes()).padStart(2, "0");
+            for (const e of currentTimeElems) e.innerHTML = `${h}:${mm}`;
+            for (const e of diaElems) e.innerHTML = `今日は${isHoliday ? "休日" : "平日"}ダイヤです`;
+            for (let i = 0; i < 12; i++) {
+                const sta = i < 6 ? "m" : "n";
+                const dir = i % 6 > 2 ? "R" : "L";
+                const nth = i % 3;
+                const [diff, dest] = getDeparture(timetables[sta][dir], nth);
+                const comm = (() => {
+                    if (!diff) return "まもなく発車";
+                    if (diff < timeThreshold[sta][0]) return msgTexts[0];
+                    if (diff < timeThreshold[sta][1]) return msgTexts[1];
+                    return msgTexts[2];
+                })();
+                $(`#${sta}-${dir}-${nth}-time`).innerHTML = `${diff ? `${diff}分後` : "現在"}`;
+                $(`#${sta}-${dir}-${nth}-dest`).innerHTML = dest;
+                $(`#${sta}-${dir}-${nth}-comm`).innerHTML = comm;
+            }
+        }, 1000);
+    } catch (error) {
+        console.error("時刻表表示エラー:", error);
+    }
+})();

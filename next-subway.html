@@ -142,13 +142,53 @@
                 </div>
             </div>
         </div>
-        <br />
         <p style="text-align: center">
             間に合う判定は山手通門から駅ホームまでの標準所要時間で行っています。<br class="SP_ONLY" />
             所要時間には個人差があります。<br /><br />
             試運転・回送・臨時列車および<br class="SP_ONLY" />ダイヤ乱れによる変更は表示されません。<br />
             実際の時刻は駅の掲示をご確認ください。<br />
         </p>
+        <br />
+        <h1>運行状況</h1>
+        <div class="operationStatusContainer">
+            <table class="operationStatusTable" id="NTB_table">
+                <tr>
+                    <th>東山線</th>
+                    <th>名城線</th>
+                    <th>鶴舞線</th>
+                    <th>桜通線</th>
+                    <th>上飯田線</th>
+                </tr>
+                <tr>
+                    <td id="NTB_H"></td>
+                    <td id="NTB_M"></td>
+                    <td id="NTB_T"></td>
+                    <td id="NTB_S"></td>
+                    <td id="NTB_K"></td>
+                </tr>
+            </table>
+            <table class="operationStatusTable" id="JRC_table">
+                <tr>
+                    <th>東海道線</th>
+                    <th>中央線</th>
+                    <th>関西線</th>
+                    <th>武豊線</th>
+                    <th>高山線</th>
+                    <th>太多線</th>
+                </tr>
+                <tr>
+                    <td id="JRC_CA_N"></td>
+                    <td id="JRC_CF"></td>
+                    <td id="JRC_CJ"></td>
+                    <td id="JRC_CE"></td>
+                    <td id="JRC_CG"></td>
+                    <td id="JRC_CI"></td>
+                </tr>
+            </table>
+            <div class="center">
+                <a href="./allLinks.html" class="smallButton">詳細を確認する</a>
+            </div>
+        </div>
         <script src="./next-subway.js"></script>
         <!-- ここより上に書いてください -->
         <footer></footer>
