@@ -175,7 +175,11 @@ function isCitizenHoliday(date) {
                 })();
                 // 表示する列車がないとき
                 if (diff > 99) {
-                    if (nth % 3) continue; // 2本目以降は表示しない
+                    if (nth % 3) {
+                        // 2本目以降は表示しない
+                        $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "";
+                        continue; 
+                    }
                     $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "☆☆☆本日の運行は終了しました☆☆☆";
                     $(`#${sta}-${dir}-${nth}-grid`).style.textAlign = "center";
                     $(`#${sta}-${dir}-${nth}-grid`).style.width = "100%";
