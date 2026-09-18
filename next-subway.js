@@ -39,6 +39,7 @@ const diaElems = $$(".telop");
 
 function getDeparture(timeTable, nth) {
     const now = new Date();
+    //const now = new Date("2026-09-18T00:11:00"); // modify this to debug specific time
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
     const upcomingToday = timeTable.filter((entry) => {
         const [time] = entry.split(" ");
@@ -172,9 +173,31 @@ function isCitizenHoliday(date) {
                     if (diff < timeThreshold[sta][1]) return msgTexts[1];
                     return msgTexts[2];
                 })();
+                // 表示する列車がないとき
+                if (diff > 99) {
+                    if (nth % 3) continue; // 2本目以降は表示しない
+                    $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "☆☆☆本日の運行は終了しました☆☆☆";
+                    $(`#${sta}-${dir}-${nth}-grid`).style.textAlign = "center";
+                    $(`#${sta}-${dir}-${nth}-grid`).style.width = "100%";
+                    $(`#${sta}-${dir}-${nth}-grid`).style.display = "inline-block";
+                    continue;
+                }
+                // 列車の発車直前は出発アニメーションをつける
+                if (diff == 0) {
+                    $(`#${sta}-${dir}-${nth}-time`).classList.add("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-dest`).classList.add("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-comm`).classList.add("isDeparting");
+                } else {
+                    $(`#${sta}-${dir}-${nth}-time`).classList.remove("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-dest`).classList.remove("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-comm`).classList.remove("isDeparting");
+                }
                 $(`#${sta}-${dir}-${nth}-time`).innerHTML = `${diff ? `${diff}分後` : "現在"}`;
                 $(`#${sta}-${dir}-${nth}-dest`).innerHTML = dest;
-                $(`#${sta}-${dir}-${nth}-comm`).innerHTML = comm;
+                // 次の列車が99分以上先の場合は、この列車が終電
+                const [nextDiff] = getDeparture(timetables[sta][dir], nth + 1);
+                if (nextDiff > 99) $(`#${sta}-${dir}-${nth}-comm`).innerHTML = "本日の最終電車です";
+                else $(`#${sta}-${dir}-${nth}-comm`).innerHTML = comm;
             }
         }, 1000);
     } catch (error) {
