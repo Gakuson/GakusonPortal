@@ -37,9 +37,11 @@ const $$ = (e) => document.querySelectorAll(e);
 const currentTimeElems = $$(".currTime");
 const diaElems = $$(".telop");
 
+// let NOW = new Date("2026-09-18T01:10:00"); // modify this to debug specific time
+
 function getDeparture(timeTable, nth) {
     const now = new Date();
-    //const now = new Date("2026-09-18T00:11:00"); // modify this to debug specific time
+    //const now = NOW;
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
     const upcomingToday = timeTable.filter((entry) => {
         const [time] = entry.split(" ");
@@ -157,6 +159,7 @@ function isCitizenHoliday(date) {
             n: { L: nL, R: nR },
         };
         setInterval(() => {
+            // const now = (NOW = new Date(NOW.getTime() + 1000 * 60 * 20)); // modify this to debug specific time
             const now = new Date();
             const h = String(now.getHours());
             const mm = String(now.getMinutes()).padStart(2, "0");
@@ -173,18 +176,20 @@ function isCitizenHoliday(date) {
                     if (diff < timeThreshold[sta][1]) return msgTexts[1];
                     return msgTexts[2];
                 })();
-                // 表示する列車がないとき
                 if (diff > 99) {
+                    // 表示する列車がないときは、空欄にするかメッセージを表示
                     if (nth % 3) {
-                        // 2本目以降は表示しない
                         $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "";
-                        continue; 
+                        continue;
                     }
-                    $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "☆☆☆本日の運行は終了しました☆☆☆";
-                    $(`#${sta}-${dir}-${nth}-grid`).style.textAlign = "center";
-                    $(`#${sta}-${dir}-${nth}-grid`).style.width = "100%";
-                    $(`#${sta}-${dir}-${nth}-grid`).style.display = "inline-block";
+                    $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "<span class='lastTrainGone'>☆☆☆本日の運行は終了しました☆☆☆</span>";
                     continue;
+                } else {
+                    // 表示する列車があるときは、表示を初期化する
+                    $(`#${sta}-${dir}-${nth}-grid`).innerHTML = `
+                    <div id="${sta}-${dir}-${nth}-time" class="time"></div>
+                    <div id="${sta}-${dir}-${nth}-dest" class="dest"></div>
+                    <div id="${sta}-${dir}-${nth}-comm" class="comm"></div>`;
                 }
                 // 列車の発車直前は出発アニメーションをつける
                 if (diff == 0) {
@@ -198,9 +203,9 @@ function isCitizenHoliday(date) {
                 }
                 $(`#${sta}-${dir}-${nth}-time`).innerHTML = `${diff ? `${diff}分後` : "現在"}`;
                 $(`#${sta}-${dir}-${nth}-dest`).innerHTML = dest;
-                // 次の列車が99分以上先の場合は、この列車が終電
+                // 次の列車が99分以上先かつ現在時刻が3時より前 (深夜) の場合は、この列車が終電
                 const [nextDiff] = getDeparture(timetables[sta][dir], nth + 1);
-                if (nextDiff > 99) $(`#${sta}-${dir}-${nth}-comm`).innerHTML = "本日の最終電車です";
+                if (nextDiff > 99 && (now.getHours() >= 23 || now.getHours() < 3)) $(`#${sta}-${dir}-${nth}-comm`).innerHTML = "本日の最終電車です";
                 else $(`#${sta}-${dir}-${nth}-comm`).innerHTML = comm;
             }
         }, 1000);

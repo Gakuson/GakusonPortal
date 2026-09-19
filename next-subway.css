@@ -121,29 +121,23 @@ span {
     }
 }
 
+span.lastTrainGone {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
 .isDeparting {
     animation: departAnimation 1s infinite;
 }
 
 @keyframes departAnimation {
-    0%, 49% {
+    0%,
+    49% {
         opacity: 1;
     }
-    50%, 99% {
+    50%,
+    99% {
         opacity: 0;
-    }
-
-}
-
-.isSliding {
-    animation: slideAnimation 3s linear infinite;
-}
-
-@keyframes slideAnimation {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
     }
 }
