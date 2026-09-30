@@ -255,6 +255,9 @@
     @media (width >= 960px) {
         top: 5vh;
     }
+    @media (width < 960px) {
+        font-size: 90%;
+    }
 }
 
 .modalOverlay.isOpen .modalContent {
@@ -307,7 +310,7 @@
 }
 
 .modalTable th {
-    width: 7em;
+    width: 6.5em;
     @media (960px <= width) {
         width: 20%;
     }
