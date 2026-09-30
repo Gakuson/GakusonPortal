@@ -252,6 +252,9 @@
     transition:
         opacity 300ms ease,
         transform 300ms ease;
+    @media (width >= 960px) {
+        top: 5vh;
+    }
 }
 
 .modalOverlay.isOpen .modalContent {
@@ -316,4 +319,22 @@
     width: 100%;
     overflow: hidden;
     border: 1px solid #000;
+}
+
+.modalImageView {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    margin: 1vw;
+    gap: 1vw;
+    img {
+        @media (width < 960px) {
+            width: 100%;
+        }
+        @media (960px <= width) {
+            width: calc(50% - 0.5vw);
+        }
+    }
 }

@@ -24,6 +24,9 @@ const periodList = {
     fri: "金",
     sat: "土",
     sun: "日",
+    1: "1限",
+    2: "2限",
+    3: "3限",
     4: "4限",
     5: "5限",
     n: "昼",
@@ -56,6 +59,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     };
 
     const getTotalMembers = (club) => {
+        if (typeof club?.members === "number") return club.members;
         const m = Number(club?.members?.m ?? 0);
         const f = Number(club?.members?.f ?? 0);
         const n = Number(club?.members?.n ?? 0);
@@ -253,17 +257,22 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         female.classList.add("female");
         female.style.backgroundColor = genderBarColor.f;
 
-        const m = Number(club?.members?.m ?? 0);
-        const f = Number(club?.members?.f ?? 0);
-        const known = m + f;
-
-        if (known <= 0) {
+        if (typeof club?.members === "number") {
             male.style.width = "0%";
             female.style.width = "0%";
             wrapper.title = "男女比非公開";
         } else {
-            male.style.width = `${Math.ceil((m / known) * 100)}%`;
-            female.style.width = `${Math.ceil((f / known) * 100)}%`;
+            const m = Number(club?.members?.m ?? 0);
+            const f = Number(club?.members?.f ?? 0);
+            const known = m + f;
+            if (known <= 0) {
+                male.style.width = "0%";
+                female.style.width = "0%";
+                wrapper.title = "男女比非公開";
+            } else {
+                male.style.width = `${Math.ceil((m / known) * 100)}%`;
+                female.style.width = `${Math.ceil((f / known) * 100)}%`;
+            }
         }
 
         wrapper.appendChild(male);
@@ -392,10 +401,32 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         return table;
     };
 
+    const createModalImageView = (club) => {
+        const imageView = document.createElement("div");
+        imageView.className = "modalImageView";
+
+        const images = Array.isArray(club?.images) ? club.images : [];
+        if (images.length) {
+            images.forEach((src, i) => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = `${club.name}の活動画像 ${i}枚目`;
+                img.addEventListener("error", () => {
+                    img.replaceWith(createNoImageElement());
+                });
+                imageView.appendChild(img);
+            });
+        } else {
+            console.log(`No images for ${club.name}, skipping`);
+        }
+        return imageView;
+    };
+
     const openModal = (club) => {
         modalTitle.innerHTML = club?.name ?? "詳細";
         modalBody.innerHTML = "";
         modalBody.appendChild(createModalTable(club));
+        modalBody.appendChild(createModalImageView(club));
         if (modalCloseTimerId !== null) {
             window.clearTimeout(modalCloseTimerId);
             modalCloseTimerId = null;
@@ -430,9 +461,9 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         const imageWrap = document.createElement("div");
         imageWrap.classList.add("image");
-        if (club.image) {
+        if (club.thumb) {
             const img = document.createElement("img");
-            img.src = club.image;
+            img.src = club.thumb;
             img.alt = `${club.name}の画像`;
             img.addEventListener("error", () => {
                 imageWrap.innerHTML = "";
