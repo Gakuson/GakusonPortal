@@ -12,32 +12,57 @@
             "placeList": ["Q棟"]
         },
         "fee": "無料",
-        "description": "記事執筆やSNS運用を通して、学生支援を行ってみませんか？私たちは南山生の約35%が利用する「がくそん」 (このサイト) や、南山大学にもっと詳しくなれるメディアサイト「Nanzan Topics!」の運営を通して、南山生の学生生活をサポートしています。「やってみたい！」を形に出来るサークルなので、興味を持った方は是非ご連絡ください！",
+        "description": "記事執筆やSNS運用を通して、学生支援を行ってみませんか？私たちは南山生の約35%が利用する「がくそん」(このサイト) や、南山大学にもっと詳しくなれるメディアサイト「Nanzan Topics!」の運営を通して、南山生の学生生活をサポートしています。「やってみたい！」を形に出来るサークルなので、興味を持った方は是非ご連絡ください！",
         "links": {
             "X": "Nanzan_Gakuson",
             "Instagram": "gakuson24",
             "Webサイト": "https://gakuson.com"
         },
-        "image": "/circle-thumb/gakuson.png"
+        "thumb": "/circle-thumb/gakuson.png",
+        "images": ["/circle-image/gakuson-1.jpg", "/circle-image/gakuson-2.jpg"],
+        "genre": ["学生支援", "プログラミング", "デザイン"]
     },
     {
         "name": "南山大学<wbr>HoYoverse<wbr>同好会",
         "nameKana": "ほよばーすどうこうかい",
         "type": "cultural",
         "authorizationType": "unofficial",
-        "members": { "m": 9, "f": 3, "n": 0 },
-        "activityTime": ["wed-4"],
+        "members": { "m": 10, "f": 4, "n": 0 },
+        "activityTime": ["wed-p"],
         "activityPlace": {
             "onCampus": true,
             "offCampus": false,
             "placeList": ["S棟"]
         },
         "fee": "無料",
-        "description": "南山大学HoYoverse同好会は、HoYoverse作品を楽しんだり関連する創作活動を行うサークルです。実店舗イベントに複数人で行ったりもしています！",
+        "description": "南山大学HoYoverse同好会は、HoYoverse作品を楽しんだり関連する創作活動を行うサークルです。他大学で行われる同人イベントや、各店舗でのコラボイベントに参加したりもしています！毎週の対面活動のほか、Discordでの交流も可能です。\n加入希望の方は、対面活動にお越しいただくか、SNSのDMにてご連絡ください。ただし行事等で、活動時間内でも学外にいる場合がありますのでご注意ください。",
         "links": {
             "X": "NZ_HoYobu",
-            "Webサイト": "https://nz-hoyobu.github.io"
+            "Instagram": "nz_hoyobu"
         },
-        "image": "/circle-thumb/hoyoverse.png"
+        "thumb": "/circle-thumb/hoyoverse.png",
+        "images": ["/circle-image/hoyoverse-1.jpg", "/circle-image/hoyoverse-2.jpg"],
+        "genre": ["ゲーム (デジタル)", "創作"]
+    },
+    {
+        "name": "パイプ<wbr>オルガン・<wbr>サークル",
+        "nameKana": "ぱいぷおるがんさーくる",
+        "type": "cultural",
+        "authorizationType": "official",
+        "members": 12,
+        "activityTime": ["wed-p"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["ロゴスセンター 地下聖堂"]
+        },
+        "fee": "無料",
+        "description": "私たち南山大学パイプオルガンサークルは、毎週水曜日にロゴスセンター地下聖堂でパイプオルガンを演奏しています。\n普段は、それぞれが自分の好きな曲を選び、自由に練習しています。12月にはクリスマスチャリティバザーで演奏会を開催し、春には入学式や卒業式で伴奏を務めています。\n部員のほとんどがパイプオルガン初心者なので、初心者の方も大歓迎です！パイプオルガンに興味がある方ならどなたでも楽しんでいただけます。\nぜひ私たちと一緒に、パイプオルガンならではの豊かな音色で、さまざまな曲を演奏してみませんか？皆さんの参加をお待ちしています！",
+        "links": {
+            "Instagram": "nz.pipeorgan"
+        },
+        "thumb": "/circle-thumb/pipeorgan.png",
+        "images": ["/circle-image/pipeorgan-1.jpg"],
+        "genre": ["音楽"]
     }
 ]

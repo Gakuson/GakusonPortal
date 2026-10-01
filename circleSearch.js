@@ -24,6 +24,9 @@ const periodList = {
     fri: "金",
     sat: "土",
     sun: "日",
+    1: "1限",
+    2: "2限",
+    3: "3限",
     4: "4限",
     5: "5限",
     n: "昼",
@@ -56,22 +59,11 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     };
 
     const getTotalMembers = (club) => {
+        if (typeof club?.members === "number") return club.members;
         const m = Number(club?.members?.m ?? 0);
         const f = Number(club?.members?.f ?? 0);
         const n = Number(club?.members?.n ?? 0);
         return m + f + n;
-    };
-
-    const getSizeKey = (club) => {
-        const total = getTotalMembers(club);
-        if (total <= 10) return "small";
-        if (total <= 30) return "medium";
-        return "large";
-    };
-
-    const getSelectedActivityTimes = () => {
-        const checked = activityTimeContainer.querySelectorAll('input[type="checkbox"]:checked');
-        return Array.from(checked).map((el) => el.value);
     };
 
     const createTag = (text, bgColor) => {
@@ -253,17 +245,22 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         female.classList.add("female");
         female.style.backgroundColor = genderBarColor.f;
 
-        const m = Number(club?.members?.m ?? 0);
-        const f = Number(club?.members?.f ?? 0);
-        const known = m + f;
-
-        if (known <= 0) {
+        if (typeof club?.members === "number") {
             male.style.width = "0%";
             female.style.width = "0%";
             wrapper.title = "男女比非公開";
         } else {
-            male.style.width = `${Math.ceil((m / known) * 100)}%`;
-            female.style.width = `${Math.ceil((f / known) * 100)}%`;
+            const m = Number(club?.members?.m ?? 0);
+            const f = Number(club?.members?.f ?? 0);
+            const known = m + f;
+            if (known <= 0) {
+                male.style.width = "0%";
+                female.style.width = "0%";
+                wrapper.title = "男女比非公開";
+            } else {
+                male.style.width = `${Math.ceil((m / known) * 100)}%`;
+                female.style.width = `${Math.ceil((f / known) * 100)}%`;
+            }
         }
 
         wrapper.appendChild(male);
@@ -392,10 +389,32 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         return table;
     };
 
+    const createModalImageView = (club) => {
+        const imageView = document.createElement("div");
+        imageView.className = "modalImageView";
+
+        const images = Array.isArray(club?.images) ? club.images : [];
+        if (images.length) {
+            images.forEach((src, i) => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = `${club.name}の活動画像 ${i}枚目`;
+                img.addEventListener("error", () => {
+                    img.replaceWith(createNoImageElement());
+                });
+                imageView.appendChild(img);
+            });
+        } else {
+            console.log(`No images for ${club.name}, skipping`);
+        }
+        return imageView;
+    };
+
     const openModal = (club) => {
         modalTitle.innerHTML = club?.name ?? "詳細";
         modalBody.innerHTML = "";
         modalBody.appendChild(createModalTable(club));
+        modalBody.appendChild(createModalImageView(club));
         if (modalCloseTimerId !== null) {
             window.clearTimeout(modalCloseTimerId);
             modalCloseTimerId = null;
@@ -430,9 +449,9 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         const imageWrap = document.createElement("div");
         imageWrap.classList.add("image");
-        if (club.image) {
+        if (club.thumb) {
             const img = document.createElement("img");
-            img.src = club.image;
+            img.src = club.thumb;
             img.alt = `${club.name}の画像`;
             img.addEventListener("error", () => {
                 imageWrap.innerHTML = "";
@@ -503,21 +522,44 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         return clubCard;
     };
 
-    const passesFilters = (club) => {
-        const clubType = clubTypeSelect.value;
-        if (clubType !== "all" && club.type !== clubType) {
-            return false;
+    // genreセレクタの選択肢を動的に生成
+    const genreSelect = $("#genre");
+    const genreSet = new Set();
+    circleList.forEach((club) => {
+        const genre = club?.genre;
+        if (Array.isArray(genre)) {
+            genre.forEach((g) => genreSet.add(g));
         }
-        const size = clubSizeSelect.value;
-        if (size !== "all" && getSizeKey(club) !== size) {
-            return false;
-        }
-        return true;
-    };
+    });
+    const genreList = Array.from(genreSet).sort((a, b) => a.localeCompare(b, "ja"));
+    genreList.forEach((genre) => {
+        const option = document.createElement("option");
+        option.value = genre;
+        option.textContent = genre;
+        genreSelect.appendChild(option);
+    });
 
     const render = () => {
         circleListContainer.innerHTML = "";
-        const filtered = circleList.filter(passesFilters);
+        const filtered = circleList.filter((club) => {
+            const clubType = clubTypeSelect.value;
+            if (clubType !== "all" && club.type !== clubType) {
+                return false;
+            }
+            const genre = genreSelect.value;
+            if (genre !== "all") {
+                const clubGenres = Array.isArray(club.genre) ? club.genre : [];
+                if (!clubGenres.includes(genre)) {
+                    return false;
+                }
+            }
+            const total = getTotalMembers(club);
+            const [min, max] = clubSizeSelect.value.split("-").map((s) => Number(s));
+            if (total < min || total > max) {
+                return false;
+            }
+            return true;
+        });
 
         const sortOrder = sortOrderSelect?.value ?? "nameAsc";
         const sorted = filtered.slice();
@@ -537,13 +579,26 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         if (sorted.length === 0) {
             const noResults = document.createElement("h2");
-            noResults.textContent = "条件に一致するサークルは見つかりませんでした。";
+            noResults.innerHTML = "条件に一致するサークルは<wbr>見つかりませんでした。";
+            noResults.classList.add("noResults");
             circleListContainer.appendChild(noResults);
+
+            const clearCriteriaButton = document.createElement("button");
+            clearCriteriaButton.type = "button";
+            clearCriteriaButton.textContent = "絞り込みをリセット";
+            clearCriteriaButton.addEventListener("click", () => {
+                clubTypeSelect.value = "all";
+                clubSizeSelect.value = "1-999";
+                render();
+            });
+            clearCriteriaButton.classList.add("clearCriteriaButton");
+            circleListContainer.appendChild(clearCriteriaButton);
         }
     };
 
     // 変更したら即時反映（検索ボタン無し）
     clubTypeSelect.addEventListener("change", render);
+    genreSelect.addEventListener("change", render);
     clubSizeSelect.addEventListener("change", render);
     sortOrderSelect?.addEventListener("change", render);
     render();

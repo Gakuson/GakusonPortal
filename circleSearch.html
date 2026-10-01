@@ -18,6 +18,8 @@
         <script src="/theme.js"></script>
         <link rel="stylesheet" href="/style.css" />
         <link rel="stylesheet" href="/circleSearch.css" />
+        <link rel="canonical" href="https://gakuson.com/circleSearch.html" />
+
         <meta property="og:site_name" content="がくそん" />
         <title>サークル検索 - がくそん</title>
         <meta property="og:title" content="サークル検索 - がくそん" />
@@ -35,8 +37,8 @@
 
         <!-- ここより下に書いてください -->
         <div class="userChoiceContainer">
+            <p>検索条件</p>
             <div class="selectorsContainer">
-                <p>絞り込み</p>
                 <select id="clubType">
                     <option value="all" selected>種別: すべて</option>
                     <option value="sports">運動系</option>
@@ -44,15 +46,20 @@
                     <option value="committee">委員会</option>
                 </select>
                 <select id="clubSize">
-                    <option value="all" selected>規模: すべて</option>
-                    <option value="small">10人以下</option>
-                    <option value="medium">11-30人</option>
-                    <option value="large">31人以上</option>
+                    <option value="1-999" selected>規模: すべて</option>
+                    <option value="1-5">5人以下</option>
+                    <option value="6-10">6-10人</option>
+                    <option value="11-20">11-20人</option>
+                    <option value="21-30">21-30人</option>
+                    <option value="31-50">31-50人</option>
+                    <option value="51-999">51人以上</option>
                 </select>
             </div>
 
-            <div class="sortersContainer">
-                <p>並べ替え</p>
+            <div class="selectorsContainer">
+                <select id="genre">
+                    <option value="all" selected>ジャンル: すべて</option>
+                </select>
                 <select id="sortOrder">
                     <option value="nameAsc" selected>名前 - 昇順</option>
                     <option value="nameDesc">名前 - 降順</option>
@@ -69,31 +76,7 @@
                 あなたのサークルを<br />掲載しませんか？<br />お気軽にお問合せください！
             </div>
         </div>
-        <div class="clubSearchResults">
-            <!-- ここに検索結果が入る -->
-            <!--
-            <div class="clubCard">
-                <div class="image">
-                    <img src="clubA.jpg" alt="サークルAの画像" />
-                </div>
-                <div class="name">サークルA</div>
-                <div class="tags">
-                    <span class="tag">運動系</span>
-                    <span class="tag">公認</span>
-                    <span class="tag">平日のみ</span>
-                </div>
-                <div class="memberInfo">
-                    <span class="memberCount">メンバー数: 20人</span>
-                    <div class="genderRatioBar">
-                        <div class="male" style="width: 60%;"></div>
-                        <div class="female" style="width: 40%;"></div>
-                    </div>
-                </div>
-                <button class="detailsButton">詳細を見る</button>
-            </div>
-            <div class="clubCard">...</div>
-            -->
-        </div>
+        <div class="clubSearchResults"><!-- ここに検索結果が入る --></div>
         <script src="circleSearch.js"></script>
 
         <!-- ここより上に書いてください -->

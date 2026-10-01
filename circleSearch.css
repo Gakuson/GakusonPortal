@@ -28,9 +28,6 @@
                 width: calc(50% - 0.25em);
             }
         }
-        @media (960px <= width) {
-            margin-bottom: 1em;
-        }
     }
     @media (width < 960px) {
         top: 60px;
@@ -65,6 +62,25 @@
         margin-left: calc(14em + 2em);
         margin-top: 0;
     }
+}
+
+.noResults {
+    color: var(--pColor);
+    font-size: 1.2rem;
+    text-align: center;
+    width: 90%;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.clearCriteriaButton {
+    margin-top: 1em;
+    padding: 1rem;
+    border-radius: 0.75em;
+    border: 1px solid var(--pColor);
+    color: var(--pColor);
+    background: transparent;
+    cursor: pointer;
 }
 
 .clubCard {
@@ -252,6 +268,12 @@
     transition:
         opacity 300ms ease,
         transform 300ms ease;
+    @media (width >= 960px) {
+        top: 5vh;
+    }
+    @media (width < 960px) {
+        font-size: 90%;
+    }
 }
 
 .modalOverlay.isOpen .modalContent {
@@ -304,7 +326,7 @@
 }
 
 .modalTable th {
-    width: 7em;
+    width: 6.5em;
     @media (960px <= width) {
         width: 20%;
     }
@@ -316,4 +338,25 @@
     width: 100%;
     overflow: hidden;
     border: 1px solid #000;
+}
+
+.modalImageView {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    gap: 1vw;
+    @media (width < 960px) {
+        margin-top: 1vw;
+        img {
+            width: 100%;
+        }
+    }
+    @media (960px <= width) {
+        margin: 1vw 0.2vw;
+        img {
+            width: calc(50% - 0.5vw);
+        }
+    }
 }
