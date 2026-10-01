@@ -1,5 +1,12 @@
 [
     {
+        "to":"2026-10-14",
+        "href": "https://koseikanproject.com/news/261001/",
+        "img": "./img/kk_chuden_2610.avif",
+        "alt": "好生館中部電力イベントの告知画像",
+        "ga4": "kk_chuden_2610"
+    },
+    {
         "to": "2026-10-22",
         "href": "https://www.instagram.com/uflea.m",
         "img": "./img/kk_asobi_frima_2609.avif",
