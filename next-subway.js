@@ -113,6 +113,7 @@ function isCitizenHoliday(date) {
     try {
         const jrcData = await (await fetch("./api/data_jrc.json")).json();
         const ntbData = await (await fetch("./api/data_ntb.json")).json();
+        const meiData = await (await fetch("./api/data_mei.json")).json();
 
         const jrcStatuses = {
             平常運行: "○",
@@ -132,6 +133,18 @@ function isCitizenHoliday(date) {
         $("#NTB_T").innerHTML = ntbData.find((e) => e.line === "鶴舞線").status === "平常運行" ? "○" : "△";
         $("#NTB_S").innerHTML = ntbData.find((e) => e.line === "桜通線").status === "平常運行" ? "○" : "△";
         $("#NTB_K").innerHTML = ntbData.find((e) => e.line === "上飯田線").status === "平常運行" ? "○" : "△";
+
+        // 名鉄の文字列はJRと同じ
+        $("#MEI_NH").innerHTML = jrcStatuses[meiData.find((e) => e.line === "本線").status] || "エラー";
+        $("#MEI_IY").innerHTML = jrcStatuses[meiData.find((e) => e.line === "犬山線").status] || "エラー";
+        $("#MEI_TA").innerHTML = jrcStatuses[meiData.find((e) => e.line === "常滑線").status] || "エラー";
+        $("#MEI_KC").innerHTML = jrcStatuses[meiData.find((e) => e.line === "河和線").status] || "エラー";
+        $("#MEI_TT").innerHTML = jrcStatuses[meiData.find((e) => e.line === "豊田線").status] || "エラー";
+        $("#MEI_MU").innerHTML = jrcStatuses[meiData.find((e) => e.line === "三河線").status] || "エラー";
+        $("#MEI_GN").innerHTML = jrcStatuses[meiData.find((e) => e.line === "西尾線").status] || "エラー";
+        $("#MEI_TB").innerHTML = jrcStatuses[meiData.find((e) => e.line === "尾西線").status] || "エラー";
+        $("#MEI_KM").innerHTML = jrcStatuses[meiData.find((e) => e.line === "小牧線").status] || "エラー";
+        $("#MEI_ST").innerHTML = jrcStatuses[meiData.find((e) => e.line === "瀬戸線").status] || "エラー";
 
         const tableCells = $$(".operationStatusTable td");
         tableCells.forEach((cell) => {
