@@ -66,18 +66,6 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         return m + f + n;
     };
 
-    const getSizeKey = (club) => {
-        const total = getTotalMembers(club);
-        if (total <= 10) return "small";
-        if (total <= 30) return "medium";
-        return "large";
-    };
-
-    const getSelectedActivityTimes = () => {
-        const checked = activityTimeContainer.querySelectorAll('input[type="checkbox"]:checked');
-        return Array.from(checked).map((el) => el.value);
-    };
-
     const createTag = (text, bgColor) => {
         const tag = document.createElement("span");
         tag.classList.add("tag");
@@ -534,21 +522,44 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         return clubCard;
     };
 
-    const passesFilters = (club) => {
-        const clubType = clubTypeSelect.value;
-        if (clubType !== "all" && club.type !== clubType) {
-            return false;
+    // genreセレクタの選択肢を動的に生成
+    const genreSelect = $("#genre");
+    const genreSet = new Set();
+    circleList.forEach((club) => {
+        const genre = club?.genre;
+        if (Array.isArray(genre)) {
+            genre.forEach((g) => genreSet.add(g));
         }
-        const size = clubSizeSelect.value;
-        if (size !== "all" && getSizeKey(club) !== size) {
-            return false;
-        }
-        return true;
-    };
+    });
+    const genreList = Array.from(genreSet).sort((a, b) => a.localeCompare(b, "ja"));
+    genreList.forEach((genre) => {
+        const option = document.createElement("option");
+        option.value = genre;
+        option.textContent = genre;
+        genreSelect.appendChild(option);
+    });
 
     const render = () => {
         circleListContainer.innerHTML = "";
-        const filtered = circleList.filter(passesFilters);
+        const filtered = circleList.filter((club) => {
+            const clubType = clubTypeSelect.value;
+            if (clubType !== "all" && club.type !== clubType) {
+                return false;
+            }
+            const genre = genreSelect.value;
+            if (genre !== "all") {
+                const clubGenres = Array.isArray(club.genre) ? club.genre : [];
+                if (!clubGenres.includes(genre)) {
+                    return false;
+                }
+            }
+            const total = getTotalMembers(club);
+            const [min, max] = clubSizeSelect.value.split("-").map((s) => Number(s));
+            if (total < min || total > max) {
+                return false;
+            }
+            return true;
+        });
 
         const sortOrder = sortOrderSelect?.value ?? "nameAsc";
         const sorted = filtered.slice();
@@ -568,13 +579,26 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         if (sorted.length === 0) {
             const noResults = document.createElement("h2");
-            noResults.textContent = "条件に一致するサークルは見つかりませんでした。";
+            noResults.innerHTML = "条件に一致するサークルは<wbr>見つかりませんでした。";
+            noResults.classList.add("noResults");
             circleListContainer.appendChild(noResults);
+
+            const clearCriteriaButton = document.createElement("button");
+            clearCriteriaButton.type = "button";
+            clearCriteriaButton.textContent = "絞り込みをリセット";
+            clearCriteriaButton.addEventListener("click", () => {
+                clubTypeSelect.value = "all";
+                clubSizeSelect.value = "1-999";
+                render();
+            });
+            clearCriteriaButton.classList.add("clearCriteriaButton");
+            circleListContainer.appendChild(clearCriteriaButton);
         }
     };
 
     // 変更したら即時反映（検索ボタン無し）
     clubTypeSelect.addEventListener("change", render);
+    genreSelect.addEventListener("change", render);
     clubSizeSelect.addEventListener("change", render);
     sortOrderSelect?.addEventListener("change", render);
     render();

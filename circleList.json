@@ -19,7 +19,8 @@
             "Webサイト": "https://gakuson.com"
         },
         "thumb": "/circle-thumb/gakuson.png",
-        "images": ["/circle-image/gakuson-1.jpg", "/circle-image/gakuson-2.jpg"]
+        "images": ["/circle-image/gakuson-1.jpg", "/circle-image/gakuson-2.jpg"],
+        "genre": ["学生支援", "プログラミング", "デザイン"]
     },
     {
         "name": "南山大学<wbr>HoYoverse<wbr>同好会",
@@ -40,7 +41,8 @@
             "Instagram": "nz_hoyobu"
         },
         "thumb": "/circle-thumb/hoyoverse.png",
-        "images": ["/circle-image/hoyoverse-1.jpg", "/circle-image/hoyoverse-2.jpg"]
+        "images": ["/circle-image/hoyoverse-1.jpg", "/circle-image/hoyoverse-2.jpg"],
+        "genre": ["ゲーム (デジタル)", "創作"]
     },
     {
         "name": "パイプ<wbr>オルガン・<wbr>サークル",
@@ -60,6 +62,7 @@
             "Instagram": "nz.pipeorgan"
         },
         "thumb": "/circle-thumb/pipeorgan.png",
-        "images": ["/circle-image/pipeorgan-1.jpg"]
+        "images": ["/circle-image/pipeorgan-1.jpg"],
+        "genre": ["音楽"]
     }
 ]
