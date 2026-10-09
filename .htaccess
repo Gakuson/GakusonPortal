@@ -22,8 +22,14 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# 2-3. リバースプロキシ
+# 2-3. リバースプロキシを設定し、保存を禁止
 RewriteRule ^ad_manager/(.*)$ http://localhost:3000/$1 [P,L]
+<If "%{REQUEST_URI} =~ m#^/ad_manager/#">
+    Header set Cache-Control "no-store, no-cache, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</If>
+
 
 
 # ==========================================
