@@ -1,0 +1,89 @@
+[
+    {
+        "name": "がくそん",
+        "nameKana": "がくそん",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": { "m": 11, "f": 8, "n": 0 },
+        "activityTime": ["mon-5"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["Q棟"]
+        },
+        "fee": "無料",
+        "description": "記事執筆やSNS運用を通して、学生支援を行ってみませんか？私たちは南山生の約35%が利用する「がくそん」(このサイト) や、南山大学にもっと詳しくなれるメディアサイト「Nanzan Topics!」の運営を通して、南山生の学生生活をサポートしています。「やってみたい！」を形に出来るサークルなので、興味を持った方は是非ご連絡ください！",
+        "links": {
+            "X": "Nanzan_Gakuson",
+            "Instagram": "gakuson24",
+            "Webサイト": "https://gakuson.com"
+        },
+        "thumb": "/circle-thumb/gakuson.png",
+        "images": ["/circle-image/gakuson-1.jpg", "/circle-image/gakuson-2.jpg"],
+        "genre": ["学生支援", "プログラミング", "デザイン"]
+    },
+    {
+        "name": "南山大学<wbr>HoYoverse<wbr>同好会",
+        "nameKana": "ほよばーすどうこうかい",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": { "m": 10, "f": 4, "n": 0 },
+        "activityTime": ["wed-p"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["S棟"]
+        },
+        "fee": "無料",
+        "description": "南山大学HoYoverse同好会は、HoYoverse作品を楽しんだり関連する創作活動を行うサークルです。他大学で行われる同人イベントや、各店舗でのコラボイベントに参加したりもしています！毎週の対面活動のほか、Discordでの交流も可能です。\n加入希望の方は、対面活動にお越しいただくか、SNSのDMにてご連絡ください。ただし行事等で、活動時間内でも学外にいる場合がありますのでご注意ください。",
+        "links": {
+            "X": "NZ_HoYobu",
+            "Instagram": "nz_hoyobu"
+        },
+        "thumb": "/circle-thumb/hoyoverse.png",
+        "images": ["/circle-image/hoyoverse-1.jpg", "/circle-image/hoyoverse-2.jpg"],
+        "genre": ["ゲーム (デジタル)", "創作"]
+    },
+    {
+        "name": "パイプ<wbr>オルガン・<wbr>サークル",
+        "nameKana": "ぱいぷおるがんさーくる",
+        "type": "cultural",
+        "authorizationType": "official",
+        "members": 12,
+        "activityTime": ["wed-p"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["ロゴスセンター 地下聖堂"]
+        },
+        "fee": "無料",
+        "description": "私たち南山大学パイプオルガンサークルは、毎週水曜日にロゴスセンター地下聖堂でパイプオルガンを演奏しています。\n普段は、それぞれが自分の好きな曲を選び、自由に練習しています。12月にはクリスマスチャリティバザーで演奏会を開催し、春には入学式や卒業式で伴奏を務めています。\n部員のほとんどがパイプオルガン初心者なので、初心者の方も大歓迎です！パイプオルガンに興味がある方ならどなたでも楽しんでいただけます。\nぜひ私たちと一緒に、パイプオルガンならではの豊かな音色で、さまざまな曲を演奏してみませんか？皆さんの参加をお待ちしています！",
+        "links": {
+            "Instagram": "nz.pipeorgan"
+        },
+        "thumb": "/circle-thumb/pipeorgan.png",
+        "images": ["/circle-image/pipeorgan-1.jpg"],
+        "genre": ["音楽"]
+    },
+    {
+        "name": "UniVo",
+        "nameKana": "ゆにぼ",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": 11,
+        "activityTime": ["sat-p"],
+        "activityPlace": {
+            "onCampus": false,
+            "offCampus": false,
+            "placeList": ["オンライン (定期ミーティング)", "学内外 (不定期活動)"]
+        },
+        "fee": "無料",
+        "description": "私たち UniVo は、女性支援と在日外国人支援を中心に活動している学生団体です！🌷\n\n【普段の主な活動】 \n女性支援：生理用品の学内設置・運用\n在日外国人支援：アフガニスタンのご家庭への日本語指導・学習サポート\n\n昨年9月に創設されたばかりの新しい団体だからこそ、「こんな企画をやってみたい！」というあなたのアイデアがそのまま形になるワクワク感があります！「何か新しいことに挑戦してみたい」「大学生活をもっと充実させたい」という方、ぜひ一緒に活動してみませんか？✨\n\n🌟こんな人におすすめ！ \n・大学生活で新しいことに挑戦・成長してみたい方\n・海外の人と交流したり、国際支援に興味がある方\n・日本語教育やボランティアに関心がある方\n・ゼロから団体や企画をつくりあげる経験をしてみたい方\n（※専門知識や語学力は一切問いません！初心者も大歓迎です！🔰）\n\n少しでも興味を持っていただけた方は、お気軽にInstagramのDMまでご連絡ください！📩「まずは話を聞いてみたい」「活動の雰囲気を知りたい」という方も大歓迎です！\nInstagramに普段の活動の様子を投稿しているので、ぜひチェックしてみてください！📸",
+        "links": {
+            "Instagram": "univo_nanzan"
+        },
+        "thumb": "/circle-thumb/univo.jpg",
+        "images": ["/circle-image/univo-1.jpg", "/circle-image/univo-2.jpg", "/circle-image/univo-3.jpg"],
+        "genre": ["学生支援", "国際交流", "ボランティア"]
+    }
+]

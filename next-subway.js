@@ -1,0 +1,228 @@
+const msgTexts = ["学校からはあきらめよう&emsp;", "学校からは急げば間に合う", "学校からは歩いて間に合う"];
+const timeThreshold = { m: [8, 12], n: [11, 17] };
+
+const dateBasedHolidays = [
+    { m: 3, d: 20 }, // 春分
+    { m: 9, d: 23 }, // 秋分
+    { m: 1, d: 1 }, //  元日
+    { m: 1, d: 2 }, //  年始
+    { m: 1, d: 3 }, //  年始
+    { m: 2, d: 11 }, // 建国
+    { m: 2, d: 23 }, // 天皇
+    { m: 4, d: 29 }, // 昭和
+    { m: 5, d: 3 }, //  憲法
+    { m: 5, d: 4 }, //  みどり
+    { m: 5, d: 5 }, //  こども
+    { m: 8, d: 11 }, // 山
+    { m: 8, d: 13 }, // お盆
+    { m: 8, d: 14 }, // お盆
+    { m: 8, d: 15 }, // お盆
+    { m: 11, d: 3 }, // 文化
+    { m: 11, d: 23 }, //勤労
+    { m: 12, d: 28 }, //年末
+    { m: 12, d: 29 }, //年末
+    { m: 12, d: 30 }, //年末
+    { m: 12, d: 31 }, //年末
+];
+const weekNoBasedHolidays = [
+    // m月第w月曜日
+    { m: 1, w: 2 }, // 成人
+    { m: 7, w: 3 }, // 海
+    { m: 9, w: 3 }, // 敬老
+    { m: 10, w: 2 }, // スポ
+];
+
+const $ = (e) => document.querySelector(e);
+const $$ = (e) => document.querySelectorAll(e);
+const currentTimeElems = $$(".currTime");
+const diaElems = $$(".telop");
+
+// let NOW = new Date("2026-09-18T01:10:00"); // modify this to debug specific time
+
+function getDeparture(timeTable, nth) {
+    const now = new Date();
+    //const now = NOW;
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    const upcomingToday = timeTable.filter((entry) => {
+        const [time] = entry.split(" ");
+        const [hour, minute] = time.split(":").map(Number);
+        const entryMinutes = hour * 60 + minute;
+        return entryMinutes > nowMinutes;
+    });
+    if (nth < upcomingToday.length) {
+        const target = upcomingToday[nth];
+        const [time, dest] = target.split(" ");
+        const [hour, minute] = time.split(":").map(Number);
+        const targetMinutes = hour * 60 + minute;
+        const diff = targetMinutes - nowMinutes - 1;
+        return [Math.floor(diff), dest];
+    } else {
+        const indexInNextDay = nth - upcomingToday.length;
+        const target = timeTable[indexInNextDay];
+        const [time, dest] = target.split(" ");
+        const [hour, minute] = time.split(":").map(Number);
+        const targetMinutes = hour * 60 + minute;
+        const diff = 24 * 60 - nowMinutes + targetMinutes - 1; // 翌日扱いで24時間加算
+        return [Math.floor(diff), dest];
+    }
+}
+
+function isDayoff(date) {
+    return isSaturday(date) || isSunday(date) || isDefinedHoliday(date) || isAlternateHoliday(date) || isCitizenHoliday(date);
+}
+
+function isSaturday(date) {
+    return date.getDay() === 6;
+}
+
+function isSunday(date) {
+    return date.getDay() === 0;
+}
+
+// 当日の月日または月週が一致するなら、定義祝日
+function isDefinedHoliday(date) {
+    const isSameDate = (d, m, day) => d.getMonth() + 1 === m && d.getDate() === day;
+    for (const h of dateBasedHolidays) {
+        if (isSameDate(date, h.m, h.d)) return true;
+    }
+    const isMonday = date.getDay() === 1;
+    const weekNo = Math.floor((date.getDate() - 1) / 7) + 1;
+    for (const h of weekNoBasedHolidays) {
+        if (date.getMonth() + 1 === h.m && weekNo === h.w && isMonday) return true;
+    }
+    return false;
+}
+
+// 前日が日曜かつ定義祝日なら、振替休日
+function isAlternateHoliday(date) {
+    const prevDate = new Date(date);
+    prevDate.setDate(date.getDate() - 1);
+    return isDefinedHoliday(prevDate) && isSunday(prevDate);
+}
+
+// 前日と翌日の両方が日曜または定義祝日なら、国民の休日
+function isCitizenHoliday(date) {
+    const prevDate = new Date(date);
+    prevDate.setDate(date.getDate() - 1);
+    const nextDate = new Date(date);
+    nextDate.setDate(date.getDate() + 1);
+    return (isDefinedHoliday(prevDate) || isSunday(prevDate)) && (isDefinedHoliday(nextDate) || isSunday(nextDate));
+}
+
+(async () => {
+    try {
+        const jrcData = await (await fetch("./api/data_jrc.json")).json();
+        const ntbData = await (await fetch("./api/data_ntb.json")).json();
+        const meiData = await (await fetch("./api/data_mei.json")).json();
+
+        const jrcStatuses = {
+            平常運行: "○",
+            "遅れ／運休あり": "△",
+            運転見合わせ: "✕",
+        };
+        $("#JRC_CA_N").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "東海道線(豊橋～米原)").status] || "エラー";
+        $("#JRC_CF").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "中央線").status] || "エラー";
+        $("#JRC_CJ").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "関西線").status] || "エラー";
+        $("#JRC_CE").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "武豊線").status] || "エラー";
+        $("#JRC_CG").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "高山線").status] || "エラー";
+        $("#JRC_CI").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "太多線").status] || "エラー";
+
+        // TODO: 名市交の平常運行以外の文字列を調べる、とりあえず△にする
+        $("#NTB_H").innerHTML = ntbData.find((e) => e.line === "東山線").status === "平常運行" ? "○" : "△";
+        $("#NTB_M").innerHTML = ntbData.find((e) => e.line === "名城線").status === "平常運行" ? "○" : "△";
+        $("#NTB_T").innerHTML = ntbData.find((e) => e.line === "鶴舞線").status === "平常運行" ? "○" : "△";
+        $("#NTB_S").innerHTML = ntbData.find((e) => e.line === "桜通線").status === "平常運行" ? "○" : "△";
+        $("#NTB_K").innerHTML = ntbData.find((e) => e.line === "上飯田線").status === "平常運行" ? "○" : "△";
+
+        // 名鉄の文字列はJRと同じ
+        $("#MEI_NH").innerHTML = jrcStatuses[meiData.find((e) => e.line === "本線").status] || "エラー";
+        $("#MEI_IY").innerHTML = jrcStatuses[meiData.find((e) => e.line === "犬山線").status] || "エラー";
+        $("#MEI_TA").innerHTML = jrcStatuses[meiData.find((e) => e.line === "常滑線").status] || "エラー";
+        $("#MEI_KC").innerHTML = jrcStatuses[meiData.find((e) => e.line === "河和線").status] || "エラー";
+        $("#MEI_TT").innerHTML = jrcStatuses[meiData.find((e) => e.line === "豊田線").status] || "エラー";
+        $("#MEI_MU").innerHTML = jrcStatuses[meiData.find((e) => e.line === "三河線").status] || "エラー";
+        $("#MEI_GN").innerHTML = jrcStatuses[meiData.find((e) => e.line === "西尾線").status] || "エラー";
+        $("#MEI_TB").innerHTML = jrcStatuses[meiData.find((e) => e.line === "尾西線").status] || "エラー";
+        $("#MEI_KM").innerHTML = jrcStatuses[meiData.find((e) => e.line === "小牧線").status] || "エラー";
+        $("#MEI_ST").innerHTML = jrcStatuses[meiData.find((e) => e.line === "瀬戸線").status] || "エラー";
+
+        const tableCells = $$(".operationStatusTable td");
+        tableCells.forEach((cell) => {
+            if (cell.innerHTML === "○") {
+                cell.style.backgroundColor = "#b4efb4";
+            } else if (cell.innerHTML === "△") {
+                cell.style.backgroundColor = "#efe0b4";
+            } else if (cell.innerHTML === "✕") {
+                cell.style.backgroundColor = "#efb4b4";
+            }
+        });
+    } catch (error) {
+        console.error("運行情報表示エラー:", error);
+    }
+    try {
+        const todayDate = new Date();
+        const isHoliday = isDayoff(todayDate);
+
+        const mL = await (await fetch(`./subwayTimetable/meidai-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const mR = await (await fetch(`./subwayTimetable/meidai-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const nL = await (await fetch(`./subwayTimetable/nisseki-left-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const nR = await (await fetch(`./subwayTimetable/nisseki-right-${isHoliday ? "weekend" : "regular"}.json`)).json();
+        const timetables = {
+            m: { L: mL, R: mR },
+            n: { L: nL, R: nR },
+        };
+        setInterval(() => {
+            // const now = (NOW = new Date(NOW.getTime() + 1000 * 60 * 20)); // modify this to debug specific time
+            const now = new Date();
+            const h = String(now.getHours());
+            const mm = String(now.getMinutes()).padStart(2, "0");
+            for (const e of currentTimeElems) e.innerHTML = `${h}:${mm}`;
+            for (const e of diaElems) e.innerHTML = `今日は${isHoliday ? "休日" : "平日"}ダイヤです`;
+            for (let i = 0; i < 12; i++) {
+                const sta = i < 6 ? "m" : "n";
+                const dir = i % 6 > 2 ? "R" : "L";
+                const nth = i % 3;
+                const [diff, dest] = getDeparture(timetables[sta][dir], nth);
+                const comm = (() => {
+                    if (!diff) return "まもなく発車";
+                    if (diff < timeThreshold[sta][0]) return msgTexts[0];
+                    if (diff < timeThreshold[sta][1]) return msgTexts[1];
+                    return msgTexts[2];
+                })();
+                if (diff > 99) {
+                    // 表示する列車がないときは、空欄にするかメッセージを表示
+                    if (nth % 3) {
+                        $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "";
+                        continue;
+                    }
+                    $(`#${sta}-${dir}-${nth}-grid`).innerHTML = "<span class='lastTrainGone'>☆☆☆本日の運行は終了しました☆☆☆</span>";
+                    continue;
+                } else {
+                    // 表示する列車があるときは、表示を初期化する
+                    $(`#${sta}-${dir}-${nth}-grid`).innerHTML = `
+                    <div id="${sta}-${dir}-${nth}-time" class="time"></div>
+                    <div id="${sta}-${dir}-${nth}-dest" class="dest"></div>
+                    <div id="${sta}-${dir}-${nth}-comm" class="comm"></div>`;
+                }
+                // 列車の発車直前は出発アニメーションをつける
+                if (diff == 0) {
+                    $(`#${sta}-${dir}-${nth}-time`).classList.add("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-dest`).classList.add("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-comm`).classList.add("isDeparting");
+                } else {
+                    $(`#${sta}-${dir}-${nth}-time`).classList.remove("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-dest`).classList.remove("isDeparting");
+                    $(`#${sta}-${dir}-${nth}-comm`).classList.remove("isDeparting");
+                }
+                $(`#${sta}-${dir}-${nth}-time`).innerHTML = `${diff ? `${diff}分後` : "現在"}`;
+                $(`#${sta}-${dir}-${nth}-dest`).innerHTML = dest;
+                // 次の列車が99分以上先かつ現在時刻が3時より前 (深夜) の場合は、この列車が終電
+                const [nextDiff] = getDeparture(timetables[sta][dir], nth + 1);
+                if (nextDiff > 99 && (now.getHours() >= 23 || now.getHours() < 3)) $(`#${sta}-${dir}-${nth}-comm`).innerHTML = "本日の最終電車です";
+                else $(`#${sta}-${dir}-${nth}-comm`).innerHTML = comm;
+            }
+        }, 1000);
+    } catch (error) {
+        console.error("時刻表表示エラー:", error);
+    }
+})();
