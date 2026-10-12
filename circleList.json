@@ -85,5 +85,29 @@
         "thumb": "/circle-thumb/univo.jpg",
         "images": ["/circle-image/univo-1.jpg", "/circle-image/univo-2.jpg", "/circle-image/univo-3.jpg"],
         "genre": ["学生支援", "国際交流", "ボランティア"]
+    },
+    {
+        "name": "南山大学<wbr>アルパイン<wbr>クラブ",
+        "nameKana": "あるぱいんくらぶ",
+        "type": "sports",
+        "authorizationType": "semiOfficial",
+        "members": { "m": 17, "f": 11, "n": 0 },
+        "activityTime": ["wed-3"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": true,
+            "placeList": ["南山大学クラブハウス (定期ミーティング)", "山 (不定期活動)"]
+        },
+        "fee": "3000円 / 年 (1年生は無料)",
+        "description": "南山大学アルパインクラブは、山をフィールドの主として幅広く活動するサークルです。\n活動内容としては、登山やロッククライミングを行っています。長期休みには、何日間かかけて山々を自分の足でつないだり、クライミング遠征に行ったりしています。\n\nまた、当サークルは「東海学生山岳連盟」に所属しており他大学との交流もあります。\n...と言った感じのサークルです。簡単に言えば登山サークルです！新しいことを初めてみたい、冒険的なことをやってみたいと興味がある方はSNSにDMをお願いします。\n疑問点や不安点、どんな質問にも答えます！気軽に送ってください。",
+        "links": {
+            "Instagram": "nanzanalpineclub",
+            "X": "nanzan_alpine",
+            "Webサイト (ブログ)": "http://nanzanalpine.blog82.fc2.com/",
+            "メール": "nanzan02alpine@gmail.com"
+        },
+        "thumb": "/circle-thumb/alpine.jpg",
+        "images": ["/circle-image/alpine-1.jpg", "/circle-image/alpine-2.jpg", "/circle-image/alpine-3.jpg", "/circle-image/alpine-4.jpg", "/circle-image/alpine-5.jpg", "/circle-image/alpine-6.jpg", "/circle-image/alpine-7.jpg", "/circle-image/alpine-8.jpg"],
+        "genre": ["登山", "アウトドア"]
     }
 ]

@@ -2,18 +2,19 @@ const $ = (e) => document.querySelector(e);
 const $$ = (e) => document.querySelectorAll(e);
 
 const tagsList = {
-    cultural: ["文化系", "#ff9999"],
-    sports: ["運動系", "#99ff99"],
-    other: ["その他", "#cccccc"],
-    official: ["公認", "#ffcc99"],
-    semiOfficial: ["準公認", "#ccccff"],
-    coreGroup: ["コアG", "#ff99cc"],
-    unofficial: ["有志", "#99ccff"],
-    noHolidayActivity: ["平日のみ", "#ffff99"],
-    onlyHolidayActivity: ["休日のみ", "#99ffff"],
-    noClubFee: ["部費なし", "#ffccff"],
-    onCampusActivity: ["学内活動", "#99ff99"],
-    offCampusActivity: ["学外活動", "#99ccff"],
+    cultural: ["文化系", "#fd0"],
+    sports: ["運動系", "#df0"],
+    other: ["その他", "#fff"],
+    official: ["公認", "#fc9"],
+    semiOfficial: ["準公認", "#ddf"],
+    coreGroup: ["コアG", "#f9c"],
+    unofficial: ["有志", "#fff"],
+    noHolidayActivity: ["平日のみ", "#fff"],
+    onlyHolidayActivity: ["休日のみ", "#9ff"],
+    noFee: ["部費無料", "#fcf"],
+    noFeeForNewbie: ["1年無料", "#fcf"],
+    onCampusActivity: ["学内活動", "#afa"],
+    offCampusActivity: ["学外活動", "#adf"],
 };
 
 const periodList = {
@@ -102,13 +103,14 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         const normalized = fee.replaceAll(",", "").trim();
         if (normalized === "") return [];
-        if (normalized.includes("無料")) return ["noClubFee"];
+        if (normalized === "無料") return ["noFee"];
+        if (normalized.match(/(1年生|新入生)は無料/)) return ["noFeeForNewbie"];
 
         const m = normalized.match(/(\d+)\s*円/);
         if (!m) return [];
         const amount = Number(m[1]);
         if (!Number.isFinite(amount)) return [];
-        return amount === 0 ? ["noClubFee"] : [];
+        return amount === 0 ? ["noFee"] : [];
     };
 
     const getDerivedTagKeysFromActivityPlace = (club) => {
@@ -134,8 +136,8 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         if (typeof feeText !== "string") return NaN;
         const normalized = feeText.replaceAll(",", "").trim();
         if (normalized === "") return NaN;
-        if (normalized === "0円") return 0;
-        if (normalized.includes("無料")) return 0;
+        if (normalized === "無料") return 0;
+        if (normalized.match(/(1年生|新入生)は無料/)) return 1; // 部費1円は存在しないと思うので、初年無料は1円としてソート
 
         const m = normalized.match(/(\d+)\s*円(?:\s*\/\s*(回|週|月|クオーター|半年|年))?/);
         if (!m) return NaN;
