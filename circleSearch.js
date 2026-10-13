@@ -25,6 +25,13 @@ const periodList = {
     fri: "金",
     sat: "土",
     sun: "日",
+    imon: "隔月",
+    itue: "隔火",
+    iwed: "隔水",
+    ithu: "隔木",
+    ifri: "隔金",
+    isat: "隔土",
+    isun: "隔日",
     1: "1限",
     2: "2限",
     3: "3限",
@@ -78,8 +85,8 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     };
 
     const getActivityTagColor = (dayKey) => {
-        if (dayKey === "sat") return dayColor.sat;
-        if (dayKey === "sun") return dayColor.sun;
+        if (dayKey.match(/sat/)) return dayColor.sat;
+        if (dayKey.match(/sun/)) return dayColor.sun;
         return dayColor.weekdays;
     };
 
@@ -145,14 +152,12 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         if (!Number.isFinite(amount)) return NaN;
         const unit = m[2];
 
-        // 回ごとの場合、週何日活動するかを取得して換算
         if (!unit || unit === "回") {
             const freq = getActivityFrequencyScore(club);
             const estimatedDaysPerWeek = freq.dayCount > 0 ? freq.dayCount : 1;
             return (amount * estimatedDaysPerWeek) / 7;
         }
 
-        // 単位を考慮して日額換算
         if (unit === "週") return amount / 7;
         if (unit === "月") return amount / 30.3;
         if (unit === "クオーター") return amount / 91;
@@ -391,7 +396,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         return table;
     };
 
-    const createModalImageView = (club) => {
+    /*const createModalImageView = (club) => {
         const imageView = document.createElement("div");
         imageView.className = "modalImageView";
 
@@ -400,10 +405,48 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
             images.forEach((src, i) => {
                 const img = document.createElement("img");
                 img.src = src;
-                img.alt = `${club.name}の活動画像 ${i}枚目`;
-                img.addEventListener("error", () => {
-                    img.replaceWith(createNoImageElement());
-                });
+                img.alt = `${club.name}の活動画像 ${i + 1}枚目`;
+                imageView.appendChild(img);
+            });
+        } else {
+            console.log(`No images for ${club.name}, skipping`);
+        }
+        return imageView;
+    };*/
+    const createModalImageView = (club) => {
+        const imageView = document.createElement("div");
+        imageView.className = "modalImageView";
+
+        const rawImages = Array.isArray(club?.images) ? club.images : [];
+        const expandedImages = [];
+
+        const regex = /^(\/\S+?-)([0-9a-fA-F.]+)(\.[a-zA-Z0-9]+)$/;
+
+        rawImages.forEach((src) => {
+            const match = src.match(regex);
+            if (!match) {
+                expandedImages.push(src);
+                return;
+            }
+            const [_, prefix, valueStr, suffix] = match;
+            if (valueStr.includes("...")) {
+                const [startStr, endStr] = valueStr.split("...");
+                const start = parseInt(startStr, 16);
+                const end = parseInt(endStr, 16);
+                for (let i = start; i <= end; i++) {
+                    const hexValue = i.toString(16);
+                    expandedImages.push(`${prefix}${hexValue}${suffix}`);
+                }
+            } else {
+                expandedImages.push(src);
+            }
+        });
+
+        if (expandedImages.length) {
+            expandedImages.forEach((src, i) => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = `${club.name}の活動画像 ${i + 1}枚目`;
                 imageView.appendChild(img);
             });
         } else {
