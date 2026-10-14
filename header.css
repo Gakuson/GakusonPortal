@@ -45,17 +45,9 @@ header {
     .ColorTagDefault .number {
         border-color: #38b6ff;
     }
-    .ColorTagYellow,
-    .ColorTagYellow .number {
-        border-color: #fac014;
-    }
-    .ColorTagSky,
-    .ColorTagSky .number {
-        border-color: #38b6ff;
-    }
-    .ColorTagBlue,
-    .ColorTagBlue .number {
-        border-color: #031491;
+    .ColorTagHighlighted,
+    .ColorTagHighlighted .number {
+        border-color: #ee6c4d;
     }
     .container {
         &:hover,

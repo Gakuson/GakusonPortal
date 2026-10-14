@@ -585,7 +585,15 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     });
 
     const render = () => {
+        // 既存の検索結果をクリア
         circleListContainer.innerHTML = "";
+        // スマホの場合、一番上に掲載募集中と表示する
+        const tmpElem = document.createElement("div");
+        tmpElem.innerHTML = "<h2><a href='https://x.com/Nanzan_Gakuson/status/2105130514071822689' target='_blank'>掲載サークル募集中！！</a></h2>";
+        tmpElem.classList.add("SP_ONLY");
+        circleListContainer.appendChild(tmpElem);
+
+        // 検索条件に一致するサークルを絞り込んで描画する
         const filtered = circleList.filter((club) => {
             const clubType = clubTypeSelect.value;
             if (clubType !== "all" && club.type !== clubType) {
