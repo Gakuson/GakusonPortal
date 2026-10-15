@@ -133,8 +133,23 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
     const getActivityFrequencyScore = (club) => {
         const clubTimes = Array.isArray(club.activityTime) ? club.activityTime : [];
         const daySet = new Set(clubTimes.map((code) => String(code).split("-")[0]).filter((d) => d));
-        const dayCount = daySet.size;
-        const timesCount = clubTimes.length;
+
+        let dayCount = 0;
+        daySet.forEach((day) => {
+            if (day.startsWith("i")) {
+                dayCount += 0.5;
+            } else {
+                dayCount += 1;
+            }
+        });
+        let timesCount = 0;
+        clubTimes.forEach((time) => {
+            if (time?.startsWith("i")) {
+                timesCount += 0.5;
+            } else {
+                timesCount += 1;
+            }
+        });
         return { dayCount, timesCount };
     };
 
