@@ -159,7 +159,7 @@
         "nameKana": "ほうしょうかい",
         "type": "cultural",
         "authorizationType": "unofficial",
-        "members": {"m": 2, "f": 11, "n": 0},
+        "members": { "m": 2, "f": 11, "n": 0 },
         "activityTime": ["mon-5"],
         "activityPlace": {
             "onCampus": true,
@@ -176,5 +176,27 @@
         "thumb": "/circle-thumb/nuhosho.jpg",
         "images": ["/circle-image/nuhosho-1...8.jpeg"],
         "genre": ["伝統文化"]
+    },
+    {
+        "name": "NAND",
+        "nameKana": "なんど",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": 8,
+        "activityTime": ["tue-5"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["南山大学S棟", "オンライン", "外部イベント (不定期)"]
+        },
+        "fee": "無料",
+        "description": "NAND (ナンド) は、南山大学の学生によるエンジニア・プログラミングサークルです！\n\nWebサイトやアプリ、ゲーム、AIなど、興味のある分野を仲間と一緒に学び、「作りたい」を形にすることを目指しています。個人・チームでの開発をはじめ、勉強会やLT (短い発表) 、ハッカソンなどの学外イベントへの参加にも取り組んでいきます！\n\n「プログラミングを始めてみたい！」「一緒に開発できる仲間が欲しい！」そんな方はぜひNANDへ！\n\n初心者・経験者どちらも大歓迎！学年・学部も問いません。見学だけでもOKなので、気軽に参加してください！\n\n興味のある方は、X（旧Twitter）で「南山大学 NAND（@nandsongen）」を検索して、DMでご連絡ください！",
+        "links": {
+            "X": "nandsongen",
+            "Webサイト": "https://nandmain.vercel.app/"
+        },
+        "thumb": "/circle-thumb/nand.png",
+        "images": ["/circle-image/nand-1.jpg"],
+        "genre": ["プログラミング"]
     }
 ]
