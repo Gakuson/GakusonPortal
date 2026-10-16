@@ -371,7 +371,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
             tbody.appendChild(tr);
         };
 
-        addRow("メンバー数", `${getTotalMembers(club)}人`);
+        addRow("人数", `${getTotalMembers(club)}人`);
 
         const activityList = getActivityTimeList(club);
         if (activityList.length === 0) {
@@ -566,7 +566,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
 
         const memberCount = document.createElement("span");
         memberCount.classList.add("memberCount");
-        memberCount.textContent = `メンバー数: ${getTotalMembers(club)}人`;
+        memberCount.textContent = `メンバー数 ${getTotalMembers(club)}人`;
         memberInfo.appendChild(memberCount);
         memberInfo.appendChild(createGenderRatioBar(club));
 
@@ -604,7 +604,7 @@ const genderBarColor = { m: "#99ccff", f: "#ff99cc" };
         circleListContainer.innerHTML = "";
         // スマホの場合、一番上に掲載募集中と表示する
         const tmpElem = document.createElement("div");
-        tmpElem.innerHTML = "<h2><a href='https://x.com/Nanzan_Gakuson/status/2105130514071822689' target='_blank'>掲載サークル募集中！！</a></h2>";
+        tmpElem.innerHTML = "<h2><a href='https://x.com/Nanzan_Gakuson/status/2105130514071822689' target='_blank'>掲載団体様募集中！！</a></h2>";
         tmpElem.classList.add("SP_ONLY");
         circleListContainer.appendChild(tmpElem);
 

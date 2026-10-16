@@ -153,5 +153,28 @@
         "thumb": "/circle-thumb/sado.jpeg",
         "images": ["/circle-image/sado-1...6.jpeg"],
         "genre": ["伝統文化"]
+    },
+    {
+        "name": "名大<wbr>南山<wbr>宝生会",
+        "nameKana": "ほうしょうかい",
+        "type": "cultural",
+        "authorizationType": "unofficial",
+        "members": {"m": 2, "f": 11, "n": 0},
+        "activityTime": ["mon-5"],
+        "activityPlace": {
+            "onCampus": true,
+            "offCampus": false,
+            "placeList": ["南山大学研修センター"]
+        },
+        "fee": "1000円 / 月",
+        "description": "はじめまして！名大南山宝生会です🪭\n経験、学年、性別問わず、新入部員募集中です！\n\n当サークルでは、「お能」を学ぶサークルです。お能というと「能面」を想像する人も多いかもしれませんが、このサークルでは基本的に扇をもって短い舞を舞台で舞う「仕舞」と、バックコーラス的な「謡」をします✨\n月2回ほど、プロの先生に舞・謡を教えていただき、他の活動日は部員のみで舞ったり練習しています！先生はとても優しいので、「未経験だから不安…」「なんだか厳しそう…」と思っている方でも大丈夫！\n\n🌟こんな方におすすめ🌟\n・新しいことを始めたいけど、今してるサークルやバイトも両立したい人\n・着物など日本文化に気軽に触れてみたい人\n・マンガやアニメを見て興味を持った人\nなどなど…もちろん直感で気になった方も大歓迎です✨\n\n入部は何月からでも大歓迎！連絡を送っていただければ、すぐに見学・入部のご案内をします！もし気になった方は、インスタ、X(旧Twitter)のDMにご連絡ください！",
+        "links": {
+            "X": "NUhosho_hium",
+            "Instagram": "nuhosho_hiun",
+            "メール": "nu.hosho@gmail.com"
+        },
+        "thumb": "/circle-thumb/nuhosho.jpg",
+        "images": ["/circle-image/nuhosho-1...8.jpeg"],
+        "genre": ["伝統文化"]
     }
 ]
