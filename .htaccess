@@ -92,3 +92,10 @@ ErrorDocument 404 /errorPage/404.html
     Header set Pragma "no-cache"
     Header set Expires "0"
 </If>
+
+# PHPの無効化
+RemoveType .php
+php_flag engine off
+<Files *.php>
+    Require all denied
+</Files>
