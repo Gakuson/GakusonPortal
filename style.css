@@ -434,8 +434,8 @@ div.linkButtons {
             font-size: min(5vw, 24px); /* TODO: will be replaced with image */
         }
         @media (960px <= width) {
-            height: 135px;
-            width: 135px;
+            height: 9.375vw;
+            width: 9.375vw;
             font-size: 150%; /* SAME: will be replaced with image */
         }
     }
