@@ -127,12 +127,18 @@ function isCitizenHoliday(date) {
         $("#JRC_CG").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "高山線").status] || "エラー";
         $("#JRC_CI").innerHTML = jrcStatuses[jrcData.find((e) => e.line === "太多線").status] || "エラー";
 
-        // TODO: 名市交の平常運行以外の文字列を調べる、とりあえず△にする
-        $("#NTB_H").innerHTML = ntbData.find((e) => e.line === "東山線").status === "平常運行" ? "○" : "△";
-        $("#NTB_M").innerHTML = ntbData.find((e) => e.line === "名城線").status === "平常運行" ? "○" : "△";
-        $("#NTB_T").innerHTML = ntbData.find((e) => e.line === "鶴舞線").status === "平常運行" ? "○" : "△";
-        $("#NTB_S").innerHTML = ntbData.find((e) => e.line === "桜通線").status === "平常運行" ? "○" : "△";
-        $("#NTB_K").innerHTML = ntbData.find((e) => e.line === "上飯田線").status === "平常運行" ? "○" : "△";
+        const ntbStatuses = {
+            平常運行: "○",
+            遅延: "△",
+            運転見合わせ: "✕",
+            一部運転見合わせ: "✕",
+            相互直通運転中止: "△",
+        };
+        $("#NTB_H").innerHTML = ntbStatuses[ntbData.find((e) => e.line === "東山線").status] || "エラー";
+        $("#NTB_M").innerHTML = ntbStatuses[ntbData.find((e) => e.line === "名城線").status] || "エラー";
+        $("#NTB_T").innerHTML = ntbStatuses[ntbData.find((e) => e.line === "鶴舞線").status] || "エラー";
+        $("#NTB_S").innerHTML = ntbStatuses[ntbData.find((e) => e.line === "桜通線").status] || "エラー";
+        $("#NTB_K").innerHTML = ntbStatuses[ntbData.find((e) => e.line === "上飯田線").status] || "エラー";
 
         // 名鉄の文字列はJRと同じ
         $("#MEI_NH").innerHTML = jrcStatuses[meiData.find((e) => e.line === "本線").status] || "エラー";
